@@ -1,0 +1,29 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:51385",
+      "sslPort": 44383
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "local"
+      }
+    },
+    "BlackSlope.Hosts.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:51385/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "local"
+      },
+      "applicationUrl": "http://localhost:51385"
+    }
+  }
+}
