@@ -85,7 +85,7 @@ namespace BlackSlope.Hosts.Api
                 options.AddPolicy("AllowSpecificOrigin",
                     builder => builder.AllowAnyOrigin()     // TODO: Replace with FE Service Host as appropriate to constrain clients
                         .AllowAnyHeader()
-                        .WithHeaders(new[] { "PUT", "POST", "OPTIONS", "GET", "DELETE" }));
+                        .WithMethods("PUT", "POST", "OPTIONS", "GET", "DELETE"));
             });
         }
 
