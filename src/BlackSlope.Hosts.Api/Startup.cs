@@ -10,7 +10,6 @@ using BlackSlope.Hosts.Api.Operations.Movies.Validators.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,14 +29,14 @@ namespace BlackSlope.Hosts.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvcService();
             ApplicationConfiguration(services);
 
             services.AddSwagger(HostConfig.Swagger);
             CorsConfiguration(services);
             AuthenticationConfiguration(services);
-                        
-            services.AddSingleton<IMapper>(GenerateMapperConfiguration());
+
+            services.AddSingleton(GenerateMapperConfiguration());
             services.AddTransient<ICorrelationIdRequestReader, CorrelationIdHeaderService>();
             services.AddTransient<ICorrelationIdResponseWriter, CorrelationIdHeaderService>();
             services.AddScoped<ICurrentCorrelationIdService, CurrentCorrelationIdService>();
