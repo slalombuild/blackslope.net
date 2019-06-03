@@ -1,1 +1,1 @@
-dotnet run --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
+dotnet run --project src/BlackSlope.Api/BlackSlope.Api.csproj
