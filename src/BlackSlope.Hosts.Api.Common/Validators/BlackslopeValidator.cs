@@ -5,6 +5,8 @@ using FluentValidation.Results;
 using BlackSlope.Hosts.Api.Common.ViewModels;
 using BlackSlope.Hosts.Api.Common.Enumerators;
 using FluentValidation.Internal;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace BlackSlope.Hosts.Api.Common.Validators
 {
@@ -13,6 +15,12 @@ namespace BlackSlope.Hosts.Api.Common.Validators
         public new void Validate(T instance)
         {
             var validationResult = base.Validate(instance);
+            HandleValidationFailure(validationResult, instance);
+        }
+
+        public new async Task ValidateAsync(T instance, CancellationToken cancellation = default)
+        {
+            var validationResult = await base.ValidateAsync(instance);
             HandleValidationFailure(validationResult, instance);
         }
 

@@ -20,7 +20,11 @@ namespace BlackSlope.Hosts.Api.Operations.Movies.Enumerators
         TitleNotBetween2and50Characters = 40005,
 
         [Description("Movie Description should be between 2 and 50 characters")]
-        DescriptionNotBetween2and50Characters = 40006
+        DescriptionNotBetween2and50Characters = 40006,
+
+        [Description("Movie already exists")]
+        MovieAlreadyExists = 40007
+
 
     }
 }

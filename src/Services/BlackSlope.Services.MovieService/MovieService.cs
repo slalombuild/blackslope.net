@@ -3,6 +3,8 @@ using BlackSlope.Services.MovieService.DomainModels;
 using BlackSlope.Repositories.MovieRepository;
 using AutoMapper;
 using BlackSlope.Repositories.MovieRepository.DtoModels;
+using System.Threading.Tasks;
+using System;
 
 namespace BlackSlope.Services.MovieService
 {
@@ -49,6 +51,12 @@ namespace BlackSlope.Services.MovieService
             var dto = _movieRepository.Update(_mapper.Map<MovieDtoModel>(movie));
 
             return _mapper.Map<MovieDomainModel>(dto);
+        }
+
+
+        public async Task<bool> CheckIfMovieExists(string title, DateTime? releaseDate)
+        {
+            return await _movieRepository.MovieExistsAsync(title, releaseDate);
         }
     }
 }
