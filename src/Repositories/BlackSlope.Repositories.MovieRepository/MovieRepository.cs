@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BlackSlope.Repositories.MovieRepository.Context;
 using BlackSlope.Repositories.MovieRepository.DtoModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlackSlope.Repositories.MovieRepository
 {
@@ -41,11 +44,17 @@ namespace BlackSlope.Repositories.MovieRepository
             return _context.Movies.FirstOrDefault(x => x.Id == id);
         }
 
+        public async Task<bool> MovieExistsAsync(string title, DateTime? releaseDate)
+        {
+            return await _context.Movies.AnyAsync(m => m.Title == title && m.ReleaseDate == releaseDate);                                   
+        }
+
         public MovieDtoModel Update(MovieDtoModel movie)
         {
             var dto = _context.Movies.FirstOrDefault(x => x.Id == movie.Id);
             dto.Title = movie.Title;
             dto.Description = movie.Description;
+            dto.ReleaseDate = movie.ReleaseDate;
             _context.SaveChanges();
 
             return movie;
