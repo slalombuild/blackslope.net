@@ -36,10 +36,11 @@ namespace BlackSlope.Api
             services.AddCorrelation();
             services.AddTransient<IFileSystem, FileSystem>();
             services.AddTransient<IVersionService, AssemblyVersionService>();
+            services.AddHealthChecksService();
+
             services.AddMovieService();
             services.AddMovieRepository(_configuration);
             services.AddMovieValidators();
-            services.AddHealthChecksService();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

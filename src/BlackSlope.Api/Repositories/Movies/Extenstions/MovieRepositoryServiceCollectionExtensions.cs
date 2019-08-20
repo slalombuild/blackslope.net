@@ -26,11 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 services.AddDbContext<MovieContext>(options => options.UseSqlServer(config.MoviesConnectionString));
             }
 
-            //if (movieContext.Database.GetPendingMigrations().Any())
-            //{
-            //    movieContext.Database.Migrate();
-            //}
-
             return services;
         }
     }

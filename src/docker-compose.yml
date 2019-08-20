@@ -11,7 +11,7 @@ services:
       - "1401:1433"
   apiapp:
     container_name: apiapp
-    image: balckslope/api-app
+    image: blackslope/api-app
     build: 
       context: .
     depends_on:
