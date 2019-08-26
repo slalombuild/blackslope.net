@@ -1,0 +1,22 @@
+version: '3.5'
+services: 
+  db: 
+    container_name: db
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer    
+    ports: 
+      - "1401:1433"
+  apiapp:
+    container_name: apiapp
+    image: blackslope/api-app
+    build: 
+      context: .
+    depends_on:
+      - db
+    ports: 
+      - "5010:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "docker"

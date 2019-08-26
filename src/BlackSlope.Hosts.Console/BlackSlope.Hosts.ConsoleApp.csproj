@@ -20,8 +20,4 @@
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="4.5.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Services\BlackSlope.Services.MovieService\BlackSlope.Services.MovieService.csproj" />
-  </ItemGroup>
-
 </Project>
