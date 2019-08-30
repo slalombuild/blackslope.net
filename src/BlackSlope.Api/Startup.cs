@@ -1,6 +1,6 @@
 ﻿using System.IO.Abstractions;
 using System.Reflection;
-using BlackSlope.Api.Common.Configurtion;
+using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Extensions;
 using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;

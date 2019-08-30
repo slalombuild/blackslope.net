@@ -1,5 +1,5 @@
 ﻿using System;
-using BlackSlope.Api.Common.Configurtion;
+using BlackSlope.Api.Common.Configuration;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

@@ -1,4 +1,4 @@
-﻿using BlackSlope.Api.Common.Configurtion;
+﻿using BlackSlope.Api.Common.Configuration;
 using Microsoft.AspNetCore.Builder;
 
 namespace BlackSlope.Api.Common.Extensions
