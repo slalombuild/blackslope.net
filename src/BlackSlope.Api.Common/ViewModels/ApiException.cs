@@ -1,6 +1,6 @@
-﻿using BlackSlope.Api.Common.Enumerators;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BlackSlope.Api.Common.Enumerators;
 
 namespace BlackSlope.Api.Common.ViewModels
 {
@@ -14,6 +14,7 @@ namespace BlackSlope.Api.Common.ViewModels
         {
             PrepareException(httpStatusCode, data, apiErrors);
         }
+
         public ApiException(ApiHttpStatusCode httpStatusCode, object data, IEnumerable<ApiError> apiErrors, string message)
         : base(message)
         {
@@ -30,11 +31,13 @@ namespace BlackSlope.Api.Common.ViewModels
         {
             PrepareException(httpStatusCode, data, new List<ApiError>() { apiError });
         }
+
         public ApiException(ApiHttpStatusCode httpStatusCode, object data, ApiError apiError, string message)
         : base(message)
         {
             PrepareException(httpStatusCode, data, new List<ApiError>() { apiError });
         }
+
         public ApiException(ApiHttpStatusCode httpStatusCode, object data, ApiError apiError, string message, Exception inner)
         : base(message, inner)
         {

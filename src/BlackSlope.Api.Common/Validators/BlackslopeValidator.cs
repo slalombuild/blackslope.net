@@ -1,13 +1,13 @@
 ﻿using System;
-using FluentValidation;
 using System.Linq;
-using FluentValidation.Results;
-using BlackSlope.Api.Common.ViewModels;
-using BlackSlope.Api.Common.Enumerators;
-using FluentValidation.Internal;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
+using BlackSlope.Api.Common.Enumerators;
 using BlackSlope.Api.Common.Extensions;
+using BlackSlope.Api.Common.ViewModels;
+using FluentValidation;
+using FluentValidation.Internal;
+using FluentValidation.Results;
 
 namespace BlackSlope.Api.Common.Validators
 {

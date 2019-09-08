@@ -1,7 +1,7 @@
-﻿using BlackSlope.Repositories.Movies.DtoModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlackSlope.Repositories.Movies.DtoModels;
 
 namespace BlackSlope.Repositories.Movies
 {

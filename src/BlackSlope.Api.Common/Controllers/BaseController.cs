@@ -37,6 +37,5 @@ namespace BlackSlope.Api.Common.Controllers
         {
             return StatusCode((int)HttpStatusCode.NoContent);
         }
-
     }
 }

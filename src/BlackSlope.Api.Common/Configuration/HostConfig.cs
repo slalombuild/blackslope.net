@@ -9,6 +9,5 @@
         public SerilogConfig Serilog { get; set; }
 
         public ApplicationInsightsConfig ApplicationInsights { get; set; }
-
     }
 }

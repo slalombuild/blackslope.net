@@ -30,6 +30,5 @@ namespace BlackSlope.Api.Common.Swagger
             });
             return pathItem;
         }
-
     }
 }

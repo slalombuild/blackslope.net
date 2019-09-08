@@ -15,7 +15,7 @@ namespace BlackSlope.Api.Operations.Movies.Validators
             RuleFor(x => x.Movie)
                 .NotNull()
                 .WithState(x => MovieErrorCode.NullRequestViewModel)
-                .DependentRules(() => ValidateViewModel(movieService)); ;
+                .DependentRules(() => ValidateViewModel(movieService));
         }
 
         private void ValidateViewModel(IMovieService movieService)

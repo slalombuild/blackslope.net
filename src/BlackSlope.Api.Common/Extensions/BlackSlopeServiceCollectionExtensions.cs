@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class BlackSlopeServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Swagger service to the IServiceCollection and configure it 
+        /// Adds Swagger service to the IServiceCollection and configure it
         /// </summary>
         /// <param name="services"></param>
         /// <param name="swaggerConfig"></param>
@@ -46,7 +46,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
         /// <summary>
-        /// Adds MVC service to the Service Collection and configure json serializer behavior 
+        /// Adds MVC service to the Service Collection and configure json serializer behavior
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
