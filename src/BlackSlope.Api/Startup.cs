@@ -31,7 +31,7 @@ namespace BlackSlope.Api
 
             services.AddSwagger(HostConfig.Swagger);
             services.AddAzureAd(HostConfig.AzureAd);
-            services.AddAutoMapper(GetAssemblyNamesToScaneForMapperProfiles());
+            services.AddAutoMapper(GetAssemblyNamesToScanForMapperProfiles());
             services.AddCorrelation();
             services.AddTransient<IFileSystem, FileSystem>();
             services.AddTransient<IVersionService, AssemblyVersionService>();
@@ -86,7 +86,7 @@ namespace BlackSlope.Api
         }
 
         // make a list of projects in the solution which must be scanned for mapper profiles
-        private static string[] GetAssemblyNamesToScaneForMapperProfiles() =>
+        private static string[] GetAssemblyNamesToScanForMapperProfiles() =>
             new string[] { Assembly.GetExecutingAssembly().GetName().Name };
     }
 }
