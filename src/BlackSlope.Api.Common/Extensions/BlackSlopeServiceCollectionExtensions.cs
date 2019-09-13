@@ -82,13 +82,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services"></param>
         /// <param name="assemblyNamesToScan"></param>
         /// <returns></returns>
-        public static IServiceCollection AddAutoMapper(this IServiceCollection services, string[] assemblyNamesToScan)
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services, IEnumerable<string> assemblyNamesToScan)
         {
             services.TryAddSingleton(GenerateMapperConfiguration(assemblyNamesToScan));
             return services;
         }
 
-        private static IMapper GenerateMapperConfiguration(string[] assemblyNamesToScan)
+        private static IMapper GenerateMapperConfiguration(IEnumerable<string> assemblyNamesToScan)
         {
             var config = new MapperConfiguration(cfg =>
             {

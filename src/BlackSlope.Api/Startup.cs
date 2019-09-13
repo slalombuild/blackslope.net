@@ -1,4 +1,5 @@
-﻿using System.IO.Abstractions;
+﻿using System.Collections.Generic;
+using System.IO.Abstractions;
 using System.Reflection;
 using BlackSlope.Api.Common.Configurtion;
 using BlackSlope.Api.Common.Extensions;
@@ -86,7 +87,7 @@ namespace BlackSlope.Api
         }
 
         // make a list of projects in the solution which must be scanned for mapper profiles
-        private static string[] GetAssemblyNamesToScanForMapperProfiles() =>
+        private static IEnumerable<string> GetAssemblyNamesToScanForMapperProfiles() =>
             new string[] { Assembly.GetExecutingAssembly().GetName().Name };
     }
 }
