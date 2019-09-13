@@ -1,4 +1,5 @@
-﻿using System.IO.Abstractions;
+﻿using System.Collections.Generic;
+using System.IO.Abstractions;
 using System.Reflection;
 using BlackSlope.Api.Common.Configurtion;
 using BlackSlope.Api.Common.Extensions;
@@ -6,7 +7,6 @@ using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;
 using BlackSlope.Api.Common.Version.Interfaces;
 using BlackSlope.Api.Common.Version.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +32,7 @@ namespace BlackSlope.Api
 
             services.AddSwagger(HostConfig.Swagger);
             services.AddAzureAd(HostConfig.AzureAd);
-            services.AddAutoMapper();
+            services.AddAutoMapper(GetAssemblyNamesToScanForMapperProfiles());
             services.AddCorrelation();
             services.AddTransient<IFileSystem, FileSystem>();
             services.AddTransient<IVersionService, AssemblyVersionService>();
@@ -42,6 +42,7 @@ namespace BlackSlope.Api
             services.AddMovieRepository(_configuration);
             services.AddMovieValidators();
         }
+
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -85,17 +86,8 @@ namespace BlackSlope.Api
             });
         }
 
-        private void AuthenticationConfiguration(IServiceCollection services)
-        {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.Authority = string.Format(HostConfig.AzureAd.AadInstance, HostConfig.AzureAd.Tenant);
-                options.Audience = HostConfig.AzureAd.Audience;
-            });
-        }
+        // make a list of projects in the solution which must be scanned for mapper profiles
+        private static IEnumerable<string> GetAssemblyNamesToScanForMapperProfiles() =>
+            new string[] { Assembly.GetExecutingAssembly().GetName().Name };
     }
 }
