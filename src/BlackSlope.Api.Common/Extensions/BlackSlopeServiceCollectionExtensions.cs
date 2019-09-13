@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using AutoMapper;
 using BlackSlope.Api.Common.Configurtion;
 using BlackSlope.Api.Common.Swagger;
@@ -78,21 +77,22 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
         /// <summary>
-        /// Add AutoMapper service to the Service Collection and configure it
+        /// Add AutoMapper service to the Service Collection and configure it assemblies 
         /// </summary>
         /// <param name="services"></param>
+        /// <param name="assemblyNamesToScan"></param>
         /// <returns></returns>
-        public static IServiceCollection AddAutoMapper(this IServiceCollection services)
+        public static IServiceCollection AddAutoMapper(this IServiceCollection services, string[] assemblyNamesToScan)
         {
-            services.TryAddSingleton(GenerateMapperConfiguration());
+            services.TryAddSingleton(GenerateMapperConfiguration(assemblyNamesToScan));
             return services;
         }
 
-        private static IMapper GenerateMapperConfiguration()
+        private static IMapper GenerateMapperConfiguration(string[] assemblyNamesToScan)
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfiles(Assembly.GetExecutingAssembly().GetName().Name);
+                cfg.AddProfiles(assemblyNamesToScan);
             });
             return config.CreateMapper();
         }
