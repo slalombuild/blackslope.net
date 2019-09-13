@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Reflection;
@@ -45,6 +45,7 @@ namespace BlackSlope.Api
             services.AddMovieRepository(_configuration);
             services.AddMovieValidators();
         }
+
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
