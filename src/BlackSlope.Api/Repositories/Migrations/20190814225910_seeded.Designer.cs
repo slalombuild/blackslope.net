@@ -11,7 +11,7 @@ namespace BlackSlope.Api.Migrations
 {
     [DbContext(typeof(MovieContext))]
     [Migration("20190814225910_seeded")]
-    partial class seeded
+    partial class Seeded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

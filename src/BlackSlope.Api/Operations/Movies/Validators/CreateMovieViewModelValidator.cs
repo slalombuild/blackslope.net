@@ -11,7 +11,7 @@ namespace BlackSlope.Api.Operations.Movies.Validators
         public CreateMovieViewModelValidator(IMovieService movieService)
         {
             RuleFor(x => x).MustAsync(async (x, cancellationtoken) =>
-                    !(await movieService.CheckIfMovieExistsAsync(x.Title, x.ReleaseDate)))
+                    !await movieService.CheckIfMovieExistsAsync(x.Title, x.ReleaseDate))
                 .WithState(x => MovieErrorCode.MovieAlreadyExists);
 
             RuleFor(x => x.Title)

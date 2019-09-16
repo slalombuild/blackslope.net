@@ -26,7 +26,7 @@ namespace BlackSlope.Api.Tests.ServicesTests.MoviesTests
         public async Task CreateMovie_successfully()
         {
             var updateMovieDomainModelRequest = _fixture.Create<MovieDomainModel>();
-            _movieRepository.Setup( x =>  x.UpdateAsync(It.IsAny<MovieDtoModel>()))
+            _movieRepository.Setup(x => x.UpdateAsync(It.IsAny<MovieDtoModel>()))
                 .ReturnsAsync(_newMovieDto);
 
             var result = await _service.UpdateMovieAsync(updateMovieDomainModelRequest);

@@ -30,7 +30,7 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
 
             await _next(context);
         }
-       
+
         private Guid GenerateCorrelationId() => Guid.NewGuid();
     }
 }

@@ -10,7 +10,8 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class MovieRepositoryServiceCollectionExtensions
     {
-        public static IServiceCollection AddMovieRepository(this IServiceCollection services,
+        public static IServiceCollection AddMovieRepository(
+            this IServiceCollection services,
             IConfiguration configuration)
         {
             services.TryAddScoped<IMovieRepository, MovieRepository>();

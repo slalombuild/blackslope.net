@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class MovieValidatorServiceCollectionExtensions
+    public static class MovieValidatorsServiceCollectionExtensions
     {
         public static IServiceCollection AddMovieValidators(this IServiceCollection services)
         {

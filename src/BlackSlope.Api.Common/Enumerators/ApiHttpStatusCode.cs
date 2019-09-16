@@ -2,6 +2,7 @@
 
 namespace BlackSlope.Api.Common.Enumerators
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:Enumeration items should be documented", Justification = "Enum names are self documenting.")]
     public enum ApiHttpStatusCode
     {
         [Description("OK.")]
@@ -13,6 +14,6 @@ namespace BlackSlope.Api.Common.Enumerators
         [Description("Unauthorized.")]
         Unauthorized = 401,
         [Description("Internal Server Error.")]
-        InternalServerError = 500
+        InternalServerError = 500,
     }
 }

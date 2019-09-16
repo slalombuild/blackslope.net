@@ -2,6 +2,7 @@
 
 namespace BlackSlope.Api.Operations.Movies.Enumerators
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1602:Enumeration items should be documented", Justification = "Description and enum name suffices as documentation.")]
     public enum MovieErrorCode
     {
         [Description("Request model cannot be null")]

@@ -22,7 +22,7 @@ namespace BlackSlope.Api.Common.Version
         /// Use this operation to return the current API Build Version number
         /// </remarks>
         /// <response code="200">Returns the current build version number</response>
-        /// <response code="500">Internal Server Error</response>        
+        /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]

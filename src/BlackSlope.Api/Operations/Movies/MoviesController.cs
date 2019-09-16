@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlackSlope.Api.Operations.Movies
 {
     // TODO: enable this once authentication middleware has been configured
-    //[Authorize]
+    // [Authorize]
     public class MoviesController : BaseController
     {
         private readonly IMapper _mapper;
@@ -38,7 +38,7 @@ namespace BlackSlope.Api.Operations.Movies
         /// </remarks>
         /// <response code="200">Returns a list of all movies</response>
         /// <response code="401">Unauthorized</response>
-        /// <response code="500">Internal Server Error</response>  
+        /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -64,7 +64,7 @@ namespace BlackSlope.Api.Operations.Movies
         /// </remarks>
         /// <response code="200">Returns a movie</response>
         /// <response code="401">Unauthorized</response>
-        /// <response code="500">Internal Server Error</response>     
+        /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -102,7 +102,7 @@ namespace BlackSlope.Api.Operations.Movies
         {
             var request = new CreateMovieRequest { Movie = viewModel };
 
-            // validate request model           
+            // validate request model
             await _createMovieRequestValidator.ValidateAsync(request);
 
             // map view model to domain model
@@ -166,7 +166,7 @@ namespace BlackSlope.Api.Operations.Movies
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Internal Server Error</response>
-        /// 
+        ///
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

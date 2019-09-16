@@ -5,6 +5,7 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
     public class CurrentCorrelationIdService : ICurrentCorrelationIdService
     {
         private Guid? _correlationId;
+
         public CorrelationId Current()
         {
             if (_correlationId.HasValue)
