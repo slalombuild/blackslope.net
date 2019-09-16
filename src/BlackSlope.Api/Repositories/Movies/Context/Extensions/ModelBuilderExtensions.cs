@@ -58,8 +58,7 @@ namespace BlackSlope.Api.Repositories.Movies.Context.Extensions
                 new MovieDtoModel { Id = 47, Title = "Grave of the Fireflies", Description = "Platonem oportere in has, nam recusabo delicata elaboraret ei, dico gubergren hendrerit ex sea.", ReleaseDate = DateTime.Now },
                 new MovieDtoModel { Id = 48, Title = "Back to the Future", Description = "Cu usu velit omittam temporibus, natum vulputate sea eu.", ReleaseDate = DateTime.Now },
                 new MovieDtoModel { Id = 49, Title = "Raiders of the Lost Ark", Description = "Gubergren scriptorem eu vel, eius percipitur te per, vel tale habeo et.", ReleaseDate = DateTime.Now },
-                new MovieDtoModel { Id = 50, Title = "Apocalypse Now", Description = "Alii insolens inciderint pro an, ei eos utinam commodo tacimates.", ReleaseDate = DateTime.Now }
-            );
+                new MovieDtoModel { Id = 50, Title = "Apocalypse Now", Description = "Alii insolens inciderint pro an, ei eos utinam commodo tacimates.", ReleaseDate = DateTime.Now });
         }
     }
 }

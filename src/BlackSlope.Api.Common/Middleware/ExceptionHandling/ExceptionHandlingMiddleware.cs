@@ -34,6 +34,36 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
             }
         }
 
+        private static ApiResponse PrepareResponse(object data, IEnumerable<ApiError> apiErrors)
+        {
+            var response = new ApiResponse
+            {
+                Data = data,
+                Errors = apiErrors,
+            };
+
+            return response;
+        }
+
+        private static ApiError PrepareApiError(int code, string message)
+        {
+            return new ApiError
+            {
+                Code = code,
+                Message = message,
+            };
+        }
+
+        private static string Serialize(ApiResponse apiResponse)
+        {
+            var result = JsonConvert.SerializeObject(apiResponse, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            });
+
+            return result;
+        }
+
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             var statusCode = ApiHttpStatusCode.InternalServerError;
@@ -56,7 +86,7 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
             {
                 var apiErrors = new List<ApiError>
                 {
-                    PrepareApiError((int)statusCode, statusCode.GetDescription())
+                    PrepareApiError((int)statusCode, statusCode.GetDescription()),
                 };
                 var apiResponse = PrepareResponse(null, apiErrors);
                 response = Serialize(apiResponse);
@@ -67,36 +97,6 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
             return context.Response.WriteAsync(response);
-        }
-
-        private static ApiResponse PrepareResponse(object data, IEnumerable<ApiError> apiErrors)
-        {
-            var response = new ApiResponse
-            {
-                Data = data,
-                Errors = apiErrors
-            };
-
-            return response;
-        }
-
-        private static ApiError PrepareApiError(int code, string message)
-        {
-            return new ApiError
-            {
-                Code = code,
-                Message = message
-            };
-        }
-
-        private static string Serialize(ApiResponse apiResponse)
-        {
-            var result = JsonConvert.SerializeObject(apiResponse, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            return result;
         }
     }
 }

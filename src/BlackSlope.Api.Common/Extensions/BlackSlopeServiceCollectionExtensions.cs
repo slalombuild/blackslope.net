@@ -24,19 +24,18 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services, SwaggerConfig swaggerConfig) => services.AddSwaggerGen(c =>
             {
-
                 c.SwaggerDoc(swaggerConfig.Version, new Info { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
                 {
                     In = "header",
                     Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",
-                    Type = "apiKey"
+                    Type = "apiKey",
                 });
                 c.DocumentFilter<DocumentFilterAddHealth>();
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
                 {
-                    { "Bearer", new string[] { } }
+                    { "Bearer", new string[] { } },
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -77,7 +76,7 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
         /// <summary>
-        /// Add AutoMapper service to the Service Collection and configure it assemblies 
+        /// Add AutoMapper service to the Service Collection and configure it assemblies
         /// </summary>
         /// <param name="services"></param>
         /// <param name="assemblyNamesToScan"></param>

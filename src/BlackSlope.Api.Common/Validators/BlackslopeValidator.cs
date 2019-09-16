@@ -30,17 +30,8 @@ namespace BlackSlope.Api.Common.Validators
             var ruleSetValidatorSelector = new RulesetValidatorSelector(ruleSetsToExecute);
             var validationContext = new ValidationContext<T>(instance, null, ruleSetValidatorSelector);
 
-            var validationResult = base.Validate(validationContext);
+            var validationResult = Validate(validationContext);
             HandleValidationFailure(validationResult, instance);
-        }
-
-        private void HandleValidationFailure(ValidationResult result, object instance)
-        {
-            if (!result.IsValid)
-            {
-                var errors = result.Errors.Select(CreateApiError).ToList();
-                throw new ApiException(ApiHttpStatusCode.BadRequest, instance, errors);
-            }
         }
 
         private static ApiError CreateApiError(ValidationFailure validationFailure)
@@ -50,7 +41,7 @@ namespace BlackSlope.Api.Common.Validators
             if (validationFailure.CustomState is Enum)
             {
                 errorCode = (int)validationFailure.CustomState;
-                message = ((Enum) validationFailure.CustomState).GetDescription();
+                message = ((Enum)validationFailure.CustomState).GetDescription();
             }
             else
             {
@@ -64,6 +55,15 @@ namespace BlackSlope.Api.Common.Validators
                     ? validationFailure.ErrorMessage
                     : message,
             };
+        }
+
+        private void HandleValidationFailure(ValidationResult result, object instance)
+        {
+            if (!result.IsValid)
+            {
+                var errors = result.Errors.Select(CreateApiError).ToList();
+                throw new ApiException(ApiHttpStatusCode.BadRequest, instance, errors);
+            }
         }
     }
 }

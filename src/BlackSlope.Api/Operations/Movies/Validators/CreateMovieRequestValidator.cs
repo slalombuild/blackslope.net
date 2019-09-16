@@ -9,7 +9,6 @@ namespace BlackSlope.Api.Operations.Movies.Validators
 {
     public class CreateMovieRequestValidator : BlackslopeValidator<CreateMovieRequest>, ICreateMovieRequestValidator
     {
-
         public CreateMovieRequestValidator(IMovieService movieService)
         {
             RuleFor(x => x.Movie)

@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlackSlope.Api.Migrations
 {
-    public partial class seeded : Migration
+    /// <summary>
+    /// Manages population and cleanup of database.
+    /// </summary>
+    public partial class Seeded : Migration
     {
+        [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter should not span multiple lines", Justification = "Current formatting is more readable than alternative.")]
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
@@ -61,7 +66,7 @@ namespace BlackSlope.Api.Migrations
                     { 22, "Ad vel graece principes definitiones, ad vide populo vis, ex eos sumo efficiantur necessitatibus.", new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8893), "City of God" },
                     { 23, "Mel an sumo iusto, clita facilis adipiscing cum cu.", new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8895), "Spirited Away" },
                     { 13, "Ius ut luptatum democritum ullamcorper. Dolor possit facilis sit an, sit ei rebum meliore interesset.", new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8871), "The Good, the Bad and the Ugly" },
-                    { 50, "Alii insolens inciderint pro an, ei eos utinam commodo tacimates.", new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8957), "Apocalypse Now" }
+                    { 50, "Alii insolens inciderint pro an, ei eos utinam commodo tacimates.", new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8957), "Apocalypse Now" },
                 });
         }
 

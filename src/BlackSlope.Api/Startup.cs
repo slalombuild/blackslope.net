@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Reflection;
 using BlackSlope.Api.Common.Configurtion;
@@ -14,15 +15,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlackSlope.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         private readonly IConfiguration _configuration;
-        private HostConfig HostConfig { get; set; }
 
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+
+        private HostConfig HostConfig { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -42,7 +45,6 @@ namespace BlackSlope.Api
             services.AddMovieRepository(_configuration);
             services.AddMovieValidators();
         }
-
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -67,6 +69,10 @@ namespace BlackSlope.Api
             app.UseMvc();
         }
 
+        // make a list of projects in the solution which must be scanned for mapper profiles
+        private static IEnumerable<string> GetAssemblyNamesToScanForMapperProfiles() =>
+            new string[] { Assembly.GetExecutingAssembly().GetName().Name };
+
         private void ApplicationConfiguration(IServiceCollection services)
         {
             services.AddSingleton(_ => _configuration);
@@ -80,15 +86,12 @@ namespace BlackSlope.Api
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.AllowAnyOrigin()     // TODO: Replace with FE Service Host as appropriate to constrain clients
+                options.AddPolicy(
+                    "AllowSpecificOrigin",
+                    builder => builder.AllowAnyOrigin() // TODO: Replace with FE Service Host as appropriate to constrain clients
                         .AllowAnyHeader()
                         .WithMethods("PUT", "POST", "OPTIONS", "GET", "DELETE"));
             });
         }
-
-        // make a list of projects in the solution which must be scanned for mapper profiles
-        private static IEnumerable<string> GetAssemblyNamesToScanForMapperProfiles() =>
-            new string[] { Assembly.GetExecutingAssembly().GetName().Name };
     }
 }

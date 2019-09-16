@@ -13,8 +13,7 @@ namespace BlackSlope.Services.Movies
         private readonly IMovieRepository _movieRepository;
         private readonly IMapper _mapper;
 
-        public MovieService(IMovieRepository movieRepository,
-            IMapper mapper)
+        public MovieService(IMovieRepository movieRepository, IMapper mapper)
         {
             _movieRepository = movieRepository;
             _mapper = mapper;

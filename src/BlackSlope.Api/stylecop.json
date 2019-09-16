@@ -6,6 +6,10 @@
     },
     "layoutRules": {
       "newlineAtEndOfFile": "require"
+    },
+    "documentationRules": {
+      "documentExposedElements": false,
+      "documentInternalElements": false
     }
   }
 }

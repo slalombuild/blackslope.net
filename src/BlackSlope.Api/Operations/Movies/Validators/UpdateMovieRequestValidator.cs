@@ -27,9 +27,9 @@ namespace BlackSlope.Api.Operations.Movies.Validators
         }
 
         private bool HasAnId(int? id, MovieViewModel request)
-            => (id != null || request.Id != null);
+            => id != null || request.Id != null;
 
         private bool HasIdConfilict(int? id, MovieViewModel request)
-            => (id != null && request.Id != null && id != request.Id);
+            => id != null && request.Id != null && id != request.Id;
     }
 }

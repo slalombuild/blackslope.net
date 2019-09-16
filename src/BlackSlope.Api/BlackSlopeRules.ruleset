@@ -3,7 +3,6 @@
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1101" Action="Hidden" />
     <Rule Id="SA1309" Action="Hidden" />
-    <Rule Id="SA1600" Action="Hidden" />
     <Rule Id="SA1629" Action="Hidden" />
     <Rule Id="SA1633" Action="Hidden" />
   </Rules>

@@ -27,8 +27,8 @@ namespace BlackSlope.Api.Common.Controllers
                 new ApiError
                 {
                     Code = (int)httpStatus,
-                    Message = message
-                }
+                    Message = message,
+                },
             };
             return StatusCode((int)httpStatus, response);
         }
