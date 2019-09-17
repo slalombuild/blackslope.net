@@ -1,4 +1,4 @@
-﻿namespace BlackSlope.Api.Common.Configurtion
+﻿namespace BlackSlope.Api.Common.Configuration
 {
     public class SwaggerConfig
     {

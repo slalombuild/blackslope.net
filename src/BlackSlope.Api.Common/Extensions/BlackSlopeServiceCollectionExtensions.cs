@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using AutoMapper;
-using BlackSlope.Api.Common.Configurtion;
+using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Swagger;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
