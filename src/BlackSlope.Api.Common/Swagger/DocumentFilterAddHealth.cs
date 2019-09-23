@@ -26,10 +26,9 @@ namespace BlackSlope.Api.Common.Swagger
                 Schema = new Schema
                 {
                     Type = "string",
-                }
+                },
             });
             return pathItem;
         }
-
     }
 }

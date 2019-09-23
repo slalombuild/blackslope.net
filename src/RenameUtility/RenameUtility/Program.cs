@@ -31,7 +31,7 @@ namespace RenameUtility
                 Console.WriteLine("Accept these values? Yes or No");
                 var yesNo = Console.ReadLine() ?? "no";
 
-                if(!(yesNo.ToLower() == "yes" || yesNo.ToLower() == "y")) return;
+                if (!(yesNo.ToLower() == "yes" || yesNo.ToLower() == "y")) return;
             }
             else
             {
@@ -77,7 +77,7 @@ namespace RenameUtility
                 var fileName = filePath.Substring(fileIdx);
                 var ext = filePath.Split(".").Last();
 
-                if(ignoreExts.Contains(ext) || !fileName.Contains(search)) continue;
+                if (ignoreExts.Contains(ext) || !fileName.Contains(search)) continue;
 
                 ReplaceFileName(search, replace, fileName, filePath, fileIdx);
             }

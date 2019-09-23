@@ -1,4 +1,4 @@
-﻿namespace BlackSlope.Api.Common.Configurtion
+﻿namespace BlackSlope.Api.Common.Configuration
 {
     public class HostConfig
     {
@@ -9,6 +9,5 @@
         public SerilogConfig Serilog { get; set; }
 
         public ApplicationInsightsConfig ApplicationInsights { get; set; }
-
     }
 }

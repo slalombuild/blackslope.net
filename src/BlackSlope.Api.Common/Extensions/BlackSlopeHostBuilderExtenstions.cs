@@ -1,5 +1,5 @@
 ﻿using System;
-using BlackSlope.Api.Common.Configurtion;
+using BlackSlope.Api.Common.Configuration;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +31,7 @@ namespace BlackSlope.Api.Common.Extensions
             if (serilogConfig.WriteToAppInsights)
             {
                 // TODO: TelemetryConverter should be configurable (defaulted to Trace)
-                // Note: best practice is to use the existing Telemetry 
+                // Note: best practice is to use the existing Telemetry
                 if (string.IsNullOrEmpty(TelemetryConfiguration.Active.InstrumentationKey))
                 {
                     config.WriteTo.ApplicationInsights(appSettings.ApplicationInsights.InstrumentationKey, TelemetryConverter.Traces);

@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlackSlope.Api.Migrations
 {
-    public partial class initialized : Migration
+    /// <summary>
+    /// Manages initialization and cleanup of database tables.
+    /// </summary>
+    public partial class Initialized : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +19,7 @@ namespace BlackSlope.Api.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    ReleaseDate = table.Column<DateTime>(nullable: true)
+                    ReleaseDate = table.Column<DateTime>(nullable: true),
                 },
                 constraints: table =>
                 {
