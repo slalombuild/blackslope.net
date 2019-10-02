@@ -30,6 +30,9 @@ namespace BlackSlope.Api.Common.Controllers
                     Message = message,
                 },
             };
+
+            response.Errors = errors;
+
             return StatusCode((int)httpStatus, response);
         }
 

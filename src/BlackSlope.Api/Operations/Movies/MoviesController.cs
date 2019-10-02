@@ -68,12 +68,19 @@ namespace BlackSlope.Api.Operations.Movies
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet]
         [Route("api/v1/movies/{id}")]
         public async Task<ActionResult<MovieViewModel>> Get(int id)
         {
             // get all movies form service
             var movie = await _movieService.GetMovieAsync(id);
+
+            if (movie == null)
+            {
+                var message = string.Format("Movie with id = {0} not found", id);
+                return HandleErrorResponse(System.Net.HttpStatusCode.NotFound, message);
+            }
 
             // prepare response
             var response = _mapper.Map<MovieViewModel>(movie);
