@@ -36,3 +36,5 @@ The following rules are currently ignored.
 | SA1600 | Elements should be documented |
 | SA1614 | Element parameter documentation must have text |
 | SA1616 | Element return value documentation must have text |
+
+[![Build Status](https://dev.azure.com/chicagomarwan/BlackSlope.NET/_apis/build/status/mtabet.blackslope.net?branchName=master)](https://dev.azure.com/chicagomarwan/BlackSlope.NET/_build/latest?definitionId=1&branchName=master)
