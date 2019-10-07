@@ -7,6 +7,7 @@ namespace BlackSlope.Hosts.ConsoleApp
 {
     public static class AuthenticationToken
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "Not localizing Console App")]
         public static async Task GetAuthTokenAsync()
         {
             Console.WriteLine("Welcome to the BlackSlop.NET Console");
@@ -34,7 +35,7 @@ namespace BlackSlope.Hosts.ConsoleApp
             Console.ReadLine();
         }
 
-        public static async Task<AuthenticationResult> GetTokenAsynch(string clientId, string key, string tenantId, string appIdUri)
+        public static async Task<AuthenticationResult> GetTokenAsynch(string clientId, string key, string tenantId, string appIdUniformResourceIdentifier)
         {
             var aadInstanceUrl = "https://login.microsoftonline.com/{0}";
             var authority = String.Format(CultureInfo.InvariantCulture, aadInstanceUrl, tenantId);
@@ -42,7 +43,7 @@ namespace BlackSlope.Hosts.ConsoleApp
             var authContext = new AuthenticationContext(authority);
             var clientCredential = new ClientCredential(clientId, key);
 
-            var response = await authContext.AcquireTokenAsync(appIdUri, clientCredential);
+            var response = await authContext.AcquireTokenAsync(appIdUniformResourceIdentifier, clientCredential);
 
             return response;
         }

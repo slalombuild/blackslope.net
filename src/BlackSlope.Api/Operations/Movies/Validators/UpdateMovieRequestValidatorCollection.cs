@@ -7,9 +7,9 @@ using FluentValidation;
 
 namespace BlackSlope.Api.Operations.Movies.Validators
 {
-    public class UpdateMovieRequestValidator : BlackslopeValidator<UpdateMovieRequest>, IUpdateMovieRequestValidator
+    public class UpdateMovieRequestValidatorCollection : BlackslopeValidatorCollection<UpdateMovieRequest>, IUpdateMovieRequestValidator
     {
-        public UpdateMovieRequestValidator()
+        public UpdateMovieRequestValidatorCollection()
         {
             RuleFor(r => r.Movie)
                 .NotNull()
@@ -17,19 +17,19 @@ namespace BlackSlope.Api.Operations.Movies.Validators
                 .DependentRules(() => ValidateViewModel());
         }
 
+        private static bool HasAnId(int? id, MovieViewModel request)
+          => id != null || request.Id != null;
+
+        private static bool HasIdConfilict(int? id, MovieViewModel request)
+            => id != null && request.Id != null && id != request.Id;
+
         private void ValidateViewModel()
         {
             RuleFor(x => x.Id).Must((x, id) => !HasIdConfilict(id, x.Movie))
                 .WithState(_ => MovieErrorCode.IdConflict);
             RuleFor(x => x.Id).Must((x, id) => HasAnId(id, x.Movie))
               .WithState(_ => MovieErrorCode.EmptyOrNullMovieId);
-            RuleFor(x => x.Movie).SetValidator(new UpdateMovieViewModelValidator());
+            RuleFor(x => x.Movie).SetValidator(new UpdateMovieViewModelValidatorCollection());
         }
-
-        private bool HasAnId(int? id, MovieViewModel request)
-            => id != null || request.Id != null;
-
-        private bool HasIdConfilict(int? id, MovieViewModel request)
-            => id != null && request.Id != null && id != request.Id;
     }
 }

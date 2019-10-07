@@ -22,6 +22,7 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
             _logger = logger;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Global exception logger")]
         public async Task Invoke(HttpContext context)
         {
             try

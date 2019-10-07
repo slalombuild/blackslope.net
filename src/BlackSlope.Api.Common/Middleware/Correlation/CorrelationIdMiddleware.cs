@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
@@ -19,9 +20,11 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
 
         public async Task Invoke(HttpContext context, ICurrentCorrelationIdService currentCorrelationIdService)
         {
+            Contract.Requires(currentCorrelationIdService != null);
             var correlationId = _correlationIdRequestReader.Read(context) ?? GenerateCorrelationId();
-            currentCorrelationIdService.Set(correlationId);
+            currentCorrelationIdService.SetId(correlationId);
 
+            Contract.Requires(context != null);
             context.Response.OnStarting(() =>
             {
                 _correlationIdResponseWriter.Write(context, correlationId);
@@ -31,6 +34,6 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
             await _next(context);
         }
 
-        private Guid GenerateCorrelationId() => Guid.NewGuid();
+        private static Guid GenerateCorrelationId() => Guid.NewGuid();
     }
 }

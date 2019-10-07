@@ -6,6 +6,6 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
     {
         CorrelationId Current();
 
-        void Set(Guid correlationId);
+        void SetId(Guid correlationId);
     }
 }

@@ -7,7 +7,7 @@ namespace BlackSlope.Api.Common.Swagger
     public class DocumentFilterAddHealth : IDocumentFilter
     {
         public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context) =>
-            swaggerDoc.Paths.Add("/health", HealthPathItem());
+            swaggerDoc?.Paths.Add("/health", HealthPathItem());
 
         private PathItem HealthPathItem()
         {

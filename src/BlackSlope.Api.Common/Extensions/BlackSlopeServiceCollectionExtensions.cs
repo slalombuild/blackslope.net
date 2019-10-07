@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 c.DocumentFilter<DocumentFilterAddHealth>();
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
                 {
-                    { "Bearer", new string[] { } },
+                    { "Bearer", Array.Empty<string>() },
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -71,7 +71,7 @@ namespace Microsoft.Extensions.DependencyInjection
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = string.Format(azureAdConfig.AadInstance, azureAdConfig.Tenant);
+                options.Authority = string.Format(System.Globalization.CultureInfo.InvariantCulture, azureAdConfig.AadInstance, azureAdConfig.Tenant);
                 options.Audience = azureAdConfig.Audience;
             });
 

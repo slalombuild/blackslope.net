@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace BlackSlope.Api.Operations.Movies.Validators
 {
-    public class UpdateMovieViewModelValidator : BlackslopeValidator<MovieViewModel>
+    public class UpdateMovieViewModelValidatorCollection : BlackslopeValidatorCollection<MovieViewModel>
     {
-        public UpdateMovieViewModelValidator()
+        public UpdateMovieViewModelValidatorCollection()
         {
             RuleFor(x => x.Title)
                 .NotEmpty()

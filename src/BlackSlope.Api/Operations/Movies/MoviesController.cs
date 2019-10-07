@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using AutoMapper;
 using BlackSlope.Api.Common.Controllers;
@@ -136,6 +137,7 @@ namespace BlackSlope.Api.Operations.Movies
         [Route("api/v1/movies/{id}")]
         public async Task<ActionResult<MovieViewModel>> Put(int? id, [FromBody] MovieViewModel viewModel)
         {
+            Contract.Requires(viewModel != null);
             var request = new UpdateMovieRequest { Movie = viewModel, Id = id };
 
             _updateMovieRequestValidator.Validate(request);

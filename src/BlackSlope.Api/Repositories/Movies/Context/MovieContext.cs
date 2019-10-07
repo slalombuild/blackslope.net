@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.Contracts;
+using System.IO;
 using System.Reflection;
 using BlackSlope.Api.Repositories.Movies.Context.Extensions;
 using BlackSlope.Repositories.Movies.Configuration;
@@ -27,6 +28,7 @@ namespace BlackSlope.Repositories.Movies.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            Contract.Requires(modelBuilder != null);
             modelBuilder.Entity<MovieDtoModel>(entity =>
             {
                 entity.HasIndex(e => e.Title)
