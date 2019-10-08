@@ -11,7 +11,6 @@ namespace BlackSlope.Api.Migrations
     public partial class Seeded : Migration
     {
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter should not span multiple lines", Justification = "Current formatting is more readable than alternative.")]
-        [SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Does not waste space + Migration generated")]
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             Contract.Requires(migrationBuilder != null);

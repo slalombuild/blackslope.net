@@ -20,12 +20,12 @@ namespace BlackSlope.Api.Operations.Movies.Validators
         private static bool HasAnId(int? id, MovieViewModel request)
           => id != null || request.Id != null;
 
-        private static bool HasIdConfilict(int? id, MovieViewModel request)
+        private static bool HasIdConflict(int? id, MovieViewModel request)
             => id != null && request.Id != null && id != request.Id;
 
         private void ValidateViewModel()
         {
-            RuleFor(x => x.Id).Must((x, id) => !HasIdConfilict(id, x.Movie))
+            RuleFor(x => x.Id).Must((x, id) => !HasIdConflict(id, x.Movie))
                 .WithState(_ => MovieErrorCode.IdConflict);
             RuleFor(x => x.Id).Must((x, id) => HasAnId(id, x.Movie))
               .WithState(_ => MovieErrorCode.EmptyOrNullMovieId);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -6,8 +7,11 @@ namespace BlackSlope.Api.Common.Swagger
 {
     public class DocumentFilterAddHealth : IDocumentFilter
     {
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context) =>
-            swaggerDoc?.Paths.Add("/health", HealthPathItem());
+        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
+        {
+            Contract.Requires(swaggerDoc != null);
+            swaggerDoc.Paths.Add("/health", HealthPathItem());
+        }
 
         private PathItem HealthPathItem()
         {

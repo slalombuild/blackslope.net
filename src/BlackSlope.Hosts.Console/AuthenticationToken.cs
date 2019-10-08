@@ -7,7 +7,6 @@ namespace BlackSlope.Hosts.ConsoleApp
 {
     public static class AuthenticationToken
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "Not localizing Console App")]
         public static async Task GetAuthTokenAsync()
         {
             Console.WriteLine("Welcome to the BlackSlop.NET Console");
