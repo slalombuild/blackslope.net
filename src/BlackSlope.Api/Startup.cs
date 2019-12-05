@@ -46,7 +46,6 @@ namespace BlackSlope.Api
             services.AddMovieValidators();
         }
 
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
