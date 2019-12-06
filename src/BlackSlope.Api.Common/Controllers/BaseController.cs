@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using BlackSlope.Api.Common.ViewModels;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlackSlope.Api.Common.Controllers
