@@ -18,7 +18,7 @@ namespace BlackSlope.Api.Common.Version.Services
 
         public Version GetVersion()
         {
-            string filepath = _fileSystem.Path.Combine(_hostingEnvironment.ContentRootPath, "Common", "Version", "version.json");
+            var filepath = _fileSystem.Path.Combine(_hostingEnvironment.ContentRootPath, "Common", "Version", "version.json");
             var fileContents = _fileSystem.File.ReadAllText(filepath);
             dynamic task = JObject.Parse(fileContents);
             return new Version(task.version.ToString());

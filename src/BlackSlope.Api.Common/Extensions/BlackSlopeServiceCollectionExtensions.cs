@@ -51,12 +51,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IMvcBuilder AddMvcService(this IServiceCollection services) =>
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options =>
+                .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
         /// <summary>
         /// Add Azure service to the Service Collection and configure it

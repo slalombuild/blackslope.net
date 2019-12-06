@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using BlackSlope.Api.Common.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlackSlope.Api.Common.Controllers
@@ -21,7 +22,7 @@ namespace BlackSlope.Api.Common.Controllers
         protected ActionResult HandleErrorResponse(HttpStatusCode httpStatus, string message)
         {
             var response = new ApiResponse();
-            var errors = new List<ApiError>
+            _ = new List<ApiError>
             {
                 new ApiError
                 {
