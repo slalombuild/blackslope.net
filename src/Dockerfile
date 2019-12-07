@@ -1,12 +1,12 @@
 # Build the application
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM microsoft/dotnet:3.0-sdk AS build
 COPY . .
 WORKDIR /BlackSlope.Api
 RUN dotnet restore
 RUN dotnet publish --no-restore -c Release -o /app
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
