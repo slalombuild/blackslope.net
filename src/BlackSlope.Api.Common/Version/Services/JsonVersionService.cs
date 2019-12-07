@@ -8,9 +8,9 @@ namespace BlackSlope.Api.Common.Version.Services
     public class JsonVersionService : IVersionService
     {
         private readonly IFileSystem _fileSystem;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public JsonVersionService(IFileSystem fileSystem, IHostingEnvironment hostingEnvironment)
+        public JsonVersionService(IFileSystem fileSystem, IWebHostEnvironment hostingEnvironment)
         {
             _fileSystem = fileSystem;
             _hostingEnvironment = hostingEnvironment;

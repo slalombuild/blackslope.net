@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Reflection;
@@ -62,11 +62,18 @@ namespace BlackSlope.Api
             app.UseHttpsRedirection();
 
             app.UseSwagger(HostConfig.Swagger);
+
+            app.UseRouting();
             app.UseCors("AllowSpecificOrigin");
+
             app.UseAuthentication();
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
+
             app.UseMiddleware<CorrelationIdMiddleware>();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
-            app.UseMvc();
         }
 
         // make a list of projects in the solution which must be scanned for mapper profiles
