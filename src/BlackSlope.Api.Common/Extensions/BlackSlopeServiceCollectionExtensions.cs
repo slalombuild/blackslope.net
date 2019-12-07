@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Swagger;
@@ -24,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services, SwaggerConfig swaggerConfig) => services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(swaggerConfig.Version, new Info { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
+                c.SwaggerDoc(swaggerConfig.Version, new OpenApiInfo { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
                 {
                     In = "header",

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BlackSlope.Api.Common.Swagger
