@@ -11,6 +11,7 @@ namespace BlackSlope.Api.Common.Extensions
         {
             app.UseSwagger(c =>
             {
+                c.SerializeAsV2 = true;
                 c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Servers = new List<OpenApiServer> { new OpenApiServer { Url = $"{httpReq.Scheme}://{httpReq.Host.Value}" } });
             });
 
