@@ -22,9 +22,13 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 1. Install SQL Server Developer 2019
     > https://www.microsoft.com/en-us/sql-server/sql-server-downloads
 2. Update connection string server name and credentials in [appsettings.json](./src/BlackSlope.Api/appsettings.json)
-    > `MoviesConnectionString`
-3. Open PowerShell to your `src/BlackSlope.API` directory and run the following command:
-    > `dotnet ef database update`
+    ```
+    MoviesConnectionString
+    ```
+3. Open PowerShell to your repository root directory and run the following command:
+    ```
+    dotnet ef database update --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
+    ```
 4. If successful, the result of the above command will be similar to the following example:
     ```
     Build started...
@@ -36,7 +40,7 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 
 ### Run
 
-	dotnet run --project BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
+	dotnet run --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
 	
 ### Swagger
 Open your browser and navigate to ```http://localhost:51385/swagger``` to view the API documentation
