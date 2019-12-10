@@ -40,8 +40,12 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 
 ### Run
 
-	dotnet run --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
-	
+	dotnet run --project src/BlackSlope.Api/BlackSlope.Api.csproj
+
+### Test
+
+    dotnet test ./src/
+
 ### Swagger
 Open your browser and navigate to ```http://localhost:51385/swagger``` to view the API documentation
 
