@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -11,6 +12,7 @@ namespace BlackSlope.Api.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            Contract.Requires(migrationBuilder != null);
             migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
@@ -34,8 +36,8 @@ namespace BlackSlope.Api.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Movies");
+            Contract.Requires(migrationBuilder != null);
+            migrationBuilder.DropTable(name: "Movies");
         }
     }
 }

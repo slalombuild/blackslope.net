@@ -12,13 +12,13 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
     {
         private readonly Fixture _fixture = new Fixture();
         private readonly CreateMovieViewModel _modelViewModel;
-        private readonly CreateMovieViewModelValidator _movieViewModelValidator;
+        private readonly CreateMovieViewModelValidatorCollection _movieViewModelValidator;
         private readonly Mock<IMovieService> _movieService = new Mock<IMovieService>();
 
         public CreateMovieViewModelValidatorShould()
         {
             _modelViewModel = _fixture.Create<CreateMovieViewModel>();
-            _movieViewModelValidator = new CreateMovieViewModelValidator(_movieService.Object);
+            _movieViewModelValidator = new CreateMovieViewModelValidatorCollection(_movieService.Object);
         }
 
         [Fact]

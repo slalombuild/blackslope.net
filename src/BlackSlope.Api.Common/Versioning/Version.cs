@@ -1,4 +1,4 @@
-﻿namespace BlackSlope.Api.Common.Version
+﻿namespace BlackSlope.Api.Common.Versioning
 {
     public class Version
     {

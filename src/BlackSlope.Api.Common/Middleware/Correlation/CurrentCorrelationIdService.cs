@@ -13,10 +13,10 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
                 return new CorrelationId(_correlationId.Value);
             }
 
-            throw new InvalidOperationException($"CorrelationId has not been set");
+            throw new InvalidOperationException(FormattableString.Invariant($"CorrelationId has not been set"));
         }
 
-        public void Set(Guid correlationId)
+        public void SetId(Guid correlationId)
         {
             _correlationId = correlationId;
         }

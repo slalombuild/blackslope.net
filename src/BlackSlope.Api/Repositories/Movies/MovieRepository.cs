@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using BlackSlope.Repositories.Movies.Context;
@@ -45,6 +46,7 @@ namespace BlackSlope.Repositories.Movies
 
         public async Task<MovieDtoModel> UpdateAsync(MovieDtoModel movie)
         {
+            Contract.Requires(movie != null);
             var dto = await _context.Movies.FirstOrDefaultAsync(x => x.Id == movie.Id);
             dto.Title = movie.Title;
             dto.Description = movie.Description;

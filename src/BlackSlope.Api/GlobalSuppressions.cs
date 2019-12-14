@@ -16,3 +16,4 @@ using System.Diagnostics.CodeAnalysis;
 // Remove these when ready to document parameters and return statements
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1614:ElementParameterDocumentationMustHaveText", Justification = "To be done later.")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1616:ElementReturnValueDocumentationMustHaveText", Justification = "To be done later.")]
+[assembly: SuppressMessage("Performance", "CA1814:Prefer jagged arrays over multidimensional", Justification = "Does not waste space + Migration generated", Scope = "member", Target = "~M:BlackSlope.Api.Migrations.Seeded.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)")]

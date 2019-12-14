@@ -1,9 +1,9 @@
 ﻿using System.IO.Abstractions;
-using BlackSlope.Api.Common.Version.Interfaces;
+using BlackSlope.Api.Common.Versioning.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json.Linq;
 
-namespace BlackSlope.Api.Common.Version.Services
+namespace BlackSlope.Api.Common.Versioning.Services
 {
     public class JsonVersionService : IVersionService
     {

@@ -6,6 +6,21 @@ namespace BlackSlope.Api.Common.ViewModels
 {
     public class ApiException : Exception
     {
+        public ApiException()
+            : base()
+        {
+        }
+
+        public ApiException(string message)
+            : base(message)
+        {
+        }
+
+        public ApiException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiException"/> class.
         /// </summary>

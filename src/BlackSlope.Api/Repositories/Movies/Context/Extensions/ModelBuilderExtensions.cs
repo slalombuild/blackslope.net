@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using BlackSlope.Repositories.Movies.DtoModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ namespace BlackSlope.Api.Repositories.Movies.Context.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            Contract.Requires(modelBuilder != null);
             modelBuilder.Entity<MovieDtoModel>().HasData(
                 new MovieDtoModel { Id = 1, Title = "The Shawshank Redemption", Description = "Lorem ipsum dolor sit amet, ut consul soluta persius quo, et eam mundi scribentur, eros invidunt dissentias no eum.", ReleaseDate = DateTime.Now },
                 new MovieDtoModel { Id = 2, Title = "The Godfather", Description = "Eos dolor perpetua ne, cum agam causae petentium ei.", ReleaseDate = DateTime.Now },
