@@ -22,7 +22,8 @@ namespace BlackSlope.Api.Common.Controllers
         protected ActionResult HandleErrorResponse(HttpStatusCode httpStatus, string message)
         {
             var response = new ApiResponse();
-            _ = new List<ApiError>
+
+            response.Errors = new List<ApiError>
             {
                 new ApiError
                 {
@@ -30,6 +31,7 @@ namespace BlackSlope.Api.Common.Controllers
                     Message = message,
                 },
             };
+
             return StatusCode((int)httpStatus, response);
         }
 
