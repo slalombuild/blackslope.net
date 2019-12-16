@@ -15,7 +15,7 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 
 ### Build (Application)
 
-	dotnet build BlackSlope.NET.sln
+	dotnet build src/BlackSlope.NET.sln
 
 ### Build (Database)
 
