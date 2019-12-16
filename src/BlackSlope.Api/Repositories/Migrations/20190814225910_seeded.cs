@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Contracts;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlackSlope.Api.Migrations
@@ -12,6 +13,8 @@ namespace BlackSlope.Api.Migrations
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:Parameter should not span multiple lines", Justification = "Current formatting is more readable than alternative.")]
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            Contract.Requires(migrationBuilder != null);
+
             migrationBuilder.InsertData(
                 table: "Movies",
                 columns: new[] { "Id", "Description", "ReleaseDate", "Title" },
@@ -72,6 +75,8 @@ namespace BlackSlope.Api.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            Contract.Requires(migrationBuilder != null);
+
             migrationBuilder.DeleteData(
                 table: "Movies",
                 keyColumn: "Id",

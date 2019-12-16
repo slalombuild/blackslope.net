@@ -12,12 +12,12 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
     {
         private readonly Fixture _fixture = new Fixture();
         private readonly MovieViewModel _modelViewModel;
-        private readonly UpdateMovieViewModelValidator _movieViewModelValidator;
+        private readonly UpdateMovieViewModelValidatorCollection _movieViewModelValidator;
 
         public UpdateMovieViewModelValidatorShould()
         {
             _modelViewModel = _fixture.Create<MovieViewModel>();
-            _movieViewModelValidator = new UpdateMovieViewModelValidator();
+            _movieViewModelValidator = new UpdateMovieViewModelValidatorCollection();
         }
 
 

@@ -6,8 +6,8 @@ using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Extensions;
 using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;
-using BlackSlope.Api.Common.Version.Interfaces;
-using BlackSlope.Api.Common.Version.Services;
+using BlackSlope.Api.Common.Versioning.Interfaces;
+using BlackSlope.Api.Common.Versioning.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -78,6 +78,18 @@ namespace BlackSlope.Api
             app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
 
+        private static void CorsConfiguration(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "AllowSpecificOrigin",
+                    builder => builder.AllowAnyOrigin() // TODO: Replace with FE Service Host as appropriate to constrain clients
+                        .AllowAnyHeader()
+                        .WithMethods("PUT", "POST", "OPTIONS", "GET", "DELETE"));
+            });
+        }
+
         // make a list of projects in the solution which must be scanned for mapper profiles
         private static IEnumerable<string> GetAssemblyNamesToScanForMapperProfiles() =>
             new string[] { Assembly.GetExecutingAssembly().GetName().Name };
@@ -89,18 +101,6 @@ namespace BlackSlope.Api
 
             var serviceProvider = services.BuildServiceProvider();
             HostConfig = serviceProvider.GetService<HostConfig>();
-        }
-
-        private void CorsConfiguration(IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(
-                    "AllowSpecificOrigin",
-                    builder => builder.AllowAnyOrigin() // TODO: Replace with FE Service Host as appropriate to constrain clients
-                        .AllowAnyHeader()
-                        .WithMethods("PUT", "POST", "OPTIONS", "GET", "DELETE"));
-            });
         }
     }
 }

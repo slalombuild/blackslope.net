@@ -2,9 +2,9 @@
 
 namespace BlackSlope.Hosts.ConsoleApp
 {
-    public class Program
+    static public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             Console.WriteLine("Welcome to the Blackslope Console");
 

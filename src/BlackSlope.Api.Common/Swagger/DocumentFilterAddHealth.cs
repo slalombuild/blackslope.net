@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using System.Diagnostics.Contracts;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BlackSlope.Api.Common.Swagger
 {
     public class DocumentFilterAddHealth : IDocumentFilter
     {
-        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context) =>
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+        {
+            Contract.Requires(swaggerDoc != null);
             swaggerDoc.Paths.Add("/health", HealthPathItem());
+        }
 
         private OpenApiPathItem HealthPathItem()
         {

@@ -11,7 +11,7 @@ using FluentValidation.Results;
 
 namespace BlackSlope.Api.Common.Validators
 {
-    public abstract class BlackslopeValidator<T> : AbstractValidator<T>
+    public abstract class BlackslopeValidatorCollection<T> : AbstractValidator<T>
     {
         public new void Validate(T instance)
         {
@@ -21,7 +21,7 @@ namespace BlackSlope.Api.Common.Validators
 
         public new async Task ValidateAsync(T instance, CancellationToken cancellation = default)
         {
-            var validationResult = await base.ValidateAsync(instance);
+            var validationResult = await base.ValidateAsync(instance, cancellation);
             HandleValidationFailure(validationResult, instance);
         }
 
