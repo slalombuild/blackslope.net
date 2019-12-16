@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using BlackSlope.Api.Common.Extensions;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 

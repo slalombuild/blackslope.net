@@ -69,13 +69,13 @@ namespace BlackSlope.Api
 
             app.UseAuthentication();
 
+            app.UseMiddleware<CorrelationIdMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseMiddleware<CorrelationIdMiddleware>();
-            app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
 
         private static void CorsConfiguration(IServiceCollection services)

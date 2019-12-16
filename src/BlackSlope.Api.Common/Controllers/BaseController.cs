@@ -21,14 +21,15 @@ namespace BlackSlope.Api.Common.Controllers
 
         protected ActionResult HandleErrorResponse(HttpStatusCode httpStatus, string message)
         {
-            var response = new ApiResponse();
-
-            response.Errors = new List<ApiError>
+            var response = new ApiResponse()
             {
-                new ApiError
+                Errors = new List<ApiError>
                 {
-                    Code = (int)httpStatus,
-                    Message = message,
+                    new ApiError
+                    {
+                        Code = (int)httpStatus,
+                        Message = message,
+                    },
                 },
             };
 

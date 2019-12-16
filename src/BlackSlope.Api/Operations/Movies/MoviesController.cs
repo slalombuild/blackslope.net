@@ -164,12 +164,12 @@ namespace BlackSlope.Api.Operations.Movies
         /// <remarks>
         /// Use this operation to delete an existing movie
         /// </remarks>
-        /// <response code="200">Movie successfully delete, will return deleted Movie Id</response>
+        /// <response code="204">Movie successfully delete, no content</response>
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Internal Server Error</response>
         ///
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
