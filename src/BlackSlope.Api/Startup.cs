@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace BlackSlope.Api
 {
@@ -46,7 +47,7 @@ namespace BlackSlope.Api
             services.AddMovieValidators();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -62,11 +63,19 @@ namespace BlackSlope.Api
             app.UseHttpsRedirection();
 
             app.UseSwagger(HostConfig.Swagger);
+
+            app.UseRouting();
             app.UseCors("AllowSpecificOrigin");
+
             app.UseAuthentication();
+
             app.UseMiddleware<CorrelationIdMiddleware>();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
-            app.UseMvc();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private static void CorsConfiguration(IServiceCollection services)

@@ -12,8 +12,8 @@ namespace BlackSlope.Api.Common.Middleware.Correlation
         public Guid? Read(HttpContext context)
         {
             Contract.Requires(context != null);
-            StringValues correlationId = context.Request.Headers[CorrelationIdHeaderKey];
-            if (Guid.TryParse(correlationId.ToString(), out Guid result))
+            var correlationId = context.Request.Headers[CorrelationIdHeaderKey];
+            if (Guid.TryParse(correlationId.ToString(), out var result))
             {
                 return result;
             }

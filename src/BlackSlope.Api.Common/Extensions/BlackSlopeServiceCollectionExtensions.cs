@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -24,18 +24,26 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services, SwaggerConfig swaggerConfig) => services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc(swaggerConfig.Version, new Info { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
-                {
-                    In = "header",
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = "apiKey",
-                });
+                c.SwaggerDoc(swaggerConfig.Version, new OpenApiInfo { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
+
                 c.DocumentFilter<DocumentFilterAddHealth>();
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
-                    { "Bearer", Array.Empty<string>() },
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "Please insert JWT with Bearer into field",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" },
+                        },
+                        new[] { "readAccess", "writeAccess" }
+                    },
                 });
 
                 // Set the comments path for the Swagger JSON and UI.
@@ -51,12 +59,12 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IMvcBuilder AddMvcService(this IServiceCollection services) =>
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options =>
+                .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                });
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
         /// <summary>
         /// Add Azure service to the Service Collection and configure it
