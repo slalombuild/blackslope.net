@@ -4,7 +4,7 @@
 
 You can read more in the following blog posts:
 
-* https://medium.com/slalom-engineering/black-slope-a-net-core-reference-architecture-5a7bf8695fc8
+* https://medium.com/slalom-build/introducing-black-slope-a-dotnet-core-reference-architecture-from-slalom-build-3f1452eb62ef
 * https://medium.com/slalom-engineering/black-slope-setup-and-insights-e05ab58e2960
 
 ## Installation Instructions
