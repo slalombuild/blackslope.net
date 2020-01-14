@@ -21,13 +21,14 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 
 1. Install SQL Server Developer 2019
     > https://www.microsoft.com/en-us/sql-server/sql-server-downloads
-2. Update connection string server name and credentials in [appsettings.json](./src/BlackSlope.Api/appsettings.json)
+2. Run Create DATABASE movies command to create the database locally .Update connection string server name and 
+   credentials in [appsettings.json](./src/BlackSlope.Api/appsettings.json)
     ```
     MoviesConnectionString
     ```
 3. Open PowerShell to your repository root directory and run the following command:
     ```
-    dotnet ef database update --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
+    dotnet ef database update --project src/BlackSlope.Api/BlackSlope.Api.csproj
     ```
 4. If successful, the result of the above command will be similar to the following example:
     ```
