@@ -7,9 +7,9 @@ using FluentValidation;
 
 namespace BlackSlope.Api.Operations.Movies.Validators
 {
-    public class CreateMovieRequestValidator : BlackslopeValidator<CreateMovieRequest>, ICreateMovieRequestValidator
+    public class CreateMovieRequestValidatorCollection : BlackslopeValidatorCollection<CreateMovieRequest>, ICreateMovieRequestValidator
     {
-        public CreateMovieRequestValidator(IMovieService movieService)
+        public CreateMovieRequestValidatorCollection(IMovieService movieService)
         {
             RuleFor(x => x.Movie)
                 .NotNull()
@@ -19,7 +19,7 @@ namespace BlackSlope.Api.Operations.Movies.Validators
 
         private void ValidateViewModel(IMovieService movieService)
         {
-            RuleFor(x => x.Movie).SetValidator(new CreateMovieViewModelValidator(movieService));
+            RuleFor(x => x.Movie).SetValidator(new CreateMovieViewModelValidatorCollection(movieService));
         }
     }
 }

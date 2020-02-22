@@ -1,33 +1,34 @@
 ﻿using System.Collections.Generic;
-using Swashbuckle.AspNetCore.Swagger;
+using System.Diagnostics.Contracts;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace BlackSlope.Api.Common.Swagger
 {
     public class DocumentFilterAddHealth : IDocumentFilter
     {
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context) =>
-            swaggerDoc.Paths.Add("/health", HealthPathItem());
-
-        private PathItem HealthPathItem()
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            var pathItem = new PathItem();
-            pathItem.Get = new Operation
+            Contract.Requires(swaggerDoc != null);
+            swaggerDoc.Paths.Add("/health", HealthPathItem());
+        }
+
+        private OpenApiPathItem HealthPathItem()
+        {
+            var pathItem = new OpenApiPathItem();
+            pathItem.AddOperation(OperationType.Get, new OpenApiOperation
             {
-                Tags = new[] { "Health" },
+                Tags = new List<OpenApiTag>() { new OpenApiTag() { Name = "Health" } },
                 OperationId = "Health_Get",
-                Consumes = null,
-                Produces = new[] { "application/json", "text/json" },
-            };
-            pathItem.Get.Responses = new Dictionary<string, Response>();
-            pathItem.Get.Responses.Add("200", new Response
-            {
-                Description = "OK",
-                Schema = new Schema
+                Responses = new OpenApiResponses()
                 {
-                    Type = "string",
+                    ["200"] = new OpenApiResponse
+                    {
+                        Description = "OK",
+                    },
                 },
             });
+
             return pathItem;
         }
     }

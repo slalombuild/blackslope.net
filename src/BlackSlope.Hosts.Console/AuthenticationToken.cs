@@ -34,15 +34,15 @@ namespace BlackSlope.Hosts.ConsoleApp
             Console.ReadLine();
         }
 
-        public static async Task<AuthenticationResult> GetTokenAsynch(string clientId, string key, string tenantId, string appIdUri)
+        public static async Task<AuthenticationResult> GetTokenAsynch(string clientId, string key, string tenantId, string appIdUniformResourceIdentifier)
         {
             var aadInstanceUrl = "https://login.microsoftonline.com/{0}";
-            var authority = String.Format(CultureInfo.InvariantCulture, aadInstanceUrl, tenantId);
+            var authority = string.Format(CultureInfo.InvariantCulture, aadInstanceUrl, tenantId);
 
             var authContext = new AuthenticationContext(authority);
             var clientCredential = new ClientCredential(clientId, key);
 
-            var response = await authContext.AcquireTokenAsync(appIdUri, clientCredential);
+            var response = await authContext.AcquireTokenAsync(appIdUniformResourceIdentifier, clientCredential);
 
             return response;
         }

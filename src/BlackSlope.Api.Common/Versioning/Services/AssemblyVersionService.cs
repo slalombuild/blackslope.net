@@ -1,6 +1,6 @@
-﻿using BlackSlope.Api.Common.Version.Interfaces;
+﻿using BlackSlope.Api.Common.Versioning.Interfaces;
 
-namespace BlackSlope.Api.Common.Version.Services
+namespace BlackSlope.Api.Common.Versioning.Services
 {
     public class AssemblyVersionService : IVersionService
     {

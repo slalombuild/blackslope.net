@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using BlackSlope.Api.Common.Controllers;
-using BlackSlope.Api.Common.Version.Interfaces;
+using BlackSlope.Api.Common.Versioning.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlackSlope.Api.Common.Version
+namespace BlackSlope.Api.Common.Versioning
 {
     public class VersionController : BaseController
     {

@@ -96,6 +96,7 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
+
             return context.Response.WriteAsync(response);
         }
     }

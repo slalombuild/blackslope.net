@@ -9,7 +9,7 @@ using Serilog.Events;
 
 namespace BlackSlope.Api.Common.Extensions
 {
-    public static class BlackSlopeHostBuilderExtenstions
+    public static class BlackSlopeHostBuilderExtensions
     {
         public static IWebHostBuilder UseSerilog(this IWebHostBuilder webHostBuilder, string appSettingsSection) =>
              webHostBuilder.UseSerilog((ctx, config) =>

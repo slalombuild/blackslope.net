@@ -1,4 +1,4 @@
-﻿namespace BlackSlope.Api.Common.Version.Interfaces
+﻿namespace BlackSlope.Api.Common.Versioning.Interfaces
 {
     public interface IVersionService
     {

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.Contracts;
+using System.Reflection;
 using BlackSlope.Repositories.Movies;
 using BlackSlope.Repositories.Movies.Configuration;
 using BlackSlope.Repositories.Movies.Context;
@@ -14,6 +15,8 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            Contract.Requires(configuration != null);
+
             services.TryAddScoped<IMovieRepository, MovieRepository>();
 
             var config = configuration.GetSection(Assembly.GetExecutingAssembly().GetName().Name)
