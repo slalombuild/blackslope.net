@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -22,34 +23,14 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="services"></param>
         /// <param name="swaggerConfig"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSwagger(this IServiceCollection services, SwaggerConfig swaggerConfig) => services.AddSwaggerGen(c =>
+        public static IServiceCollection AddSwagger(this IServiceCollection services, SwaggerConfig swaggerConfig) =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc(swaggerConfig.Version, new OpenApiInfo { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
-
-                c.DocumentFilter<DocumentFilterAddHealth>();
-
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Description = "Please insert JWT with Bearer into field",
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" },
-                        },
-                        new[] { "readAccess", "writeAccess" }
-                    },
-                });
-
-                // Set the comments path for the Swagger JSON and UI.
-                var xmlFile = swaggerConfig.XmlFile;
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                options.SwaggerDoc(swaggerConfig.Version, new OpenApiInfo { Title = swaggerConfig.ApplicationName, Version = swaggerConfig.Version });
+                options.DocumentFilter<DocumentFilterAddHealth>();
+                AddSecurityDefinition(options);
+                AddSecurityRequirement(options);
+                SetDocumentPath(swaggerConfig, options);
             });
 
         /// <summary>
@@ -103,5 +84,34 @@ namespace Microsoft.Extensions.DependencyInjection
             });
             return config.CreateMapper();
         }
+
+        private static void SetDocumentPath(SwaggerConfig swaggerConfig, SwaggerGenOptions options)
+        {
+            // Set the comments path for the Swagger JSON and UI.
+            var xmlFile = swaggerConfig.XmlFile;
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            options.IncludeXmlComments(xmlPath);
+        }
+
+        private static void AddSecurityDefinition(SwaggerGenOptions oprions) =>
+            oprions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            {
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Description = "Please insert JWT with Bearer into field",
+            });
+
+        private static void AddSecurityRequirement(SwaggerGenOptions oprions) =>
+            oprions.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" },
+                    },
+                    new[] { "readAccess", "writeAccess" }
+                },
+            });
     }
 }
