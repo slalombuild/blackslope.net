@@ -93,8 +93,8 @@ namespace Microsoft.Extensions.DependencyInjection
             options.IncludeXmlComments(xmlPath);
         }
 
-        private static void AddSecurityDefinition(SwaggerGenOptions oprions) =>
-            oprions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+        private static void AddSecurityDefinition(SwaggerGenOptions options) =>
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",
                 In = ParameterLocation.Header,
@@ -102,8 +102,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 Description = "Please insert JWT with Bearer into field",
             });
 
-        private static void AddSecurityRequirement(SwaggerGenOptions oprions) =>
-            oprions.AddSecurityRequirement(new OpenApiSecurityRequirement
+        private static void AddSecurityRequirement(SwaggerGenOptions options) =>
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
                     new OpenApiSecurityScheme
