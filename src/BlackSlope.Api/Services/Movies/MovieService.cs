@@ -22,7 +22,6 @@ namespace BlackSlope.Services.Movies
         public async Task<MovieDomainModel> CreateMovieAsync(MovieDomainModel movie)
         {
             var dto = await _movieRepository.Create(_mapper.Map<MovieDtoModel>(movie));
-
             return _mapper.Map<MovieDomainModel>(dto);
         }
 
@@ -43,7 +42,6 @@ namespace BlackSlope.Services.Movies
         public async Task<MovieDomainModel> UpdateMovieAsync(MovieDomainModel movie)
         {
             var dto = await _movieRepository.UpdateAsync(_mapper.Map<MovieDtoModel>(movie));
-
             return _mapper.Map<MovieDomainModel>(dto);
         }
 
