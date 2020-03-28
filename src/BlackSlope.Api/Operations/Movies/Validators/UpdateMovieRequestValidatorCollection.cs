@@ -1,20 +1,18 @@
-﻿using BlackSlope.Api.Common.Validators;
-using BlackSlope.Api.Operations.Movies.Enumerators;
+﻿using BlackSlope.Api.Operations.Movies.Enumerators;
 using BlackSlope.Api.Operations.Movies.Requests;
-using BlackSlope.Api.Operations.Movies.Validators.Interfaces;
 using BlackSlope.Api.Operations.Movies.ViewModels;
 using FluentValidation;
 
 namespace BlackSlope.Api.Operations.Movies.Validators
 {
-    public class UpdateMovieRequestValidatorCollection : BlackslopeValidatorCollection<UpdateMovieRequest>, IUpdateMovieRequestValidator
+    public class UpdateMovieRequestValidatorCollection : AbstractValidator<UpdateMovieRequest>
     {
         public UpdateMovieRequestValidatorCollection()
         {
             RuleFor(r => r.Movie)
                 .NotNull()
                 .WithState(_ => MovieErrorCode.NullRequestViewModel)
-                .DependentRules(() => ValidateViewModel());
+                .DependentRules(ValidateViewModel);
         }
 
         private static bool HasAnId(int? id, MovieViewModel request)
