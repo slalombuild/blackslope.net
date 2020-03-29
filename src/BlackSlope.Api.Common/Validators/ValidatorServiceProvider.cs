@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BlackSlope.Api.Common.Validators
 {
-    public class ValidatorServiceLocator : IValidatorAbstractFactory
+    public class ValidatorServiceProvider : IValidatorAbstractFactory
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ValidatorServiceLocator(IServiceProvider serviceProvider)
+        public ValidatorServiceProvider(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }

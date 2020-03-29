@@ -17,3 +17,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1614:ElementParameterDocumentationMustHaveText", Justification = "To be done later.")]
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1616:ElementReturnValueDocumentationMustHaveText", Justification = "To be done later.")]
 [assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "Global exception logger", Scope = "member", Target = "~M:BlackSlope.Api.Common.Middleware.ExceptionHandling.ExceptionHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "Composite makes the intention clearer", Scope = "type", Target = "~T:BlackSlope.Api.Common.Validators.CompositeValidator`1")]

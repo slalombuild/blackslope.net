@@ -8,8 +8,6 @@ using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;
 using BlackSlope.Api.Common.Versioning.Interfaces;
 using BlackSlope.Api.Common.Versioning.Services;
-using BlackSlope.Api.Extensions;
-using BlackSlope.Api.Operations.Movies.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

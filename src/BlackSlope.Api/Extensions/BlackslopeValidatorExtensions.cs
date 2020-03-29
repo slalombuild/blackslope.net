@@ -2,10 +2,9 @@
 using BlackSlope.Api.Common.Validators;
 using BlackSlope.Api.Common.Validators.Interfaces;
 using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace BlackSlope.Api.Extensions
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class BlackSlopeValidatorExtensions
     {
@@ -17,7 +16,7 @@ namespace BlackSlope.Api.Extensions
         public static IServiceCollection AddValidators(this IServiceCollection services)
         {
             services.TryAddTransient<IBlackSlopeValidator, BlackSlopeValidator>();
-            services.TryAddTransient<IValidatorAbstractFactory, ValidatorServiceLocator>();
+            services.TryAddTransient<IValidatorAbstractFactory, ValidatorServiceProvider>();
 
             services.AddValidatorsFromAssembly(Assembly.GetEntryAssembly());
             return services;
