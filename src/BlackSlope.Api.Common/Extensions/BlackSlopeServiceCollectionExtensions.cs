@@ -94,7 +94,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static void AddSecurityDefinition(SwaggerGenOptions options) =>
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",
                 In = ParameterLocation.Header,
