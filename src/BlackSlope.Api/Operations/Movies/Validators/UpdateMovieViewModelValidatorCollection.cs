@@ -20,7 +20,7 @@ namespace BlackSlope.Api.Operations.Movies.Validators
                 .WithState(x => MovieErrorCode.EmptyOrNullMovieDescription)
                 .DependentRules(() =>
                     RuleFor(x => x.Description.Length)
-                        .InclusiveBetween(2, 50).WithState(x => MovieErrorCode.TitleNotBetween2and50Characters));
+                        .InclusiveBetween(2, 50).WithState(x => MovieErrorCode.DescriptionNotBetween2and50Characters));
         }
     }
 }
