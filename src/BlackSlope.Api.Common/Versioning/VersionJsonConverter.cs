@@ -49,6 +49,8 @@ namespace BlackSlope.Api.Common.Versioning
             writer.WritePropertyName(_buildVersionName);
             writer.WriteStringValue(value?.BuildVersion);
             writer.WriteEndObject();
+            
+            writer.Flush();
         }
     }
 }

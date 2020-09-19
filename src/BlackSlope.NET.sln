@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{F36CFA59-2DC3-4FD4-B5DD-9FCA6C1DB0DD}"
 EndProject
@@ -47,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Tests", "BlackSlope.Api.Tests\BlackSlope.Api.Tests.csproj", "{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +86,12 @@ Global
 		{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +102,7 @@ Global
 		{F90CC97F-7794-4EF3-8D14-C5E36DBEB8BC} = {0291711F-2A49-4DFA-A39B-42AEA2011A1E}
 		{F79CFA14-04FF-4719-860A-6D9B4941441C} = {31F1AF36-7460-4011-9DFF-AC47255FA12E}
 		{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC} = {87D53136-CBF4-4A45-814C-3E5B04965959}
+		{C9AE747A-CF32-4945-AE0B-F053937DEC9C} = {31F1AF36-7460-4011-9DFF-AC47255FA12E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA508F2C-EE02-4EEC-BA78-020658CB87B7}

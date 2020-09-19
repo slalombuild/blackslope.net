@@ -40,7 +40,7 @@ namespace BlackSlope.Api
             services.AddCorrelation();
             services.AddTransient<IFileSystem, FileSystem>();
 
-            // TODO: Pick one of the below versioning services
+            // NOTE: Pick one of the below versioning services
             services.AddTransient<IVersionService, AssemblyVersionService>(); // For Version parsing via Assembly ref
             //services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
 
