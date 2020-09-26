@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BlackSlope.Api.Common.Enumerators;
 using BlackSlope.Api.Common.Extensions;
 using BlackSlope.Api.Common.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
 {
@@ -56,9 +55,10 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
 
         private static string Serialize(ApiResponse apiResponse)
         {
-            var result = JsonConvert.SerializeObject(apiResponse, new JsonSerializerSettings
+            var result = JsonSerializer.Serialize(apiResponse, new JsonSerializerOptions
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true,
             });
 
             return result;

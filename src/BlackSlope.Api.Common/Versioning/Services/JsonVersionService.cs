@@ -1,7 +1,7 @@
 ﻿using System.IO.Abstractions;
+using System.Text.Json;
 using BlackSlope.Api.Common.Versioning.Interfaces;
 using Microsoft.AspNetCore.Hosting;
-using Newtonsoft.Json.Linq;
 
 namespace BlackSlope.Api.Common.Versioning.Services
 {
@@ -18,10 +18,9 @@ namespace BlackSlope.Api.Common.Versioning.Services
 
         public Version GetVersion()
         {
-            var filepath = _fileSystem.Path.Combine(_hostingEnvironment.ContentRootPath, "Common", "Version", "version.json");
+            var filepath = _fileSystem.Path.Combine(_hostingEnvironment.ContentRootPath, "..", "Blackslope.Api.Common", "Versioning", "version.json");
             var fileContents = _fileSystem.File.ReadAllText(filepath);
-            dynamic task = JObject.Parse(fileContents);
-            return new Version(task.version.ToString());
+            return JsonSerializer.Deserialize<Version>(fileContents);
         }
     }
 }
