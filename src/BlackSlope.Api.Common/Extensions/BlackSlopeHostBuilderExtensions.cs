@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace BlackSlope.Api.Common.Extensions
 {
@@ -53,7 +54,7 @@ namespace BlackSlope.Api.Common.Extensions
         {
             if (serilogConfig.WriteToConsole)
             {
-                config.WriteTo.ColoredConsole();
+                config.WriteTo.Console();
             }
         }
 

@@ -32,7 +32,7 @@ namespace BlackSlope.Repositories.Movies.Context
             modelBuilder.Entity<MovieDtoModel>(entity =>
             {
                 entity.HasIndex(e => e.Title)
-                    .HasName("IX_Movies_Title");
+                    .HasDatabaseName("IX_Movies_Title");
             });
 
             modelBuilder.Seed();
