@@ -4,8 +4,9 @@
 
 You can read more in the following blog posts:
 
-* https://medium.com/slalom-build/introducing-black-slope-a-dotnet-core-reference-architecture-from-slalom-build-3f1452eb62ef
-* https://medium.com/slalom-engineering/black-slope-setup-and-insights-e05ab58e2960
+* [Introducing BlackSlope: A DotNet Core Reference Architecture from Slalom Build](https://medium.com/slalom-build/introducing-black-slope-a-dotnet-core-reference-architecture-from-slalom-build-3f1452eb62ef)
+* [BlackSlope: A Deeper Look at the Components of our DotNet Reference Architecture](https://medium.com/slalom-build/blackslope-a-deeper-look-at-the-components-of-our-dotnet-reference-architecture-b7b3a9d6e43b)
+* [BlackSlope in Action: A Guide to Using our DotNet Reference Architecture](https://medium.com/slalom-build/blackslope-in-action-a-guide-to-using-our-dotnet-reference-architecture-d1e41eea8024)
 
 ## Installation Instructions
 

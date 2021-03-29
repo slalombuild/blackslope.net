@@ -5,13 +5,12 @@ using System.Reflection;
 using AutoMapper;
 using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Swagger;
+using BlackSlope.Api.Common.Versioning;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -41,12 +40,16 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns></returns>
         public static IMvcBuilder AddMvcService(this IServiceCollection services) =>
             services.AddMvc()
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
-                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                options.JsonSerializerOptions.Converters
+                    .Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.Converters
+                    .Add(new VersionJsonConverter());
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
         /// <summary>
         /// Add Azure service to the Service Collection and configure it
@@ -95,7 +98,7 @@ namespace Microsoft.Extensions.DependencyInjection
         }
 
         private static void AddSecurityDefinition(SwaggerGenOptions options) =>
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",
                 In = ParameterLocation.Header,
