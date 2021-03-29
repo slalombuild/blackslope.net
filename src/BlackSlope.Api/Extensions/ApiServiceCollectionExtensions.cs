@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddHealthChecks()
                 .AddDbContextCheck<MovieContext>();
+
             return services;
         }
     }
