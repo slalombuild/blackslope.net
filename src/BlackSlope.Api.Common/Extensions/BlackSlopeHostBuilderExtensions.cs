@@ -53,7 +53,7 @@ namespace BlackSlope.Api.Common.Extensions
         {
             if (serilogConfig.WriteToConsole)
             {
-                config.WriteTo.ColoredConsole();
+                config.WriteTo.Console();
             }
         }
 

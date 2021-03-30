@@ -21,21 +21,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{551F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87D53136-CBF4-4A45-814C-3E5B04965959}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2744270-EAA9-48AD-A288-0E45E23EB125}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{A2744270-EAA9-48AD-A288-0E45E23EB125}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		..\.editorconfig = ..\.editorconfig
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CBFD1F3D-2E8C-439A-BA65-99E109049C4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenameUtility", "RenameUtility\RenameUtility\RenameUtility.csproj", "{C059E3FE-FE94-4FBC-B5D8-399D310EFB40}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{C1DC83C0-985C-455C-9891-0C3A0BF39280}"
-	ProjectSection(SolutionItems) = preProject
-		..\docker-container-run.sh = ..\docker-container-run.sh
-		..\docker-image-build.sh = ..\docker-image-build.sh
-		..\Dockerfile = ..\Dockerfile
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{0291711F-2A49-4DFA-A39B-42AEA2011A1E}"
 EndProject
@@ -47,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Tests", "BlackSlope.Api.Tests\BlackSlope.Api.Tests.csproj", "{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
