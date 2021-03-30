@@ -9,7 +9,7 @@ namespace BlackSlope.Hosts.ConsoleApp
     {
         public static async Task GetAuthTokenAsync()
         {
-            Console.WriteLine("Welcome to the BlackSlop.NET Console");
+            Console.WriteLine("Welcome to the BlackSlope.NET Console");
             Console.WriteLine("");
 
             Console.Write("ClientId: ");

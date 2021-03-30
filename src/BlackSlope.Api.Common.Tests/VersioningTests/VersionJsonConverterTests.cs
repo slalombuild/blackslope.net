@@ -28,13 +28,11 @@ namespace BlackSlope.Api.Common.Tests.VersioningTests
             var stubJson = "{\"version\": \"1.0\"}";
             var seq = new ReadOnlySequence<byte>(Encoding.ASCII.GetBytes(stubJson));
             var jsonReader = new Utf8JsonReader(seq);
-
-
             try
             {
                 converter.Read(ref jsonReader, typeof(Version), null);
             }
-            catch(JsonException ex)
+            catch (JsonException)
             {
                 Assert.True(true);
                 return;
@@ -49,12 +47,11 @@ namespace BlackSlope.Api.Common.Tests.VersioningTests
             var stubJson = "{}";
             var jsonReader = SeedReader(stubJson);
             var converter = new VersionJsonConverter();
-
             try
             {
                 converter.Read(ref jsonReader, typeof(Version), null);
             }
-            catch (JsonException ex)
+            catch (JsonException)
             {
                 Assert.True(true);
                 return;
@@ -68,12 +65,11 @@ namespace BlackSlope.Api.Common.Tests.VersioningTests
         {
             var stubJson = "{\"version\": \"1.0\", \"failure\": 123}";
             var jsonReader = SeedReader(stubJson);
-
             try
             {
                 converter.Read(ref jsonReader, typeof(Version), null);
             }
-            catch (JsonException ex)
+            catch (JsonException)
             {
                 Assert.True(true);
                 return;
