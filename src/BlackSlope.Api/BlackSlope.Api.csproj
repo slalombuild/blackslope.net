@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <UserSecretsId>eeaaec3a-f784-4d04-8b1d-8fe6d9637231</UserSecretsId>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -58,10 +57,6 @@
 
   <ItemGroup>
     <None Remove="*.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="C:\git\blackslope.net\.editorconfig" />
   </ItemGroup>
 
 </Project>
