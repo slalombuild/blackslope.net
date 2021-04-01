@@ -4,7 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <UserSecretsId>eeaaec3a-f784-4d04-8b1d-8fe6d9637231</UserSecretsId>
-    <CodeAnalysisRuleSet>BlackSlopeRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,6 +38,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.13" />
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="3.1.13" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
@@ -53,6 +53,10 @@
 
   <ItemGroup>
     <Folder Include="Operations\Movies\Requests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="*.editorconfig" />
   </ItemGroup>
 
 </Project>
