@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using AutoMapper;
 using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Swagger;

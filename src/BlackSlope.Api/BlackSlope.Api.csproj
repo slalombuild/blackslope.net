@@ -4,7 +4,6 @@
     <TargetFramework>net5.0</TargetFramework>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <UserSecretsId>eeaaec3a-f784-4d04-8b1d-8fe6d9637231</UserSecretsId>
-    <CodeAnalysisRuleSet>BlackSlopeRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -53,6 +52,10 @@
 
   <ItemGroup>
     <Folder Include="Operations\Movies\Requests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="*.editorconfig" />
   </ItemGroup>
 
 </Project>
