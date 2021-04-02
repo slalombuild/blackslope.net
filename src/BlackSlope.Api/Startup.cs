@@ -43,7 +43,7 @@ namespace BlackSlope.Api
 
             // NOTE: Pick one of the below versioning services
             services.AddTransient<IVersionService, AssemblyVersionService>(); // For Version parsing via Assembly ref
-            //services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
+            // services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
 
             services.AddHealthChecksService();
 
