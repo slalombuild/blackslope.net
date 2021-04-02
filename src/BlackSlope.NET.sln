@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Tests", "BlackSlope.Api.Tests\BlackSlope.Api.Tests.csproj", "{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

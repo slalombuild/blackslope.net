@@ -13,7 +13,7 @@ namespace BlackSlope.Api.Common.Swagger
             swaggerDoc.Paths.Add("/health", HealthPathItem());
         }
 
-        private OpenApiPathItem HealthPathItem()
+        private static OpenApiPathItem HealthPathItem()
         {
             var pathItem = new OpenApiPathItem();
             pathItem.AddOperation(OperationType.Get, new OpenApiOperation

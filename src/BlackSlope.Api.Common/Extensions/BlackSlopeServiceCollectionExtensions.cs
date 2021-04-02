@@ -87,6 +87,7 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 cfg.AddMaps(assemblyProfilesToScan);
             });
+
             return config.CreateMapper();
         }
 
