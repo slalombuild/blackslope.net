@@ -12,12 +12,12 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
 {
     public class ExceptionHandlingMiddleware
     {
-        private readonly RequestDelegate next;
+        private readonly RequestDelegate _next;
         private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
         public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
         {
-            this.next = next;
+            _next = next;
             _logger = logger;
         }
 
@@ -25,7 +25,7 @@ namespace BlackSlope.Api.Common.Middleware.ExceptionHandling
         {
             try
             {
-                await next(context);
+                await _next(context);
             }
             catch (Exception ex)
             {

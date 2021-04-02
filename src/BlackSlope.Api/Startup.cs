@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Abstractions;
 using System.Reflection;
+using AutoMapper;
 using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Extensions;
 using BlackSlope.Api.Common.Middleware.Correlation;
@@ -95,7 +96,7 @@ namespace BlackSlope.Api
             });
         }
 
-        // make a list of projects in the solution which must be scanned for mapper profiles
+        // make a list of assemblies in the solution which must be scanned for mapper profiles
         private static IEnumerable<Assembly> GetAssembliesToScanForMapperProfiles() =>
             new Assembly[] { Assembly.GetExecutingAssembly() };
 

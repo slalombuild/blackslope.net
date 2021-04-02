@@ -12,7 +12,8 @@ namespace BlackSlope.Api.Tests.ServicesTests.MoviesTests
         [Fact]
         public async Task ReturnAMovie()
         {
-            _mapper.Setup(_ => _.Map<MovieDomainModel>(It.IsAny<MovieDtoModel>())).Returns(_fixture.Create<MovieDomainModel>());
+            _mapper.Setup(_ => _.Map<MovieDomainModel>(It.IsAny<MovieDtoModel>()))
+                .Returns(_fixture.Create<MovieDomainModel>());
             _movieRepository.Setup(x => x.GetSingleAsync(It.IsAny<int>()))
                 .ReturnsAsync(new MovieDtoModel());
 
