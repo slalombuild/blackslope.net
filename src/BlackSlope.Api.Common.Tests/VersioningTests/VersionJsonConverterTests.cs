@@ -95,7 +95,7 @@ namespace BlackSlope.Api.Common.Tests.VersioningTests
             }
         }
 
-        private Utf8JsonReader SeedReader(string json)
+        private static Utf8JsonReader SeedReader(string json)
         {
             var seq = new ReadOnlySequence<byte>(Encoding.ASCII.GetBytes(json));
             var reader = new Utf8JsonReader(seq);
