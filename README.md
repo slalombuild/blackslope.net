@@ -26,11 +26,15 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
     ```
     MoviesConnectionString
     ```
-3. Open PowerShell to your repository root directory and run the following command:
+3. Open PowerShell and install the `dotnet-ef` tool using:
     ```
-    dotnet ef database update --project src/BlackSlope.Hosts.Api/BlackSlope.Hosts.Api.csproj
+    dotnet tool install --global dotnet-ef
     ```
-4. If successful, the result of the above command will be similar to the following example:
+4. Navigate Powershell to your repository root directory and run the following command:
+    ```
+    dotnet ef database update --project=.\src\BlackSlope.Api\BlackSlope.Api.csproj
+    ```
+5. If successful, the result of the above command will be similar to the following example:
     ```
     Build started...
     Build succeeded.
@@ -46,6 +50,21 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 ### Test
 
     dotnet test ./src/
+
+### Integration Tests
+Intended for use by Quality Engineers (QE), Blackslope provides two SpecFlow driven Integration Test projects for consumption:
+- `BlackSlope.Api.Tests.IntegrationTests`
+  - using a `System.Net.Http.HttpClient` implementation
+- `BlackSlope.Api.Tests.RestSharpIntegrationTests`
+  - using a RestSharp HttpClient implementation
+
+These can be executed in Test Explorer much like regular Unit Tests, and it is up to your team to choose which implementation best suits your project.
+
+To Setup:
+1. Ensure you've successfully run the [Build DB](#build-database) and [Build Application](#build-application) steps above.
+2. Update the `appsettings.test.json` file in your Integration Test project with the proper DB connection string and Host URL for the BlackSlope API
+    - NOTE: The Blackslope API can be run on a localhost configuration if desired, but needs to be done so in a separate instance of your IDE to allow tests to run
+3. Download the appropriate [SpecFlow plugins](https://docs.specflow.org/projects/specflow/en/latest/Installation/Installation.html) for your IDE
 
 ### Swagger
 Open your browser and navigate to ```http://localhost:51385/swagger``` to view the API documentation
