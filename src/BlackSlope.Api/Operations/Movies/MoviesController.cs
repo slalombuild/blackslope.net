@@ -181,5 +181,28 @@ namespace BlackSlope.Api.Operations.Movies
             // 204 response
             return HandleDeletedResponse();
         }
+
+        /// <summary>
+        /// Invoke Http Test with Polly
+        /// </summary>
+        /// <response code="204">Movie successfully delete, no content</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Internal Server Error</response>
+        ///
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpDelete]
+        [Route("api/v1/movies/httpTest")]
+        public async Task<ActionResult> GetExponentialBackoff()
+        {
+            // delete existing movie
+            await _movieService.GetExponentialBackoff();
+
+            // 204 response
+            return HandleSuccessResponse(null);
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace BlackSlope.Services.Movies
         Task<int> DeleteMovieAsync(int id);
 
         Task<bool> CheckIfMovieExistsAsync(string title, DateTime? releaseDate);
+        Task<dynamic> GetExponentialBackoff();
     }
 }
