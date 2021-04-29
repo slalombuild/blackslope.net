@@ -2,8 +2,6 @@
 {
     public class CreateMovieContext
     {
-
-        public string MovieId { get; set; }
-
+        public int MovieId { get; set; }
     }
 }

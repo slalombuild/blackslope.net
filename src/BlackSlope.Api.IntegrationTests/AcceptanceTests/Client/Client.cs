@@ -40,7 +40,7 @@ namespace AcceptanceTests.Client
             HttpContent payload = new StringContent(body, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(path, payload);
             var json = await response.Content.ReadAsStringAsync();
-            var jsonModel = Deserialize(json);
+            var jsonModel = Deserialize(json, response);
             _output.WriteLine(" client {0}", response.RequestMessage);
             _output.WriteLine(" payload Data for Uri {0}", payload.ToString());
             _output.WriteLine(" Response Data for Uri {0}", response.ToString());
@@ -55,7 +55,7 @@ namespace AcceptanceTests.Client
             ClientSetup();
             var response = await client.GetAsync(path);
             var json = await response.Content.ReadAsStringAsync();
-            var jsonModel = Deserialize(json);
+            var jsonModel = Deserialize(json, response);
             _output.WriteLine(" client {0}", response.RequestMessage);
             _output.WriteLine(" Response Data for Uri {0}", response.ToString());
             _output.WriteLine(" Response Status: {0}", response.StatusCode.ToString());
@@ -69,7 +69,7 @@ namespace AcceptanceTests.Client
             ClientSetup();
             var response = await client.DeleteAsync(path);
             var json = await response.Content.ReadAsStringAsync();
-            var jsonModel = Deserialize(json);
+            var jsonModel = Deserialize(json, response);
             _output.WriteLine(" client {0}", response.RequestMessage);
             _output.WriteLine(" Response Data for Uri {0}", response.ToString());
             _output.WriteLine(" Response Status: {0}", response.StatusCode.ToString());
@@ -83,7 +83,7 @@ namespace AcceptanceTests.Client
             HttpContent payload = new StringContent(body, Encoding.UTF8, "application/json");
             var response = await client.PutAsync(path, payload);
             var json = await response.Content.ReadAsStringAsync();
-            var jsonModel = Deserialize(json);
+            var jsonModel = Deserialize(json, response);
             _output.WriteLine(" client {0}", response.RequestMessage);
             _output.WriteLine(" payload Data for Uri {0}", payload.ToString());
             _output.WriteLine(" Response Data for Uri {0}", response.ToString());
@@ -93,7 +93,7 @@ namespace AcceptanceTests.Client
             return jsonModel;
         }
 
-        private static T Deserialize(string json)
+        private T Deserialize(string json, HttpResponseMessage response)
         {
             var settings = new JsonSerializerSettings
             {
@@ -105,10 +105,13 @@ namespace AcceptanceTests.Client
             {
                 return JsonConvert.DeserializeObject<T>(json, settings);
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
+                _output.WriteLine("Error deserializing response from {0} : {1}", response.RequestMessage.ToString(), e.Message);
+                _output.WriteLine("Error Response Status: {0}", response.StatusCode.ToString());
+                _output.WriteLine("Error Response Content: {0} ", StringHelper.FormatJSON(response.Content.ToString()));
+
                 throw;
-                // throw json flatfile on explosion
             }
         }
     }

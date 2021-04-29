@@ -1,34 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appTestSettings.json" />
+    <None Remove="appsettings.test.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\BlackSlope.Api\Operations\Movies\ViewModels\CreateMovieViewModel.cs" Link="Models\CreateMovieViewModel.cs" />
-    <Compile Include="..\BlackSlope.Api\Operations\Movies\ViewModels\MovieViewModel.cs" Link="Models\MovieViewModel.cs" />
-    <Compile Include="..\BlackSlope.Api\Operations\Movies\ViewModels\UpdateMovieViewModel.cs" Link="Models\UpdateMovieViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appTestSettings.json">
+    <Content Include="appsettings.test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="RestSharp" Version="106.11.4" />
-    <PackageReference Include="SpecFlow" Version="3.4.3" />
-    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.4.3" />
-    <PackageReference Include="SpecFlow.xUnit" Version="3.4.3" />
+    <PackageReference Include="AutoFixture" Version="4.17.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="SpecFlow" Version="3.7.38" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.7.38" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.7.38" />
 
     
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -50,6 +45,10 @@
   <ItemGroup>
     <Folder Include="Drivers\" />
     <Folder Include="Hooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlackSlope.Api\BlackSlope.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

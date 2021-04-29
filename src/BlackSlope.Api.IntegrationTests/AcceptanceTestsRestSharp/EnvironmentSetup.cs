@@ -11,34 +11,25 @@ namespace AcceptanceTestsRestSharp
     [Binding]
     public sealed class EnvironmentSetup
     {
-
-        private IObjectContainer objectContainer;
-        private readonly ITestOutputHelper _OutputHelper;
+        private IObjectContainer _objectContainer;
+        private readonly ITestOutputHelper _outputHelper;
 
         public EnvironmentSetup(IObjectContainer objectContainer, ITestOutputHelper outputHelper)
         {
-            this.objectContainer = objectContainer;
-            _OutputHelper = outputHelper;
-
+            this._objectContainer = objectContainer;
+            _outputHelper = outputHelper;
         }
 
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            
            var configuration = new ConfigurationBuilder()
-                                     //.SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location))
                                      .SetBasePath(Directory.GetCurrentDirectory())
-                                     .AddJsonFile("appTestSettings.json")
-                                     .Build(); 
-               Environments.BaseUrl = configuration["BlackSlopeHost"];
-          //  Environments.BaseUrl = "http://localhost:5010";
+                                     .AddJsonFile("appsettings.test.json")
+                                     .Build();
+
+            Environments.BaseUrl = configuration["BlackSlopeHost"];
             Environments.DBConnection = configuration["DBConnectionString"];
-                
-
         }
-
-
-
     }
 }

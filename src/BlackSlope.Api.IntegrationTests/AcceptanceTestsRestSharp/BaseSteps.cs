@@ -2,19 +2,18 @@
 using RestSharp;
 using Xunit.Abstractions;
 
+//CZTODO: SCRUB
 namespace AcceptanceTestsRestSharp
 {
     public class BaseSteps
     {
-
-        private readonly APIClient _apiClient;
-        private readonly ITestOutputHelper _output;
+        private readonly ApiClient _apiClient;
 
         public BaseSteps(ITestOutputHelper outputHelper)
         {
-            _output = outputHelper;
-            _apiClient = new APIClient(outputHelper);
+            _apiClient = new ApiClient(outputHelper);
         }
+
         public IRestResponse GetWithResponse(string endpoint)
         {
             return _apiClient.Get(endpoint);
@@ -30,21 +29,22 @@ namespace AcceptanceTestsRestSharp
             return _apiClient.Post(endpoint, value);
         }
 
-        public ClientResponse<T> Get<T>(string path)
+        public T Get<T>(string path)
         {
             return _apiClient.Get<T>(path);
         }
 
-        public ClientResponse<T> Put<T>(string path, string content = "")
+        public T Put<T>(string path, string content = "")
         {
             return _apiClient.Put<T>(path, content);
         }
 
-        public ClientResponse<T> Post<T>(string path, string content)
+        public T Post<T>(string path, string content)
         {
             return _apiClient.Post<T>(path, content);
         }
-        public ClientResponse<T> PostEbanking<T>(string path, string content)
+
+        public T PostEbanking<T>(string path, string content)
         {
             return _apiClient.Post<T>(path, content);
         }
