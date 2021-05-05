@@ -8,6 +8,7 @@ using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;
 using BlackSlope.Api.Common.Versioning.Interfaces;
 using BlackSlope.Api.Common.Versioning.Services;
+using BlackSlope.Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,7 @@ namespace BlackSlope.Api
             services.AddTransient<IVersionService, AssemblyVersionService>(); // For Version parsing via Assembly ref
             // services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
 
+            services.AddMvcApi();
             services.AddHealthChecksService();
 
             services.AddMovieService();
