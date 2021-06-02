@@ -8,7 +8,7 @@ namespace BlackSlope.Api.Common.Exceptions
     {
         private const string BadRequestDescriptor = "Bad Request";
 
-        private const string ServerErorDescriptor = "Internal Server Error";
+        private const string ServerErrorDescriptor = "Internal Server Error";
 
         public T Exception { get; set; }
 
