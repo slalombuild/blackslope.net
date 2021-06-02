@@ -10,7 +10,7 @@ namespace BlackSlope.Api.Extensions
             services
                 .AddMvc(mvcOptions =>
                 {
-                    mvcOptions.Filters.Add(new ModelstateValidationFilter());
+                    mvcOptions.Filters.Add(new ModelStateValidationFilter());
                     mvcOptions.Filters.Add(new HandledResultFilter());
                 });
 

@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace BlackSlope.Api.Filters
 {
-    public class ModelstateValidationFilter : ActionFilterAttribute
+    public class ModelStateValidationFilter : ActionFilterAttribute
     {
         private const string ErrorName = "RequestModel";
         private const string ErrorCode = "MSTATE001";
-        private const string ErrorText = "Modelstate did not pass validation.";
+        private const string ErrorText = "ModelState did not pass validation.";
         private const string ErrorDescription = "Unable to create request model. Most likely its not being constructed from [FromUri] / [FromBody] or not enough data supplied to create the object.";
 
         /// <summary>
