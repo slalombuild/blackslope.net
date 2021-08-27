@@ -51,7 +51,7 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 Open your browser and navigate to ```http://localhost:51385/swagger``` to view the API documentation
 
 ### Polly
-`BlackSlope.Api` supports configuring Polly policies for outgoing HTTP requests. An example of this configuration can be seen in the sample `HttpTestRepository`
+`BlackSlope.Api` supports configuring Polly policies for outgoing HTTP requests. An example of this configuration can be seen in the sample `FakeApiRepository`
 
 See the following articles for implementation details:
 - [Using HttpClientFactory to Implement Resilient HTTP Requests](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests)
