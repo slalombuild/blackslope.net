@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.test.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.17.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="ReportPortal.SpecFlow" Version="3.2.0" />
+    <PackageReference Include="SpecFlow" Version="3.7.38" />
+    <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.7.38" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.7.38" />
+    <PackageReference Include="SpecRun.Runner" Version="3.7.3" />
+
+    
+    <PackageReference Include="xunit" Version="2.4.1" />
+
+    
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    
+
+    
+
+    
+
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Drivers\" />
+    <Folder Include="Hooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlackSlope.Api\BlackSlope.Api.csproj" />
+  </ItemGroup>
+
+</Project>
