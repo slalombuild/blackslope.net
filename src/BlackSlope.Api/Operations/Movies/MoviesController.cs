@@ -3,6 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using AutoMapper;
 using BlackSlope.Api.Common.Controllers;
+using BlackSlope.Api.Common.Exceptions;
 using BlackSlope.Api.Common.Validators.Interfaces;
 using BlackSlope.Api.Operations.Movies.Requests;
 using BlackSlope.Api.Operations.Movies.Responses;
@@ -180,6 +181,41 @@ namespace BlackSlope.Api.Operations.Movies
 
             // 204 response
             return HandleDeletedResponse();
+        }
+
+        /// <summary>
+        /// Invoke Http Test with Polly Exponential Backoff
+        /// </summary>
+        /// <response code="200">Success.</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Internal Server Error</response>
+        ///
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [HttpGet]
+        [Route("api/v1/movies/httpExponentialBackoffTest")]
+        public async Task<ActionResult> GetExponentialBackoff()
+        {
+            await _movieService.GetExponentialBackoff();
+
+            // 204 response
+            return HandleSuccessResponse(null);
+        }
+
+        /// <summary>
+        /// This is a sample error.
+        /// </summary>
+        /// <remarks>
+        /// Use this operation to test the global error handling
+        /// </remarks>
+        [HttpGet]
+        [Route("SampleError")]
+        public object SampleError()
+        {
+            throw new HandledException(ExceptionType.Security, "This is an example security issue.", System.Net.HttpStatusCode.RequestEntityTooLarge);
         }
     }
 }
