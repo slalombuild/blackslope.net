@@ -6,6 +6,7 @@ using BlackSlope.Api.Common.Configuration;
 using BlackSlope.Api.Common.Extensions;
 using BlackSlope.Api.Common.Middleware.Correlation;
 using BlackSlope.Api.Common.Middleware.ExceptionHandling;
+using BlackSlope.Api.Common.Services;
 using BlackSlope.Api.Common.Versioning.Interfaces;
 using BlackSlope.Api.Common.Versioning.Services;
 using BlackSlope.Api.Extensions;
@@ -46,10 +47,12 @@ namespace BlackSlope.Api
             // services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
 
             services.AddMvcApi();
-            services.AddHealthChecksService();
 
             services.AddMovieService();
             services.AddMovieRepository(_configuration);
+
+            services.AddHttpClient("movies", (provider, client) => provider.GetService<MoviesHttpClientFactory>().Configure(client));
+            HealthCheckStartup.ConfigureServices(services, _configuration);
 
             services.AddValidators();
         }
@@ -66,7 +69,7 @@ namespace BlackSlope.Api
                 app.UseHsts();
             }
 
-            app.UseHealthChecks("/health");
+            HealthCheckStartup.Configure(app, env, HostConfig);
             app.UseHttpsRedirection();
 
             app.UseSwagger(HostConfig.Swagger);

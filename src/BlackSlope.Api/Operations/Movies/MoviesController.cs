@@ -183,7 +183,6 @@ namespace BlackSlope.Api.Operations.Movies
             return HandleDeletedResponse();
         }
 
-
         /// <summary>
         /// This is a sample error.
         /// </summary>
