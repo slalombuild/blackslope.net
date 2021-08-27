@@ -26,15 +26,18 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
     ```
     MoviesConnectionString
     ```
-3. Open PowerShell and install the `dotnet-ef` tool using:
+3. Create a SQL Database for "movies" either manually through a GUI of your choice or CLI tool
+   - [SSMS](https://docs.microsoft.com/en-us/sql/relational-databases/databases/create-a-database?view=sql-server-ver15) 
+   - [mssql-cli](https://github.com/dbcli/mssql-cli)
+5. Open PowerShell and install the `dotnet-ef` tool using:
     ```
     dotnet tool install --global dotnet-ef
     ```
-4. Navigate Powershell to your repository root directory and run the following command:
+6. Navigate Powershell to your repository root directory and run the following command:
     ```
     dotnet ef database update --project=.\src\BlackSlope.Api\BlackSlope.Api.csproj
     ```
-5. If successful, the result of the above command will be similar to the following example:
+7. If successful, the result of the above command will be similar to the following example:
     ```
     Build started...
     Build succeeded.
@@ -46,6 +49,27 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
 ### Run
 
 	dotnet run --project src/BlackSlope.Api/BlackSlope.Api.csproj
+
+### Docker Setup
+1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+2. Build the application under the `/src` directory
+3. Build the docker image in the CLI under the `/src` directory:
+    ```
+    docker build -t blackslope.api -f Dockerfile .
+    ```
+4. Verify the new `blackslope.api` image exists in local docker repo with
+    ```
+    docker images
+    ```
+5. Create a container for the `blackslope.api` image
+    ```
+    docker create --name blackslope-container blackslope.api
+    ```
+6. Spin the container for the blackslope image up
+    ```
+    docker start blackslope-container
+    ```
+7. Visual inspection of the Docker Desktop app should show your image running in the container locally
 
 ### Test
 
