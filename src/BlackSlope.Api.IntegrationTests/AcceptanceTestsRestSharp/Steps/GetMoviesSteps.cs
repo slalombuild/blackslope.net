@@ -1,37 +1,35 @@
-﻿using AcceptanceTestsRestSharp.Clients;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AcceptanceTestsRestSharp.Clients;
 using AcceptanceTestsRestSharp.Helpers;
+using BlackSlope.Api.Operations.Movies.ViewModels;
 using TechTalk.SpecFlow;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace AcceptanceTestsRestSharp.Steps
 {
-
     [Binding]
-    public class GetMoviesSteps : BaseSteps
+    public class GetMoviesSteps
     {       
-       private ClientResponse<MovieViewModel> _Response;
-        private readonly ITestOutputHelper _output;
+        private IEnumerable<MovieViewModel> _response;
+        private readonly ApiClient _apiClient;
 
-
-        public GetMoviesSteps(ITestOutputHelper outputHelper) : base(outputHelper)
+        public GetMoviesSteps(ITestOutputHelper outputHelper)
         {
-            _output = outputHelper;
-
+            _apiClient = new ApiClient(outputHelper);
         }
 
         [Given(@"a gets all movies using get all movies endpoint")]
         public void GivenAGetsAllMoviesUsingGetAllMoviesEndpoint()
         {
-            _Response =  Get<MovieViewModel>(Constants.Movies);
-
+            _response = _apiClient.Get<IEnumerable<MovieViewModel>>(Constants.Movies);
         }
 
-        [Given(@"the get movies endpoint is sucsessfull")]
-        public void GivenTheGetMoviesEndpointIsSucsessfull()
+        [Given(@"the get movies endpoint is successful")]
+        public void GivenTheGetMoviesEndpointIsSuccessful()
         {
-            Assert.Equal("OK",_Response.Status.ToString());
+            Assert.True(_response.Any());
         }
-
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace BlackSlope.Api.Common.Exceptions
 {
@@ -14,8 +13,8 @@ namespace BlackSlope.Api.Common.Exceptions
         public const string DefaultErrorCode = "ERR001";
 
         /// <summary>
-        /// The returned exception type used by the frontend to detect if 
-        /// this is handled by our notification service, or should be 
+        /// The returned exception type used by the frontend to detect if
+        /// this is handled by our notification service, or should be
         /// redirected to an oops page.
         /// </summary>
         public const string ReturnedExceptionType = "HandledException";
@@ -68,7 +67,8 @@ namespace BlackSlope.Api.Common.Exceptions
         /// <param name="message">The error message to display.</param>
         /// <param name="exceptions">The exceptions.</param>
         /// <param name="status">The status.</param>
-        public HandledException(ExceptionType type, string message, List<HandledException> exceptions, HttpStatusCode status = HttpStatusCode.BadRequest) : base(message)
+        public HandledException(ExceptionType type, string message, List<HandledException> exceptions, HttpStatusCode status = HttpStatusCode.BadRequest)
+            : base(message)
         {
             ExceptionType = type;
             StatusCode = status;

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Text;
 
 namespace BlackSlope.Api.Common.Exceptions
 {
@@ -18,6 +16,5 @@ namespace BlackSlope.Api.Common.Exceptions
         public string Descriptor { get; set; }
 
         public List<HandledResponseError> Exceptions { get; set; }
-
     }
 }

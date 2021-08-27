@@ -1,28 +1,33 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.Threading.Tasks;
+using AcceptanceTests.TestServices;
+using BlackSlope.Api.Operations.Movies.ViewModels;
+using TechTalk.SpecFlow;
+using Xunit;
 
 namespace AcceptanceTests.Steps
 {
     [Binding]
     public class GetMoviebyIdSteps
     {
-        private readonly ScenarioContext _scenarioContext;
+        private ITestServices _movieTestService;
+        private MovieViewModel _response;
+        private const int _targetMovieId = 2;
 
-        public GetMoviebyIdSteps(ScenarioContext injectedContext)
+        public GetMoviebyIdSteps(ITestServices movieTestService)
         {
-            _scenarioContext = injectedContext;
-        }
+            _movieTestService = movieTestService;
+    }
 
         [Given(@"the user gets movie information using get movie by id endpoint")]
-        public void GivenTheUserGetsMovieInformationUsingGetMovieByIdEndpoint()
+        public async Task GivenTheUserGetsMovieInformationUsingGetMovieByIdEndpointAsync()
         {
-            _scenarioContext.Pending();
+            _response = await _movieTestService.GetMovieById(_targetMovieId);
         }
 
         [Given(@"the get movie by id response is successful")]
         public void GivenTheGetMovieByIdResponseIsSuccessful()
         {
-            _scenarioContext.Pending();
+            Assert.True((_response?.Id ?? -1) == _targetMovieId);
         }
-
     }
 }

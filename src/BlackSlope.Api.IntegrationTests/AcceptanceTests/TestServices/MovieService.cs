@@ -16,19 +16,18 @@ namespace AcceptanceTests.TestServices
             this.outputHelper = outputHelper;
         }
 
-        public async Task<MovieViewModel[]> GetMovie()
+        public async Task<MovieViewModel[]> GetMovies()
         {
             var client = new Client<MovieViewModel[]>(outputHelper);
 
-            var response = await client.Get($"{Constants.BaseRoute}{"/movies"}");
-            return response;
+            return await client.Get($"{Constants.BaseRoute}{Constants.Movies}");
         }
 
-        public async Task<MovieViewModel> EditMovie(CreateMovieViewModel movie, string movieId)
+        public async Task<MovieViewModel> UpdateMovieById(CreateMovieViewModel movie, int movieId)
         {
             var client = new Client<MovieViewModel>(outputHelper);
             var data = JsonConvert.SerializeObject(movie).ToString();
-            var movieEditResponse = await client.UpdateAsStringAsync(data, $"{Constants.BaseRoute}{Constants.Movies}{movieId}");
+            var movieEditResponse = await client.UpdateAsStringAsync(data, $"{Constants.BaseRoute}{Constants.Movies}/{movieId}");
             return movieEditResponse;
         }
         public async Task<MovieViewModel> CreateMovie(CreateMovieViewModel movie)
@@ -40,18 +39,17 @@ namespace AcceptanceTests.TestServices
             return movieResponse;
         }
 
-        public async Task<MovieViewModel> DeleteMovie(int movieId)
+        public async Task DeleteMovie(int movieId)
+        {
+            var client = new Client<object>(outputHelper);
+            await client.Delete($"{Constants.BaseRoute}{Constants.Movies}/{movieId}");
+        }
+
+        public async Task<MovieViewModel> GetMovieById(int targetMovieId)
         {
             var client = new Client<MovieViewModel>(outputHelper);
-            var response = await client.Delete($"{Constants.BaseRoute}{movieId}");
-            return response;
+
+            return await client.Get($"{Constants.BaseRoute}{Constants.Movies}/{targetMovieId}");
         }
     }
 }
-
-
-
-
-
-
-

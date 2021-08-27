@@ -1,5 +1,0 @@
-﻿{
-
-  "BlackSlopeHost": "http://localhost:5010",
-  "DBConnectionString": "Server=localHost;Database=eBanking;Integrated Security=SSPI;"
-}

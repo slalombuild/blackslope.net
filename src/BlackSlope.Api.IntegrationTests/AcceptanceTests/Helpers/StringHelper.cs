@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace AcceptanceTestsRestSharp.Helpers
+namespace AcceptanceTests.Helpers
 {
     public class StringHelper
     {

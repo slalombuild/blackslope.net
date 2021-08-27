@@ -44,9 +44,8 @@ namespace AcceptanceTestsRestSharp.Helpers
         {
             var restRequest = new RestRequest(endpoint)
             {
-                RequestFormat = DataFormat.Json,
-                Parameters = { new Parameter("application/json", value, ParameterType.RequestBody) }
-            };
+                RequestFormat = DataFormat.Json
+            }.AddParameter("application/json", value, ParameterType.RequestBody);
             return rc.Put(restRequest);
         }
 
@@ -54,9 +53,8 @@ namespace AcceptanceTestsRestSharp.Helpers
         {
             var restRequest = new RestRequest(endpoint)
             {
-                RequestFormat = DataFormat.Json,
-                Parameters = { new Parameter("application/json", value, ParameterType.RequestBody) }
-            };
+                RequestFormat = DataFormat.Json
+            }.AddParameter("application/json", value, ParameterType.RequestBody);
             return rc.Post(restRequest);
         }
 

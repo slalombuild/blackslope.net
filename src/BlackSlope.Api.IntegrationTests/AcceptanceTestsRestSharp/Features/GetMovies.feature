@@ -6,4 +6,4 @@
 @GetAllMovies
 Scenario: Fetch all movies
 	Given a gets all movies using get all movies endpoint  
-	And the get movies endpoint is sucsessfull 
+	And the get movies endpoint is successful 
