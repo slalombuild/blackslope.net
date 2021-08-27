@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace BlackSlope.Repositories.HttpTest
+namespace BlackSlope.Repositories.FakeApi
 {
-    public interface IHttpTestRepository
+    public interface IFakeApiRepository
     {
         Task<dynamic> GetExponentialBackoff();
     }

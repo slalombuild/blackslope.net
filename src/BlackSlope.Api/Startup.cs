@@ -49,7 +49,7 @@ namespace BlackSlope.Api
             services.AddMovieService();
 
             services.AddMovieRepository(_configuration);
-            services.AddHttpTestRepository();
+            services.AddFakeApiRepository();
 
             services.AddValidators();
         }

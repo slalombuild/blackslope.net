@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using BlackSlope.Repositories.HttpTest;
+using BlackSlope.Repositories.FakeApi;
 using BlackSlope.Repositories.Movies;
 using BlackSlope.Repositories.Movies.DtoModels;
 using BlackSlope.Services.Movies.DomainModels;
@@ -12,13 +12,13 @@ namespace BlackSlope.Services.Movies
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        private readonly IHttpTestRepository _httpTestRepository;
+        private readonly IFakeApiRepository _fakeApiRepository;
         private readonly IMapper _mapper;
 
-        public MovieService(IMovieRepository movieRepository, IHttpTestRepository httpTestRepository, IMapper mapper)
+        public MovieService(IMovieRepository movieRepository, IFakeApiRepository fakeApiRepository, IMapper mapper)
         {
             _movieRepository = movieRepository;
-            _httpTestRepository = httpTestRepository;
+            _fakeApiRepository = fakeApiRepository;
             _mapper = mapper;
         }
 
@@ -53,7 +53,7 @@ namespace BlackSlope.Services.Movies
 
         public async Task<dynamic> GetExponentialBackoff()
         {
-            return await _httpTestRepository.GetExponentialBackoff();
+            return await _fakeApiRepository.GetExponentialBackoff();
         }
     }
 }

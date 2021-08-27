@@ -1,13 +1,13 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BlackSlope.Repositories.HttpTest
+namespace BlackSlope.Repositories.FakeApi
 {
-    public class HttpTestRepository : IHttpTestRepository
+    public class FakeApiRepository : IFakeApiRepository
     {
         private readonly HttpClient _httpClient;
 
-        public HttpTestRepository(HttpClient httpClient)
+        public FakeApiRepository(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
