@@ -49,7 +49,9 @@ namespace BlackSlope.Api
             services.AddHealthChecksService();
 
             services.AddMovieService();
+
             services.AddMovieRepository(_configuration);
+            services.AddFakeApiRepository();
 
             services.AddValidators();
         }
