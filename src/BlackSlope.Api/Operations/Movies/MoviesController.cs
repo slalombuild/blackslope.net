@@ -3,6 +3,7 @@ using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using AutoMapper;
 using BlackSlope.Api.Common.Controllers;
+using BlackSlope.Api.Common.Exceptions;
 using BlackSlope.Api.Common.Validators.Interfaces;
 using BlackSlope.Api.Operations.Movies.Requests;
 using BlackSlope.Api.Operations.Movies.Responses;
@@ -202,6 +203,19 @@ namespace BlackSlope.Api.Operations.Movies
 
             // 204 response
             return HandleSuccessResponse(null);
+        }
+
+        /// <summary>
+        /// This is a sample error.
+        /// </summary>
+        /// <remarks>
+        /// Use this operation to test the global error handling
+        /// </remarks>
+        [HttpGet]
+        [Route("SampleError")]
+        public object SampleError()
+        {
+            throw new HandledException(ExceptionType.Security, "This is an example security issue.", System.Net.HttpStatusCode.RequestEntityTooLarge);
         }
     }
 }

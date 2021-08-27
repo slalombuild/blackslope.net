@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace AcceptanceTestsRestSharp.Features
+namespace BlackSlope.Api.RestSharpIntegrationTests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace AcceptanceTestsRestSharp.Features
 #line 1 "GetMovies.feature"
 #line hidden
         
-        public GetMoviesFeature(GetMoviesFeature.FixtureData fixtureData, AcceptanceTestsRestSharp_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public GetMoviesFeature(GetMoviesFeature.FixtureData fixtureData, BlackSlope_Api_RestSharpIntegrationTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
