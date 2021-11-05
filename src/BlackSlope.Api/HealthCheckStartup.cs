@@ -59,7 +59,6 @@ namespace BlackSlope.Api
         {
             c.Response.ContentType = MediaTypeNames.Application.Json;
 
-            // CZTODO: Fix with concrete obj
             var result = JsonSerializer.Serialize(new
             {
                 status = r.Status.ToString(),
