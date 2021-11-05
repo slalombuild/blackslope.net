@@ -30,7 +30,7 @@ namespace AcceptanceTests.Steps
             var createMovie = new CreateMovieViewModel
             {
                 Title = _fixture.Create<string>(),
-                Description = "Create Movie Test",
+                Description = $"Create Movie_{_fixture.Create<string>()}",
                 ReleaseDate = Convert.ToDateTime("2010/04/05")
             };
             _response = await _movieTestService.CreateMovie(createMovie);

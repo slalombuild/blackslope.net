@@ -5,9 +5,10 @@ namespace AcceptanceTests.TestServices
 {
     public interface ITestServices
     {
-        Task<MovieViewModel[]> GetMovie();
-        Task<MovieViewModel> EditMovie(CreateMovieViewModel movie, string movieId);
+        Task<MovieViewModel[]> GetMovies();
+        Task<MovieViewModel> UpdateMovieById(CreateMovieViewModel movie, int movieId);
         Task<MovieViewModel> CreateMovie(CreateMovieViewModel movie);
-        Task<MovieViewModel> DeleteMovie(int movieId);
+        Task DeleteMovie(int movieId);
+        Task<MovieViewModel> GetMovieById(int targetMovieId);
     }
 }

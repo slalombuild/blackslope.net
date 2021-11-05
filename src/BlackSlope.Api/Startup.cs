@@ -49,7 +49,9 @@ namespace BlackSlope.Api
             services.AddMvcApi();
 
             services.AddMovieService();
+
             services.AddMovieRepository(_configuration);
+            services.AddFakeApiRepository();
 
             services.AddHttpClient("movies", (provider, client) => provider.GetService<MoviesHttpClientFactory>().Configure(client));
             HealthCheckStartup.ConfigureServices(services, _configuration);

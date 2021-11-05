@@ -4,15 +4,12 @@ using System.Net;
 
 namespace BlackSlope.Api.Common.Exceptions
 {
-    public class HandledResult<T> where T : Exception
+    public class HandledResult<T>
+        where T : Exception
     {
         private const string BadRequestDescriptor = "Bad Request";
 
         private const string ServerErrorDescriptor = "Internal Server Error";
-
-        public T Exception { get; set; }
-
-        public HttpStatusCode StatusCode { get; set; }
 
         public HandledResult(T value)
         {
@@ -26,6 +23,9 @@ namespace BlackSlope.Api.Common.Exceptions
             StatusCode = status;
         }
 
+        public T Exception { get; set; }
+
+        public HttpStatusCode StatusCode { get; set; }
 
         /// <summary>
         /// Handles the exception.
@@ -69,9 +69,7 @@ namespace BlackSlope.Api.Common.Exceptions
                     };
                 }),
 
-                TypeSwitch.Default(() => { })
-
-            );
+                TypeSwitch.Default(() => { }));
 
             return response;
         }
@@ -110,11 +108,10 @@ namespace BlackSlope.Api.Common.Exceptions
                 {
                     Code = ex.ErrorCode,
                     Type = ex.ExceptionType.ToString(),
-                    Message = ex.Message
+                    Message = ex.Message,
                 });
             });
             return collection;
         }
-
     }
 }

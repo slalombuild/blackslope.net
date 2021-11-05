@@ -13,7 +13,7 @@ namespace AcceptanceTests.Steps
         private ITestServices _movieTestService;
         private MovieViewModel[] _response;
 
-        public GetMoviesSteps(ScenarioContext injectedContext, ITestServices movieTestService)
+        public GetMoviesSteps(ITestServices movieTestService)
         {
             _movieTestService = movieTestService;
         }
@@ -21,7 +21,7 @@ namespace AcceptanceTests.Steps
         [Given(@"a gets all movies using get all movies endpoint")]
         public async Task GivenAGetsAllMoviesUsingGetAllMoviesEndpoint()
         {
-            _response = await _movieTestService.GetMovie();      
+            _response = await _movieTestService.GetMovies();      
         }
 
         [Given(@"the get movies endpoint is successful")]

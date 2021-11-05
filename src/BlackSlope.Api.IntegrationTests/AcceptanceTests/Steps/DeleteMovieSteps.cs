@@ -2,23 +2,21 @@
 using AcceptanceTests.Models;
 using AcceptanceTests.TestServices;
 using TechTalk.SpecFlow;
+using Xunit;
 
 namespace AcceptanceTests.Steps
 {
     [Binding]
     public class DeleteMovieSteps
     {
-
         private readonly ITestServices _movieTestService;
         private readonly CreateMovieContext _createMovieContext;
-        private readonly ScenarioContext _scenarioContext;
 
-        public DeleteMovieSteps(ScenarioContext injectedContext,
-          ITestServices movieTestService, CreateMovieContext createMovieContext)
+        public DeleteMovieSteps(ITestServices movieTestService,
+            CreateMovieContext createMovieContext)
         {
             _movieTestService = movieTestService;
             _createMovieContext = createMovieContext;
-            _scenarioContext = injectedContext;
         }
 
         [Given(@"a deletes a recently created movie")]
@@ -29,9 +27,11 @@ namespace AcceptanceTests.Steps
         }
 
         [Given(@"the movie is successfully deleted")]
-        public void GivenTheMovieIsSuccessfullyDeleted()
+        public async Task GivenTheMovieIsSuccessfullyDeleted()
         {
-            _scenarioContext.Pending();
+            var id = _createMovieContext.MovieId;
+            var targetMovie = await _movieTestService.GetMovieById(id);
+            Assert.Null(targetMovie);
         }
     }
 }

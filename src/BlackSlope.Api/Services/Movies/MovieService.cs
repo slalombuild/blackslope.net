@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using BlackSlope.Repositories.FakeApi;
 using BlackSlope.Repositories.Movies;
 using BlackSlope.Repositories.Movies.DtoModels;
 using BlackSlope.Services.Movies.DomainModels;
@@ -11,11 +12,13 @@ namespace BlackSlope.Services.Movies
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
+        private readonly IFakeApiRepository _fakeApiRepository;
         private readonly IMapper _mapper;
 
-        public MovieService(IMovieRepository movieRepository, IMapper mapper)
+        public MovieService(IMovieRepository movieRepository, IFakeApiRepository fakeApiRepository, IMapper mapper)
         {
             _movieRepository = movieRepository;
+            _fakeApiRepository = fakeApiRepository;
             _mapper = mapper;
         }
 
@@ -47,5 +50,10 @@ namespace BlackSlope.Services.Movies
 
         public async Task<bool> CheckIfMovieExistsAsync(string title, DateTime? releaseDate) =>
             await _movieRepository.MovieExistsAsync(title, releaseDate);
+
+        public async Task<dynamic> GetExponentialBackoff()
+        {
+            return await _fakeApiRepository.GetExponentialBackoff();
+        }
     }
 }
