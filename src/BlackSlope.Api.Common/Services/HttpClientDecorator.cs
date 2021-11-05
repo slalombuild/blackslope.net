@@ -4,11 +4,11 @@ using BlackSlope.Api.Common.Configuration;
 
 namespace BlackSlope.Api.Common.Services
 {
-    public class MoviesHttpClientFactory : IHttpClientConfigurator
+    public class HttpClientDecorator : IHttpClientDecorator
     {
         private readonly HostConfig _config;
 
-        public MoviesHttpClientFactory(HostConfig config)
+        public HttpClientDecorator(HostConfig config)
         {
             _config = config;
         }

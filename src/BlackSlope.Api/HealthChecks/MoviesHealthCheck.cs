@@ -19,7 +19,8 @@ namespace BlackSlope.Api.HealthChecks
         {
             try
             {
-                var result = await _httpClientFactory.CreateClient("movies").GetAsync("api/version", cancellationToken).ConfigureAwait(false);
+                var result = await _httpClientFactory.CreateClient("movies")
+                    .GetAsync("api/version", cancellationToken).ConfigureAwait(false);
                 return result.IsSuccessStatusCode
                     ? new HealthCheckResult(HealthStatus.Healthy)
                     : new HealthCheckResult(HealthStatus.Unhealthy);

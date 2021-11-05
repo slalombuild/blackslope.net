@@ -2,7 +2,7 @@
 
 namespace BlackSlope.Api.Common.Services
 {
-    public interface IHttpClientConfigurator
+    public interface IHttpClientDecorator
     {
         void Configure(HttpClient client);
     }
