@@ -43,14 +43,13 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddMvc()
             .AddJsonOptions(options =>
             {
-                options.JsonSerializerOptions.IgnoreNullValues = true;
+                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
                 options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 options.JsonSerializerOptions.Converters
                     .Add(new JsonStringEnumConverter());
                 options.JsonSerializerOptions.Converters
                     .Add(new VersionJsonConverter());
-            })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            });
 
         /// <summary>
         /// Add Azure service to the Service Collection and configure it
