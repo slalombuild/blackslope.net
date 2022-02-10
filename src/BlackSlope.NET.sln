@@ -47,6 +47,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documentation", "_Documentation", "{042E13D2-E1F3-4B5F-8F38-0BC74FA87AB2}"
 	ProjectSection(SolutionItems) = preProject
 		..\LICENSE = ..\LICENSE
+		Migrations.md = Migrations.md
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

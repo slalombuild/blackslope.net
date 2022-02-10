@@ -4,6 +4,9 @@ using BlackSlope.Repositories.Movies.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+#nullable disable
 
 namespace BlackSlope.Api.Migrations
 {
@@ -14,26 +17,32 @@ namespace BlackSlope.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("BlackSlope.Repositories.Movies.DtoModels.MovieDtoModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
-                    b.Property<string>("Description");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("ReleaseDate");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title");
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Title")
-                        .HasName("IX_Movies_Title");
+                        .HasDatabaseName("IX_Movies_Title");
 
                     b.ToTable("Movies");
 
@@ -42,350 +51,350 @@ namespace BlackSlope.Api.Migrations
                         {
                             Id = 1,
                             Description = "Lorem ipsum dolor sit amet, ut consul soluta persius quo, et eam mundi scribentur, eros invidunt dissentias no eum.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 715, DateTimeKind.Local).AddTicks(5038),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(479),
                             Title = "The Shawshank Redemption"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Eos dolor perpetua ne, cum agam causae petentium ei.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8797),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(507),
                             Title = "The Godfather"
                         },
                         new
                         {
                             Id = 3,
                             Description = "At idque electram moderatius vix. Legere postulant at per.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8809),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(510),
                             Title = "The Dark Knight"
                         },
                         new
                         {
                             Id = 4,
                             Description = "Sanctus fuisset pericula cu usu, mea an idque dicam accumsan.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8812),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(512),
                             Title = "The Godfather: Part II"
                         },
                         new
                         {
                             Id = 5,
                             Description = "Et natum tollit sed.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8814),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(514),
                             Title = "The Lord of the Rings: The Return of the King"
                         },
                         new
                         {
                             Id = 6,
                             Description = "Usu ad omnium civibus persecuti.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8817),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(516),
                             Title = "Pulp Fiction"
                         },
                         new
                         {
                             Id = 7,
                             Description = "In graeco omnesque oporteat vim, ad sed nonumy consulatu.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8819),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(519),
                             Title = "Schindler's List"
                         },
                         new
                         {
                             Id = 8,
                             Description = "Odio euismod et vel, has ad modo graecis pertinacia.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8821),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(520),
                             Title = "12 Angry Men"
                         },
                         new
                         {
                             Id = 9,
                             Description = "Vim nibh solet scaevola te, sea illud posse partem an.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8823),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(523),
                             Title = "Inception"
                         },
                         new
                         {
                             Id = 10,
                             Description = "Ad mea errem legimus efficiendi.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8826),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(524),
                             Title = "Fight Club"
                         },
                         new
                         {
                             Id = 11,
                             Description = "Sale dolorum fabellas te cum, cu sea purto civibus menandri.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8866),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(527),
                             Title = "The Lord of the Rings: The Fellowship of the Ring"
                         },
                         new
                         {
                             Id = 12,
                             Description = "Idque viris zril vel et.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8869),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(530),
                             Title = "Forrest Gump"
                         },
                         new
                         {
                             Id = 13,
                             Description = "Ius ut luptatum democritum ullamcorper. Dolor possit facilis sit an, sit ei rebum meliore interesset.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8871),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(532),
                             Title = "The Good, the Bad and the Ugly"
                         },
                         new
                         {
                             Id = 14,
                             Description = "Cum meliore admodum ei, eos id summo audire, qui facilisi deterruisset ei.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8873),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(534),
                             Title = "Avengers: Endgame"
                         },
                         new
                         {
                             Id = 15,
                             Description = "Vix ei falli salutatus eloquentiam.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8876),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(535),
                             Title = "The Lord of the Rings: The Two Towers"
                         },
                         new
                         {
                             Id = 16,
                             Description = "Congue verear consetetur pri at.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8878),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(538),
                             Title = "The Matrix"
                         },
                         new
                         {
                             Id = 17,
                             Description = "Ius eu sapientem constituam, aeque assueverit his ea, in homero graeco saperet quo.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8880),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(539),
                             Title = "Goodfellas"
                         },
                         new
                         {
                             Id = 18,
                             Description = "Et est vero animal torquatos, illum principes eum ad, ad vocent iisque fuisset qui.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8884),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(541),
                             Title = "Star Wars: Episode V - The Empire Strikes Back"
                         },
                         new
                         {
                             Id = 19,
                             Description = "Has vocent fastidii appareat ne, mel eu fabellas scripserit.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8886),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(543),
                             Title = "One Flew Over the Cuckoo's Nest"
                         },
                         new
                         {
                             Id = 20,
                             Description = "Et duo iudico semper fabulas.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8888),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(545),
                             Title = "Seven Samurai"
                         },
                         new
                         {
                             Id = 21,
                             Description = "Eos te volumus interesset, sint cotidieque eum et.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8890),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(546),
                             Title = "Interstellar"
                         },
                         new
                         {
                             Id = 22,
                             Description = "Ad vel graece principes definitiones, ad vide populo vis, ex eos sumo efficiantur necessitatibus.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8893),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(548),
                             Title = "City of God"
                         },
                         new
                         {
                             Id = 23,
                             Description = "Mel an sumo iusto, clita facilis adipiscing cum cu.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8895),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(550),
                             Title = "Spirited Away"
                         },
                         new
                         {
                             Id = 24,
                             Description = "Has vocent alienum te.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8898),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(551),
                             Title = "Saving Private Ryan"
                         },
                         new
                         {
                             Id = 25,
                             Description = "Eu adhuc percipit eleifend eam.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8900),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(553),
                             Title = "The Green Mile"
                         },
                         new
                         {
                             Id = 26,
                             Description = "Clita mollis disputando cu eam, no pri insolens abhorreant.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8902),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(555),
                             Title = "Life Is Beautiful "
                         },
                         new
                         {
                             Id = 27,
                             Description = "Ex atomorum repudiandae has, euismod vocibus ei eam, ei eam esse pertinacia abhorreant.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8904),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(556),
                             Title = "The Usual Suspects"
                         },
                         new
                         {
                             Id = 28,
                             Description = "Et probo ornatus sententiae cum, in unum urbanitas usu.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8907),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(558),
                             Title = "Se7en"
                         },
                         new
                         {
                             Id = 29,
                             Description = "Velit omittam inciderint te cum, sit at urbanitas reformidans.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8909),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(560),
                             Title = "Léon: The Professional"
                         },
                         new
                         {
                             Id = 30,
                             Description = "Causae tincidunt pro no, ius munere viderer albucius ex.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8911),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(562),
                             Title = "The Silence of the Lambs"
                         },
                         new
                         {
                             Id = 31,
                             Description = "Id detraxit facilisi eleifend mea, mel ex nobis bonorum oporteat, ius oportere evertitur ut.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8913),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(563),
                             Title = "Star Wars: Episode IV - A New Hope"
                         },
                         new
                         {
                             Id = 32,
                             Description = "No discere adolescens mnesarchum eam, quo latine voluptua ei.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8916),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(565),
                             Title = "It's a Wonderful Life"
                         },
                         new
                         {
                             Id = 33,
                             Description = "Ei pro dolorem fierent blandit, te mea viris nihil legimus.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8918),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(567),
                             Title = "Once Upon a Time ... in Hollywood"
                         },
                         new
                         {
                             Id = 34,
                             Description = "Ex duo euismod fastidii, cu euismod splendide signiferumque qui, eu eos doctus virtute.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8920),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(568),
                             Title = "Spider-Man: Into the Spider-Verse"
                         },
                         new
                         {
                             Id = 35,
                             Description = "Eum cu quem integre verterem, has animal fabulas ut.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8922),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(570),
                             Title = "Avengers: Infinity War"
                         },
                         new
                         {
                             Id = 36,
                             Description = "Tacimates definiebas has an.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8925),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(572),
                             Title = "Whiplash"
                         },
                         new
                         {
                             Id = 37,
                             Description = "Nec ut ridens meliore pertinax.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8927),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(574),
                             Title = "The Intouchables"
                         },
                         new
                         {
                             Id = 38,
                             Description = "Mei te graeci essent, dico sapientem cum ea, eum ei graeci alterum.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8929),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(575),
                             Title = "The Prestige"
                         },
                         new
                         {
                             Id = 39,
                             Description = "Elit quando dictas eos ei.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8932),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(577),
                             Title = "The Departed"
                         },
                         new
                         {
                             Id = 40,
                             Description = "Eros tota utinam mei ei, iisque consequuntur te his.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8934),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(579),
                             Title = "The Pianist"
                         },
                         new
                         {
                             Id = 41,
                             Description = "Ne per fugit graece, quando expetendis id sea.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8936),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(580),
                             Title = "Memento"
                         },
                         new
                         {
                             Id = 42,
                             Description = "Duo novum noluisse et, at vel adhuc porro minim.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8939),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(582),
                             Title = "Gladiator"
                         },
                         new
                         {
                             Id = 43,
                             Description = "Dictas contentiones no his, exerci oportere ea eam.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8941),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(583),
                             Title = "American History X"
                         },
                         new
                         {
                             Id = 44,
                             Description = "No sonet omnes mnesarchum quo.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8944),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(585),
                             Title = "The Lion King"
                         },
                         new
                         {
                             Id = 45,
                             Description = "Postea platonem has te, ei quod dicit sit, sea et movet delicata scribentur.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8946),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(587),
                             Title = "Terminator 2: Judgment Day"
                         },
                         new
                         {
                             Id = 46,
                             Description = "Malis dictas detracto et ius, no qualisque vulputate per.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8948),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(588),
                             Title = "Cinema Paradiso"
                         },
                         new
                         {
                             Id = 47,
                             Description = "Platonem oportere in has, nam recusabo delicata elaboraret ei, dico gubergren hendrerit ex sea.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8950),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(590),
                             Title = "Grave of the Fireflies"
                         },
                         new
                         {
                             Id = 48,
                             Description = "Cu usu velit omittam temporibus, natum vulputate sea eu.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8953),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(591),
                             Title = "Back to the Future"
                         },
                         new
                         {
                             Id = 49,
                             Description = "Gubergren scriptorem eu vel, eius percipitur te per, vel tale habeo et.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8955),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(593),
                             Title = "Raiders of the Lost Ark"
                         },
                         new
                         {
                             Id = 50,
                             Description = "Alii insolens inciderint pro an, ei eos utinam commodo tacimates.",
-                            ReleaseDate = new DateTime(2019, 8, 14, 17, 59, 10, 717, DateTimeKind.Local).AddTicks(8957),
+                            ReleaseDate = new DateTime(2022, 2, 10, 17, 7, 39, 194, DateTimeKind.Local).AddTicks(595),
                             Title = "Apocalypse Now"
                         });
                 });
