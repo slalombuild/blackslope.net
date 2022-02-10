@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{551F9FEB-5F15-4830-9949-0CEBDA9AC615}"
 	ProjectSection(SolutionItems) = preProject
 		..\Scripts\build.sh = ..\Scripts\build.sh
-		..\Scripts\data.sql = ..\Scripts\data.sql
 		..\Scripts\db-update.sh = ..\Scripts\db-update.sh
 		..\Scripts\docker-container-run.sh = ..\Scripts\docker-container-run.sh
 		..\Scripts\docker-image-build.sh = ..\Scripts\docker-image-build.sh
@@ -44,6 +43,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Tests", "BlackSlope.Api.Tests\BlackSlope.Api.Tests.csproj", "{8904D58B-A6E1-45F7-9B2B-1AB71C09FBDC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackSlope.Api.Common.Tests", "BlackSlope.Api.Common.Tests\BlackSlope.Api.Common.Tests.csproj", "{C9AE747A-CF32-4945-AE0B-F053937DEC9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Documentation", "_Documentation", "{042E13D2-E1F3-4B5F-8F38-0BC74FA87AB2}"
+	ProjectSection(SolutionItems) = preProject
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
