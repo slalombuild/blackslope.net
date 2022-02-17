@@ -26,8 +26,9 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
         public void Fail_when_title_is_null()
         {
             _modelViewModel.Title = null;
-            var failures = _movieViewModelValidator
-                .ShouldHaveValidationErrorFor(x => x.Title, _modelViewModel)
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            var failures = result
+                .ShouldHaveValidationErrorFor(x => x.Title)
                 .When(failure => MovieErrorCode.EmptyOrNullMovieTitle.Equals(failure.CustomState));
         }
 
@@ -35,8 +36,9 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
         public void Fail_when_description_is_null()
         {
             _modelViewModel.Description = null;
-            _movieViewModelValidator
-                .ShouldHaveValidationErrorFor(x => x.Description, _modelViewModel)
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            result
+                .ShouldHaveValidationErrorFor(x => x.Description)
                 .When(failure => MovieErrorCode.EmptyOrNullMovieDescription.Equals(failure.CustomState));
         }
 
@@ -46,8 +48,9 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
         public void Fail_when_title_is_not_between_2_and_50_characters(string title)
         {
             _modelViewModel.Title = title;
-            _movieViewModelValidator
-                .ShouldHaveValidationErrorFor(x => x.Title.Length, _modelViewModel)
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            result
+                .ShouldHaveValidationErrorFor(x => x.Title.Length)
                 .When(failure => MovieErrorCode.TitleNotBetween2and50Characters.Equals(failure.CustomState));
         }
 
@@ -57,8 +60,8 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
         public void Fail_when_description_is_not_between_2_and_50_characters(string description)
         {
             _modelViewModel.Description = description;
-            _movieViewModelValidator
-                .ShouldHaveValidationErrorFor(x => x.Description.Length, _modelViewModel)
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            result.ShouldHaveValidationErrorFor(x => x.Description.Length)
                 .When(failure => MovieErrorCode.DescriptionNotBetween2and50Characters.Equals(failure.CustomState));
         }
 
@@ -66,14 +69,16 @@ namespace BlackSlope.Api.Tests.OperationsTests.MoviesTests.ValidatorsTests
         public void Pass_when_title_is_between_2_and_50_characters()
         {
             _modelViewModel.Title = "the post";
-            _movieViewModelValidator.ShouldNotHaveValidationErrorFor(x => x.Title, _modelViewModel);
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            result.ShouldNotHaveValidationErrorFor(x => x.Title);
         }
 
         [Fact]
         public void Pass_when_description_is_between_2_and_50_characters()
         {
             _modelViewModel.Description = "Great movie";
-            _movieViewModelValidator.ShouldNotHaveValidationErrorFor(x => x.Description, _modelViewModel);
+            var result = _movieViewModelValidator.TestValidate(_modelViewModel);
+            result.ShouldNotHaveValidationErrorFor(x => x.Description);
         }
     }
 }

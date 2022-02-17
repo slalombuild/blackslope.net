@@ -43,6 +43,7 @@ namespace BlackSlope.Api.Filters
                 // Throw the exception and lets the service exception filter capture it.
                 throw new HandledException(ExceptionType.Validation, ErrorText, execptions);
             }
+
             base.OnActionExecuting(context);
         }
     }
