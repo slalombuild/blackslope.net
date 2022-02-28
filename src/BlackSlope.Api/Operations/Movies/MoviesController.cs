@@ -46,7 +46,7 @@ namespace BlackSlope.Api.Operations.Movies
         [Route("api/v1/movies")]
         public async Task<ActionResult<List<MovieViewModel>>> Get()
         {
-            // get all movies form service
+            // get all movies from service
             var movies = await _movieService.GetAllMoviesAsync();
 
             // prepare response
@@ -72,7 +72,7 @@ namespace BlackSlope.Api.Operations.Movies
         [Route("api/v1/movies/{id}")]
         public async Task<ActionResult<MovieViewModel>> Get(int id)
         {
-            // get all movies form service
+            // get all movies from service
             var movie = await _movieService.GetMovieAsync(id);
 
             // prepare response
