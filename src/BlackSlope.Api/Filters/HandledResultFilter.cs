@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json;
 using BlackSlope.Api.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
 
 namespace BlackSlope.Api.Filters
 {
@@ -18,7 +18,7 @@ namespace BlackSlope.Api.Filters
             context.HttpContext.Response.Clear();
             context.HttpContext.Response.ContentType = new MediaTypeHeaderValue("application/json").ToString();
             context.HttpContext.Response.StatusCode = error.StatusCode;
-            context.HttpContext.Response.WriteAsync(JsonConvert.SerializeObject(error), Encoding.UTF8);
+            context.HttpContext.Response.WriteAsync(JsonSerializer.Serialize(error), Encoding.UTF8);
         }
     }
 }

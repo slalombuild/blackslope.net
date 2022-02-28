@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace AcceptanceTests.Helpers
 {
@@ -6,8 +6,8 @@ namespace AcceptanceTests.Helpers
     {
         public static string FormatJSON(string unformattedJson)
         {
-            dynamic parsedJson = JsonConvert.DeserializeObject(unformattedJson);
-            string formattedJson = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+            var parsedJson = JsonSerializer.Deserialize<object>(unformattedJson);
+            var formattedJson = JsonSerializer.Serialize(parsedJson, new JsonSerializerOptions { WriteIndented = true });
 
             return formattedJson;
         }
