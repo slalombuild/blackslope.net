@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{551F9FEB-5F15-4830-9949-0CEBDA9AC615}"
 	ProjectSection(SolutionItems) = preProject
 		..\Scripts\build.sh = ..\Scripts\build.sh
+		data.sql = data.sql
 		..\Scripts\db-update.sh = ..\Scripts\db-update.sh
 		..\Scripts\docker-container-run.sh = ..\Scripts\docker-container-run.sh
 		..\Scripts\docker-image-build.sh = ..\Scripts\docker-image-build.sh
