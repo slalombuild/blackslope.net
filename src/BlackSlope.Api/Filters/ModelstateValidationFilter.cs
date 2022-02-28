@@ -9,7 +9,7 @@ namespace BlackSlope.Api.Filters
     {
         private const string ErrorName = "RequestModel";
         private const string ErrorCode = "MSTATE001";
-        private const string ErrorText = "ModelState did not pass validation.";
+        private const string ErrorText = "ModelState did not pass validation";
         private const string ErrorDescription = "Unable to create request model. Most likely its not being constructed from [FromUri] / [FromBody] or not enough data supplied to create the object.";
 
         /// <summary>
@@ -31,17 +31,17 @@ namespace BlackSlope.Api.Filters
             // If the model state is not valid, mutate the error to our predictable error format.
             if (!modelState.IsValid)
             {
-                var execptions = new List<HandledException>();
+                var exceptions = new List<HandledException>();
                 foreach (var state in modelState)
                 {
                     foreach (var error in state.Value.Errors)
                     {
-                        execptions.Add(new HandledException(ExceptionType.Validation, error.ErrorMessage, System.Net.HttpStatusCode.BadRequest, ErrorCode));
+                        exceptions.Add(new HandledException(ExceptionType.Validation, error.ErrorMessage, System.Net.HttpStatusCode.BadRequest, ErrorCode));
                     }
                 }
 
                 // Throw the exception and lets the service exception filter capture it.
-                throw new HandledException(ExceptionType.Validation, ErrorText, execptions);
+                throw new HandledException(ExceptionType.Validation, ErrorText, exceptions);
             }
 
             base.OnActionExecuting(context);

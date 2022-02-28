@@ -43,9 +43,8 @@ namespace BlackSlope.Api
             services.AddTransient<IFileSystem, FileSystem>();
 
             // NOTE: Pick one of the below versioning services
-            services.AddTransient<IVersionService, AssemblyVersionService>(); // For Version parsing via Assembly ref
-
-            // services.AddTransient<IVersionService, JsonVersionService>();   // For Version parsing via JSON
+            services.AddTransient<IVersionService, AssemblyVersionService>();   /* For Version parsing via Assembly ref  */
+            /* services.AddTransient<IVersionService, JsonVersionService>(); */ /* For Version parsing via JSON */
 
             services.AddMvcApi();
 
@@ -66,6 +65,7 @@ namespace BlackSlope.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseHttpLogging();
             }
             else
             {

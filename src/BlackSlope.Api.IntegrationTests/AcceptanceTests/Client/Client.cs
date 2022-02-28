@@ -3,9 +3,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Text;
-using Newtonsoft.Json;
 using Xunit.Abstractions;
 using AcceptanceTests.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AcceptanceTests.Client
 {
@@ -95,15 +96,13 @@ namespace AcceptanceTests.Client
 
         private T Deserialize(string json, HttpResponseMessage response)
         {
-            var settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-            };
-
             try
             {
-                return JsonConvert.DeserializeObject<T>(json, settings);
+                return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+                {
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                    PropertyNameCaseInsensitive = true
+                });
             }
             catch (Exception e)
             {

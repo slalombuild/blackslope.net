@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.Json;
+using System.Threading.Tasks;
 using AcceptanceTests.Client;
 using AcceptanceTests.Helpers;
 using BlackSlope.Api.Operations.Movies.ViewModels;
-using Newtonsoft.Json;
 using Xunit.Abstractions;
 
 namespace AcceptanceTests.TestServices
@@ -26,14 +26,14 @@ namespace AcceptanceTests.TestServices
         public async Task<MovieViewModel> UpdateMovieById(CreateMovieViewModel movie, int movieId)
         {
             var client = new Client<MovieViewModel>(outputHelper);
-            var data = JsonConvert.SerializeObject(movie).ToString();
+            var data = JsonSerializer.Serialize(movie).ToString();
             var movieEditResponse = await client.UpdateAsStringAsync(data, $"{Constants.BaseRoute}{Constants.Movies}/{movieId}");
             return movieEditResponse;
         }
         public async Task<MovieViewModel> CreateMovie(CreateMovieViewModel movie)
         {
             var client = new Client<MovieViewModel>(outputHelper);
-            var body = JsonConvert.SerializeObject(movie).ToString();
+            var body = JsonSerializer.Serialize(movie).ToString();
             var url = $"{Constants.BaseRoute}{Constants.Movies}";
             var movieResponse = await client.CreateAsStringAsync(body, url);
             return movieResponse;

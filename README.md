@@ -10,11 +10,11 @@ You can read more in the following blog posts:
 
 ## Installation Instructions
 
-### Install .NET Core
+### Install .NET
 
-Install the latest verison of .NET Core for Windows/Linux or Mac.
+Install the latest verison of .NET for Windows/Linux or Mac.
 
-- https://dotnet.microsoft.com/download
+- https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 
 ### Build (Application)
 
@@ -47,6 +47,10 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
    Applying migration '20190814225910_seeded'.
    Done.
    ```
+   If unsuccessful, check the error messages, and change the database connection string as required:
+   ```
+   dotnet ef database update --project=.\src\BlackSlope.Api\BlackSlope.Api.csproj --connection "data source=xxxx,1433;initial catalog=movies;User Id=sa;Password=yyyy" 
+   ```
 
 ### Run
 
@@ -74,13 +78,29 @@ Install the latest verison of .NET Core for Windows/Linux or Mac.
    ```
 7. Visual inspection of the Docker Desktop app should show your image running in the container locally
 
+#### Docker Compose
+
+Alternatively, you can branch out from step 3 above and use `docker-compose` instead. The equivalent steps are documented below:
+
+1. & 2. are the same as above.
+3. Build all the required docker images under the `/src` directory:
+   ```
+   docker-compose build
+   ```
+4. Spin up all the required containers at once
+   ```
+   docker-compose up
+   ```
+5. is the same as 7. above -- Docker Desktop should now show your images running locally
+
 ### Test
 
     dotnet test ./src/
 
 ### Integration Tests
 
-NOTE: Per 6.x, these projects have been removed from the Solution until SpecFlow adds support for the latest version of .NET 6
+> **NOTE**: Per 6.x, these projects have been removed from the Solution until SpecFlow adds support for the latest version of .NET 6
+
 Intended for use by Quality Engineers (QE), Blackslope provides two SpecFlow driven Integration Test projects for consumption:
 
 - `BlackSlope.Api.Tests.IntegrationTests`
@@ -99,7 +119,7 @@ To Setup:
 
 ### Swagger
 
-Open your browser and navigate to `http://localhost:51385/swagger` to view the API documentation
+Open your browser and navigate to `/swagger` to view the API documentation
 
 ### Polly
 
