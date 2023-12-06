@@ -21,7 +21,7 @@ name: Build and deploy ASP.Net app to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: blackslopetest    # set this to the name of your Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: './src'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '6.0'                 # set this to the .NET version to use
 
 on:
