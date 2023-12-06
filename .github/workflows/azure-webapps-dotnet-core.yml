@@ -49,7 +49,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ env.CONTAINER_REGISTRY_URL }}/${{env.IMAGE_NAME}}:latest .
+          docker build -t ${{ env.CONTAINER_REGISTRY_URL }}/${{env.IMAGE_NAME}}:latest -f src/Dockerfile .
           docker push ${{ env.CONTAINER_REGISTRY_URL }}/${{env.IMAGE_NAME}}:latest
 
   deploy:
