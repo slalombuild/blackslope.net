@@ -25,7 +25,6 @@ env:
   DOTNET_VERSION: '6.0'                 # set this to the .NET version to use
   CONTAINER_REGISTRY_URL: 'azuredemoregistry001.azurecr.io'
   IMAGE_NAME: 'benix/api-app'
-  name: 'dev'
 
 on:
   push:
@@ -35,6 +34,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: 'dev'
 
     steps:
       - uses: actions/checkout@v3
@@ -54,6 +55,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: 'dev'
 
     steps:
     - name: Deploy to Azure App Service
