@@ -21,16 +21,15 @@ name: Build and deploy ASP.Net app to an Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: blackslopetest    # set this to the name of your Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  # AZURE_WEBAPP_PACKAGE_PATH: './src'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '6.0'                 # set this to the .NET version to use
+  CONTAINER_REGISTRY_URL: 'azuredemoregistry001.azurecr.io'
+  IMAGE_NAME: 'benix/api-app'
 
 on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   build:
@@ -39,50 +38,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v3
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          login-server: ${{ env.CONTAINER_REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Set up dependency caching for faster builds
-        uses: actions/cache@v3
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-
-      - name: Build with dotnet
-        run: dotnet build ./src --configuration Release
-
-      - name: dotnet publish
-        run: dotnet publish ./src -c Release -o myapp
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: .net-app
-          path: myapp
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ env.CONTAINER_REGISTRY_URL }}/${{env.IMAGE_NAME}}:latest .
+          docker push ${{ env.CONTAINER_REGISTRY_URL }}/${{env.IMAGE_NAME}}:latest
 
   deploy:
-    permissions:
-      contents: none
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'dev'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: .net-app
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        slot-name: dev
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
