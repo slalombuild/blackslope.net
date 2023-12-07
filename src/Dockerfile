@@ -5,7 +5,7 @@ WORKDIR /BlackSlope.Api
 RUN dotnet restore
 RUN dotnet publish --no-restore -c Release -o /app
 
-# Build runtime image
+# Build runtime image for the app
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 EXPOSE 80
