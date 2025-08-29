@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -52,20 +53,43 @@ namespace Microsoft.Extensions.DependencyInjection
             });
 
         /// <summary>
-        /// Add Azure service to the Service Collection and configure it
+        /// Add Azure AD JWT Bearer authentication to the Service Collection and configure it
         /// </summary>
         /// <param name="services"></param>
         /// <param name="azureAdConfig"></param>
         /// <returns></returns>
         public static AuthenticationBuilder AddAzureAd(this IServiceCollection services, AzureAdConfig azureAdConfig) =>
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
                 options.Authority = string.Format(System.Globalization.CultureInfo.InvariantCulture, azureAdConfig.AadInstance, azureAdConfig.Tenant);
                 options.Audience = azureAdConfig.Audience;
+
+                // Configure token validation parameters for better compatibility
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidAudience = azureAdConfig.Audience,
+                    ClockSkew = TimeSpan.FromMinutes(5),
+                };
+
+                // Configure events for better error handling and logging
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context =>
+                    {
+                        // Log authentication failures if needed
+                        return System.Threading.Tasks.Task.CompletedTask;
+                    },
+                    OnTokenValidated = context =>
+                    {
+                        // Custom token validation logic if needed
+                        return System.Threading.Tasks.Task.CompletedTask;
+                    },
+                };
             });
 
         /// <summary>

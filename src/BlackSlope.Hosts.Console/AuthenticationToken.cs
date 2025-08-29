@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Identity.Client;
 
 namespace BlackSlope.Hosts.ConsoleApp
 {
@@ -24,7 +23,7 @@ namespace BlackSlope.Hosts.ConsoleApp
             Console.Write("App URI: ");
             var appIdUri = Console.ReadLine().Trim();
             Console.WriteLine();
-            var response = await GetTokenAsynch(clientId, key, tenantId, appIdUri);
+            var response = await GetTokenAsync(clientId, key, tenantId, appIdUri);
 
             var token = response.AccessToken;
             Console.WriteLine($"Bearer {token}");
@@ -34,15 +33,18 @@ namespace BlackSlope.Hosts.ConsoleApp
             Console.ReadLine();
         }
 
-        public static async Task<AuthenticationResult> GetTokenAsynch(string clientId, string key, string tenantId, string appIdUniformResourceIdentifier)
+        public static async Task<AuthenticationResult> GetTokenAsync(string clientId, string key, string tenantId, string appIdUniformResourceIdentifier)
         {
-            var aadInstanceUrl = "https://login.microsoftonline.com/{0}";
-            var authority = string.Format(CultureInfo.InvariantCulture, aadInstanceUrl, tenantId);
+            var authority = $"https://login.microsoftonline.com/{tenantId}";
 
-            var authContext = new AuthenticationContext(authority);
-            var clientCredential = new ClientCredential(clientId, key);
+            var app = ConfidentialClientApplicationBuilder
+                .Create(clientId)
+                .WithClientSecret(key)
+                .WithAuthority(authority)
+                .Build();
 
-            var response = await authContext.AcquireTokenAsync(appIdUniformResourceIdentifier, clientCredential);
+            var scopes = new[] { $"{appIdUniformResourceIdentifier}/.default" };
+            var response = await app.AcquireTokenForClient(scopes).ExecuteAsync();
 
             return response;
         }
