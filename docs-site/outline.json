@@ -1,0 +1,1009 @@
+{
+  "sections": [
+    {
+      "title": "Getting started",
+      "name": "getting_started",
+      "pages": [
+        {
+          "title": "Introduction",
+          "path": "/getting_started/introduction.md",
+          "summary": "# Introduction to BlackSlope.NET\n\n## Overview\nIntroduce the BlackSlope.NET reference architecture as a modern .NET 6.0 enterprise application developed by Slalom Build, covering its purpose as a reference implementation for building RESTful APIs.\n\n## Key Features\n- RESTful API architecture\n- Azure AD authentication support\n- Entity Framework Core with SQL Server\n- Docker containerization\n- Comprehensive middleware pipeline\n- Automated testing infrastructure\n\n## Architecture Philosophy\n- Clean architecture principles\n- Separation of concerns\n- Dependency injection\n- SOLID principles",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/Program.cs",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/BlackSlope.Api.csproj",
+            "src/BlackSlope.NET.sln"
+          ],
+          "linked_pages": [
+            "/getting_started/prerequisites.md",
+            "/getting_started/installation.md",
+            "/architecture/overview.md"
+          ]
+        },
+        {
+          "title": "Prerequisites",
+          "path": "/getting_started/prerequisites.md",
+          "summary": "# Prerequisites\n\n## Required Software\n- .NET 6.0 SDK installation and verification\n- SQL Server Developer 2019 setup\n- Docker Desktop for containerization\n- Development IDE (Visual Studio or VS Code)\n\n## Optional Tools\n- Entity Framework Core CLI tools\n- mssql-cli for database management\n- SpecFlow IDE extensions for BDD testing",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/BlackSlope.Api.csproj",
+            "src/BlackSlope.Api.Common/BlackSlope.Api.Common.csproj",
+            "src/Dockerfile",
+            "scripts/build.sh"
+          ],
+          "linked_pages": [
+            "/getting_started/introduction.md",
+            "/getting_started/installation.md",
+            "/deployment/docker.md"
+          ]
+        },
+        {
+          "title": "Installation and setup",
+          "path": "/getting_started/installation.md",
+          "summary": "# Installation and Setup\n\n## Cloning the Repository\nStep-by-step instructions for cloning and initial setup.\n\n## Database Setup\n- Creating the SQL Server database\n- Configuring connection strings in appsettings.json\n- Running Entity Framework migrations\n- Seeding initial data\n\n## Building the Solution\n- Using dotnet CLI commands\n- Build scripts overview\n- Verifying successful build\n\n## Running the Application\n- Starting the API locally\n- Verifying the application is running\n- Accessing Swagger UI",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/appsettings.json",
+            "scripts/build.sh",
+            "scripts/db-update.sh",
+            "scripts/data.sql"
+          ],
+          "linked_pages": [
+            "/getting_started/prerequisites.md",
+            "/getting_started/quick_start.md",
+            "/configuration/application_settings.md",
+            "/database/migrations.md"
+          ]
+        },
+        {
+          "title": "Quick start guide",
+          "path": "/getting_started/quick_start.md",
+          "summary": "# Quick Start Guide\n\n## Running Your First API Call\n- Starting the application\n- Making a GET request to retrieve movies\n- Understanding the response format\n\n## Exploring the Swagger UI\n- Accessing Swagger at http://localhost:51385/swagger\n- Testing endpoints interactively\n- Understanding API documentation\n\n## Common First Tasks\n- Creating a new movie\n- Updating an existing movie\n- Deleting a movie\n- Checking health endpoints",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api.Common/Configuration/SwaggerConfig.cs",
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/getting_started/installation.md",
+            "/api_reference/movies_api.md",
+            "/features/swagger_integration.md",
+            "/features/health_checks.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Architecture",
+      "name": "architecture",
+      "pages": [
+        {
+          "title": "Architecture overview",
+          "path": "/architecture/overview.md",
+          "summary": "# Architecture Overview\n\n## High-Level Architecture\n- Multi-tier application structure\n- Clean architecture layers\n- Component interaction diagram\n\n## Project Structure\n- BlackSlope.Api: Main API project\n- BlackSlope.Api.Common: Shared infrastructure\n- Test projects organization\n- Supporting utilities\n\n## Key Design Patterns\n- Repository pattern for data access\n- Service pattern for business logic\n- Dependency injection throughout\n- Middleware pipeline architecture",
+          "source_files": [
+            "src/BlackSlope.NET.sln",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Program.cs",
+            "README.md",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeServiceCollectionExtensions.cs"
+          ],
+          "linked_pages": [
+            "/architecture/project_structure.md",
+            "/architecture/dependency_injection.md",
+            "/architecture/middleware_pipeline.md",
+            "/getting_started/introduction.md"
+          ]
+        },
+        {
+          "title": "Project structure",
+          "path": "/architecture/project_structure.md",
+          "summary": "# Project Structure\n\n## Solution Organization\nDetailed breakdown of all projects in the solution and their responsibilities.\n\n## BlackSlope.Api Project\n- Controllers and operations\n- Services layer\n- Repositories layer\n- Configuration files\n\n## BlackSlope.Api.Common Project\n- Shared infrastructure components\n- Common middleware\n- Base controllers and validators\n- Versioning infrastructure\n\n## Test Projects\n- Unit tests structure\n- Integration tests structure\n- Test utilities and helpers",
+          "source_files": [
+            "src/BlackSlope.NET.sln",
+            "src/BlackSlope.Api/BlackSlope.Api.csproj",
+            "src/BlackSlope.Api.Common/BlackSlope.Api.Common.csproj",
+            "src/BlackSlope.Api.Tests/BlackSlope.Api.Tests.csproj",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/BlackSlope.Api.IntegrationTests.csproj"
+          ],
+          "linked_pages": [
+            "/architecture/overview.md",
+            "/architecture/layers.md",
+            "/testing/unit_tests.md",
+            "/testing/integration_tests.md"
+          ]
+        },
+        {
+          "title": "Application layers",
+          "path": "/architecture/layers.md",
+          "summary": "# Application Layers\n\n## Presentation Layer (Controllers)\n- Controller responsibilities\n- Request/response handling\n- Routing and versioning\n\n## Business Logic Layer (Services)\n- Service interfaces and implementations\n- Domain models\n- Business validation rules\n\n## Data Access Layer (Repositories)\n- Repository pattern implementation\n- Entity Framework context\n- DTO models\n\n## Cross-Cutting Concerns\n- Middleware components\n- Validation framework\n- Exception handling",
+          "source_files": [
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api/Services/Movies/MovieService.cs",
+            "src/BlackSlope.Api/Repositories/Movies/MovieRepository.cs",
+            "src/BlackSlope.Api.Common/Controllers/BaseController.cs",
+            "src/BlackSlope.Api.Common/Middleware/ExceptionHandling/ExceptionHandlingMiddleware.cs"
+          ],
+          "linked_pages": [
+            "/architecture/overview.md",
+            "/features/controllers.md",
+            "/features/services.md",
+            "/features/repositories.md"
+          ]
+        },
+        {
+          "title": "Dependency injection",
+          "path": "/architecture/dependency_injection.md",
+          "summary": "# Dependency Injection\n\n## DI Container Configuration\n- Service registration patterns\n- Service lifetimes (Transient, Scoped, Singleton)\n- Extension methods for service registration\n\n## Core Services\n- AutoMapper configuration\n- HTTP client factory\n- Repository registration\n- Service layer registration\n\n## Custom Service Extensions\n- Creating reusable service extensions\n- Organizing service registrations\n- Best practices",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Extensions/ApiServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Services/Movies/Extensions/MovieServiceServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Extensions/MovieRepositoryServiceCollectionExtensions.cs"
+          ],
+          "linked_pages": [
+            "/architecture/overview.md",
+            "/configuration/service_configuration.md",
+            "/features/services.md"
+          ]
+        },
+        {
+          "title": "Middleware pipeline",
+          "path": "/architecture/middleware_pipeline.md",
+          "summary": "# Middleware Pipeline\n\n## Pipeline Architecture\n- Request processing flow\n- Middleware execution order\n- Response handling\n\n## Built-in Middleware\n- HTTPS redirection\n- Routing\n- CORS\n- Authentication\n\n## Custom Middleware\n- Correlation ID middleware\n- Exception handling middleware\n- Order and dependencies",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationIdMiddleware.cs",
+            "src/BlackSlope.Api.Common/Middleware/ExceptionHandling/ExceptionHandlingMiddleware.cs",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeBuilderExtensions.cs",
+            "src/BlackSlope.Api/Program.cs"
+          ],
+          "linked_pages": [
+            "/architecture/overview.md",
+            "/features/correlation_id.md",
+            "/features/exception_handling.md",
+            "/security/cors.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "API reference",
+      "name": "api_reference",
+      "pages": [
+        {
+          "title": "Movies API",
+          "path": "/api_reference/movies_api.md",
+          "summary": "# Movies API Reference\n\n## Overview\nComplete API documentation for movie management endpoints.\n\n## Endpoints\n\n### GET /api/v1/movies\nRetrieve all movies with request/response examples.\n\n### GET /api/v1/movies/{id}\nRetrieve a specific movie by ID.\n\n### POST /api/v1/movies\nCreate a new movie with request body schema.\n\n### PUT /api/v1/movies/{id}\nUpdate an existing movie.\n\n### DELETE /api/v1/movies/{id}\nDelete a movie.\n\n## Request/Response Models\nDetailed schemas for all request and response objects.",
+          "source_files": [
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api/Operations/Movies/ViewModels/MovieViewModel.cs",
+            "src/BlackSlope.Api/Operations/Movies/ViewModels/CreateMovieViewModel.cs",
+            "src/BlackSlope.Api/Operations/Movies/ViewModels/UpdateMovieViewModel.cs",
+            "src/BlackSlope.Api/Operations/Movies/Responses/DeletedMovieResponse.cs"
+          ],
+          "linked_pages": [
+            "/api_reference/error_responses.md",
+            "/features/validation.md",
+            "/getting_started/quick_start.md"
+          ]
+        },
+        {
+          "title": "Version API",
+          "path": "/api_reference/version_api.md",
+          "summary": "# Version API Reference\n\n## Overview\nAPI endpoint for retrieving application version information.\n\n## GET /api/v1/version\nRetrieve current application version.\n\n## Version Service Implementations\n- Assembly-based versioning\n- JSON file-based versioning\n\n## Response Format\nVersion response schema and examples.",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Versioning/VersionController.cs",
+            "src/BlackSlope.Api.Common/Versioning/Version.cs",
+            "src/BlackSlope.Api.Common/Versioning/Services/AssemblyVersionService.cs",
+            "src/BlackSlope.Api.Common/Versioning/Services/JsonVersionService.cs",
+            "src/BlackSlope.Api.Common/Versioning/Interfaces/IVersionService.cs"
+          ],
+          "linked_pages": [
+            "/features/versioning.md",
+            "/api_reference/health_api.md"
+          ]
+        },
+        {
+          "title": "Health check API",
+          "path": "/api_reference/health_api.md",
+          "summary": "# Health Check API Reference\n\n## Overview\nHealth check endpoints for monitoring application and dependencies.\n\n## Endpoints\n\n### GET /health\nBasic health check endpoint.\n\n### GET /health/ready\nReadiness probe for orchestration systems.\n\n### GET /health/live\nLiveness probe for orchestration systems.\n\n## Health Check Components\n- SQL Server connectivity\n- Entity Framework context\n- Custom health checks",
+          "source_files": [
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/HealthChecks/MoviesHealthCheck.cs",
+            "src/BlackSlope.Api.Common/Configuration/HealthChecksConfig.cs",
+            "src/BlackSlope.Api/HealthChecks/HealthCheckTag.cs",
+            "src/BlackSlope.Api/Startup.cs"
+          ],
+          "linked_pages": [
+            "/features/health_checks.md",
+            "/deployment/kubernetes.md",
+            "/api_reference/movies_api.md"
+          ]
+        },
+        {
+          "title": "Error responses",
+          "path": "/api_reference/error_responses.md",
+          "summary": "# Error Responses\n\n## Standard Error Format\nConsistent error response structure across all endpoints.\n\n## HTTP Status Codes\n- 400 Bad Request - Validation errors\n- 401 Unauthorized - Authentication failures\n- 404 Not Found - Resource not found\n- 500 Internal Server Error - Unexpected errors\n\n## Error Models\n- ApiError structure\n- ApiException details\n- ApiResponse wrapper\n\n## Common Error Scenarios\nExamples of typical error cases and responses.",
+          "source_files": [
+            "src/BlackSlope.Api.Common/ViewModels/ApiError.cs",
+            "src/BlackSlope.Api.Common/ViewModels/ApiException.cs",
+            "src/BlackSlope.Api.Common/ViewModels/ApiResponse.cs",
+            "src/BlackSlope.Api.Common/Exceptions/HandledException.cs",
+            "src/BlackSlope.Api/Operations/Movies/Enumerators/MovieErrorCodes.cs"
+          ],
+          "linked_pages": [
+            "/features/exception_handling.md",
+            "/api_reference/movies_api.md",
+            "/features/validation.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Core features",
+      "name": "features",
+      "pages": [
+        {
+          "title": "Controllers and routing",
+          "path": "/features/controllers.md",
+          "summary": "# Controllers and Routing\n\n## Controller Architecture\n- Base controller implementation\n- Controller responsibilities\n- Action method patterns\n\n## Routing Configuration\n- Convention-based routing\n- Attribute routing\n- API versioning in routes\n\n## Request/Response Handling\n- Model binding\n- Content negotiation\n- Response formatting\n\n## Filters and Attributes\n- Action filters\n- Model validation filters\n- Result filters",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Controllers/BaseController.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api/Filters/HandledResultFilter.cs",
+            "src/BlackSlope.Api/Filters/ModelstateValidationFilter.cs",
+            "src/BlackSlope.Api/Extensions/MvcExtensions.cs"
+          ],
+          "linked_pages": [
+            "/architecture/layers.md",
+            "/features/validation.md",
+            "/features/versioning.md",
+            "/api_reference/movies_api.md"
+          ]
+        },
+        {
+          "title": "Services layer",
+          "path": "/features/services.md",
+          "summary": "# Services Layer\n\n## Service Pattern\n- Service interfaces and implementations\n- Business logic encapsulation\n- Domain models\n\n## Movie Service\n- CRUD operations implementation\n- Business validation\n- Domain model mapping\n\n## Service Registration\n- Dependency injection setup\n- Service lifetime management\n- Extension methods for registration",
+          "source_files": [
+            "src/BlackSlope.Api/Services/Movies/IMovieService.cs",
+            "src/BlackSlope.Api/Services/Movies/MovieService.cs",
+            "src/BlackSlope.Api/Services/Movies/DomainModels/MovieDomainModel.cs",
+            "src/BlackSlope.Api/Services/Movies/Extensions/MovieServiceServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Services/Movies/MapperProfiles/MovieProfile.cs"
+          ],
+          "linked_pages": [
+            "/architecture/layers.md",
+            "/features/repositories.md",
+            "/features/automapper.md",
+            "/architecture/dependency_injection.md"
+          ]
+        },
+        {
+          "title": "Repository pattern",
+          "path": "/features/repositories.md",
+          "summary": "# Repository Pattern\n\n## Repository Architecture\n- Repository interface design\n- Data access abstraction\n- DTO models\n\n## Movie Repository\n- Entity Framework context\n- CRUD operations\n- Query optimization\n\n## Database Context\n- DbContext configuration\n- Entity configuration\n- Connection string management\n\n## Design-Time Factory\n- Supporting EF migrations\n- Development vs production contexts",
+          "source_files": [
+            "src/BlackSlope.Api/Repositories/Movies/IMovieRepository.cs",
+            "src/BlackSlope.Api/Repositories/Movies/MovieRepository.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/MovieContext.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/DesignTimeDbContextFactory.cs",
+            "src/BlackSlope.Api/Repositories/Movies/DtoModels/MovieDtoModel.cs"
+          ],
+          "linked_pages": [
+            "/architecture/layers.md",
+            "/features/services.md",
+            "/database/entity_framework.md",
+            "/database/migrations.md"
+          ]
+        },
+        {
+          "title": "Validation framework",
+          "path": "/features/validation.md",
+          "summary": "# Validation Framework\n\n## Validation Architecture\n- FluentValidation integration\n- Custom validator framework\n- Composite validation pattern\n\n## Movie Validators\n- Create movie validation rules\n- Update movie validation rules\n- Request validation collections\n\n## Validation Execution\n- Automatic model state validation\n- Custom validation filters\n- Error response formatting\n\n## Creating Custom Validators\n- Implementing IBlackSlopeValidator\n- Validation composition\n- Reusable validation rules",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Validators/BlackSlopeValidator.cs",
+            "src/BlackSlope.Api.Common/Validators/CompositeValidator.cs",
+            "src/BlackSlope.Api.Common/Validators/Interfaces/IBlackSlopeValidator.cs",
+            "src/BlackSlope.Api/Operations/Movies/Validators/CreateMovieViewModelValidatorCollection.cs",
+            "src/BlackSlope.Api/Filters/ModelstateValidationFilter.cs"
+          ],
+          "linked_pages": [
+            "/features/controllers.md",
+            "/api_reference/error_responses.md",
+            "/features/exception_handling.md"
+          ]
+        },
+        {
+          "title": "AutoMapper integration",
+          "path": "/features/automapper.md",
+          "summary": "# AutoMapper Integration\n\n## Mapper Configuration\n- Profile registration\n- Assembly scanning\n- Custom mapping rules\n\n## Mapping Profiles\n- Movie request/response profiles\n- Domain model mappings\n- DTO mappings\n\n## Usage Patterns\n- Controller mapping\n- Service layer mapping\n- Projection queries\n\n## Best Practices\n- Profile organization\n- Testing mappings\n- Performance considerations",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Operations/Movies/MapperProfiles/CreateMovieRequestProfile.cs",
+            "src/BlackSlope.Api/Operations/Movies/MapperProfiles/MovieResponseProfile.cs",
+            "src/BlackSlope.Api/Services/Movies/MapperProfiles/MovieProfile.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs"
+          ],
+          "linked_pages": [
+            "/features/services.md",
+            "/features/controllers.md",
+            "/architecture/dependency_injection.md"
+          ]
+        },
+        {
+          "title": "Exception handling",
+          "path": "/features/exception_handling.md",
+          "summary": "# Exception Handling\n\n## Exception Handling Architecture\n- Centralized exception middleware\n- Custom exception types\n- Error response standardization\n\n## HandledException Framework\n- Creating handled exceptions\n- Exception collections\n- Error codes and types\n\n## Exception Middleware\n- Global exception catching\n- Logging integration\n- Response formatting\n\n## Error Response Models\n- HandledResponseModel structure\n- HandledResult pattern\n- ApiException details",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Middleware/ExceptionHandling/ExceptionHandlingMiddleware.cs",
+            "src/BlackSlope.Api.Common/Exceptions/HandledException.cs",
+            "src/BlackSlope.Api.Common/Exceptions/HandledExceptionCollection.cs",
+            "src/BlackSlope.Api.Common/Exceptions/HandledResponseModel.cs",
+            "src/BlackSlope.Api.Common/Exceptions/HandledResult.cs"
+          ],
+          "linked_pages": [
+            "/architecture/middleware_pipeline.md",
+            "/api_reference/error_responses.md",
+            "/features/correlation_id.md"
+          ]
+        },
+        {
+          "title": "Correlation ID tracking",
+          "path": "/features/correlation_id.md",
+          "summary": "# Correlation ID Tracking\n\n## Correlation ID System\n- Request tracing across services\n- Correlation ID generation\n- Header propagation\n\n## Implementation\n- Correlation middleware\n- Current correlation service\n- Header reading and writing\n\n## Usage Patterns\n- Accessing correlation ID in code\n- Logging with correlation IDs\n- Distributed tracing\n\n## Configuration\n- Service registration\n- Middleware setup\n- Header configuration",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationIdMiddleware.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationId.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CurrentCorrelationIdService.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationIdHeaderService.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/Extensions/CorrelationServiceCollectionExtensions.cs"
+          ],
+          "linked_pages": [
+            "/architecture/middleware_pipeline.md",
+            "/features/exception_handling.md",
+            "/deployment/monitoring.md"
+          ]
+        },
+        {
+          "title": "Swagger/OpenAPI integration",
+          "path": "/features/swagger_integration.md",
+          "summary": "# Swagger/OpenAPI Integration\n\n## Swagger Configuration\n- SwaggerUI setup\n- API documentation generation\n- Document filters\n\n## Configuration Options\n- Swagger configuration class\n- Endpoint customization\n- Health check documentation\n\n## API Documentation\n- Automatic endpoint discovery\n- Request/response schemas\n- Example values\n\n## Customization\n- Document filters for health checks\n- Custom operation filters\n- UI theming",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Configuration/SwaggerConfig.cs",
+            "src/BlackSlope.Api.Common/Swagger/DocumentFilterAddHealth.cs",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs"
+          ],
+          "linked_pages": [
+            "/getting_started/quick_start.md",
+            "/api_reference/movies_api.md",
+            "/configuration/application_settings.md"
+          ]
+        },
+        {
+          "title": "Health checks",
+          "path": "/features/health_checks.md",
+          "summary": "# Health Checks\n\n## Health Check Architecture\n- ASP.NET Core health checks\n- Custom health check implementations\n- Health check tags\n\n## Built-in Health Checks\n- SQL Server connectivity\n- Entity Framework Core context\n- Application readiness\n\n## Custom Health Checks\n- Movie service health check\n- Creating custom implementations\n- Health check responses\n\n## Integration\n- Kubernetes probes\n- Load balancer health checks\n- Monitoring systems",
+          "source_files": [
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/HealthChecks/MoviesHealthCheck.cs",
+            "src/BlackSlope.Api/HealthChecks/HealthCheckTag.cs",
+            "src/BlackSlope.Api.Common/Configuration/HealthChecksConfig.cs",
+            "src/BlackSlope.Api/Startup.cs"
+          ],
+          "linked_pages": [
+            "/api_reference/health_api.md",
+            "/deployment/kubernetes.md",
+            "/deployment/monitoring.md"
+          ]
+        },
+        {
+          "title": "API versioning",
+          "path": "/features/versioning.md",
+          "summary": "# API Versioning\n\n## Versioning Strategy\n- URL path versioning (/api/v1/)\n- Assembly-based versioning\n- JSON file-based versioning\n\n## Version Service\n- IVersionService interface\n- Assembly version implementation\n- JSON version implementation\n\n## Version Controller\n- Endpoint for version retrieval\n- Version response format\n- JSON serialization\n\n## Best Practices\n- When to increment versions\n- Backward compatibility\n- Deprecation strategy",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Versioning/Version.cs",
+            "src/BlackSlope.Api.Common/Versioning/VersionController.cs",
+            "src/BlackSlope.Api.Common/Versioning/Services/AssemblyVersionService.cs",
+            "src/BlackSlope.Api.Common/Versioning/Services/JsonVersionService.cs",
+            "src/BlackSlope.Api.Common/Versioning/Interfaces/IVersionService.cs"
+          ],
+          "linked_pages": [
+            "/api_reference/version_api.md",
+            "/features/controllers.md",
+            "/deployment/versioning_strategy.md"
+          ]
+        },
+        {
+          "title": "HTTP client patterns",
+          "path": "/features/http_client.md",
+          "summary": "# HTTP Client Patterns\n\n## HttpClientFactory\n- Named HTTP clients\n- Typed HTTP clients\n- HTTP client lifetime management\n\n## HTTP Client Decorator\n- Decorator pattern implementation\n- Request/response interception\n- Logging and diagnostics\n\n## Polly Integration\n- Retry policies\n- Circuit breaker patterns\n- Timeout policies\n- Exponential backoff\n\n## FakeAPI Repository Example\n- External API integration\n- Resilience patterns in practice\n- Configuration and registration",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Services/HttpClientDecorator.cs",
+            "src/BlackSlope.Api.Common/Services/IHttpClientDecorator.cs",
+            "src/BlackSlope.Api/Repositories/FakeApi/FakeApiRepository.cs",
+            "src/BlackSlope.Api/Repositories/FakeApi/Extensions/FakeApiRepositoryWithPollyServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Startup.cs"
+          ],
+          "linked_pages": [
+            "/architecture/dependency_injection.md",
+            "/features/resilience.md",
+            "/configuration/service_configuration.md"
+          ]
+        },
+        {
+          "title": "Resilience with Polly",
+          "path": "/features/resilience.md",
+          "summary": "# Resilience with Polly\n\n## Polly Overview\n- Transient fault handling\n- Resilience strategies\n- Policy composition\n\n## Retry Policies\n- Simple retry\n- Exponential backoff\n- Retry configuration\n\n## Circuit Breaker\n- Circuit breaker pattern\n- State transitions\n- Configuration\n\n## Timeout Policies\n- Optimistic timeouts\n- Pessimistic timeouts\n\n## Testing Resilience\n- Exponential backoff endpoint\n- Simulating failures\n- Verifying policies",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/Repositories/FakeApi/Extensions/FakeApiRepositoryWithPollyServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/BlackSlope.Api.csproj"
+          ],
+          "linked_pages": [
+            "/features/http_client.md",
+            "/testing/integration_tests.md",
+            "/deployment/production_best_practices.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Database",
+      "name": "database",
+      "pages": [
+        {
+          "title": "Entity Framework Core",
+          "path": "/database/entity_framework.md",
+          "summary": "# Entity Framework Core\n\n## EF Core Setup\n- DbContext configuration\n- Connection string management\n- Provider configuration (SQL Server)\n\n## Entity Configuration\n- Entity models\n- Fluent API configuration\n- Model builder extensions\n\n## Database Context\n- MovieContext implementation\n- DbSet definitions\n- OnModelCreating configuration\n\n## Best Practices\n- Separation of concerns\n- Repository pattern integration\n- Performance optimization",
+          "source_files": [
+            "src/BlackSlope.Api/Repositories/Movies/Context/MovieContext.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/Extensions/ModelBuilderExtensions.cs",
+            "src/BlackSlope.Api/Repositories/Movies/DtoModels/MovieDtoModel.cs",
+            "src/BlackSlope.Api/Repositories/Movies/MovieRepository.cs",
+            "src/BlackSlope.Api/BlackSlope.Api.csproj"
+          ],
+          "linked_pages": [
+            "/database/migrations.md",
+            "/features/repositories.md",
+            "/configuration/application_settings.md"
+          ]
+        },
+        {
+          "title": "Migrations",
+          "path": "/database/migrations.md",
+          "summary": "# Database Migrations\n\n## EF Core Migrations\n- Creating migrations\n- Applying migrations\n- Migration history\n\n## Initial Migration\n- Database initialization\n- Schema creation\n- Seeding initial data\n\n## Migration Scripts\n- db-update.sh script\n- Automated migration execution\n- Rollback procedures\n\n## Design-Time Support\n- DesignTimeDbContextFactory\n- Supporting tooling\n- Development vs production",
+          "source_files": [
+            "src/BlackSlope.Api/Repositories/Migrations/20190814225754_initialized.cs",
+            "src/BlackSlope.Api/Repositories/Migrations/20190814225910_seeded.cs",
+            "src/BlackSlope.Api/Repositories/Migrations/MovieContextModelSnapshot.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/DesignTimeDbContextFactory.cs",
+            "scripts/db-update.sh"
+          ],
+          "linked_pages": [
+            "/database/entity_framework.md",
+            "/getting_started/installation.md",
+            "/database/seeding_data.md"
+          ]
+        },
+        {
+          "title": "Seeding data",
+          "path": "/database/seeding_data.md",
+          "summary": "# Seeding Data\n\n## Data Seeding Strategies\n- Migration-based seeding\n- SQL script seeding\n- Application startup seeding\n\n## Initial Seed Data\n- Movie data seeding\n- data.sql script\n- Seed migration\n\n## ModelBuilder Extensions\n- HasData method\n- Seed data configuration\n- Relationship seeding\n\n## Best Practices\n- Development vs production data\n- Idempotent seeding\n- Test data management",
+          "source_files": [
+            "scripts/data.sql",
+            "src/BlackSlope.Api/Repositories/Migrations/20190814225910_seeded.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/Extensions/ModelBuilderExtensions.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Context/MovieContext.cs",
+            "README.md"
+          ],
+          "linked_pages": [
+            "/database/migrations.md",
+            "/database/entity_framework.md",
+            "/getting_started/installation.md"
+          ]
+        },
+        {
+          "title": "Repository configuration",
+          "path": "/database/repository_configuration.md",
+          "summary": "# Repository Configuration\n\n## Configuration Pattern\n- Repository configuration classes\n- Connection string management\n- Configuration binding\n\n## Movie Repository Configuration\n- IMovieRepositoryConfiguration interface\n- Configuration implementation\n- Dependency injection\n\n## Configuration Sources\n- appsettings.json\n- Environment variables\n- User secrets\n\n## Best Practices\n- Strongly-typed configuration\n- Validation\n- Environment-specific settings",
+          "source_files": [
+            "src/BlackSlope.Api/Repositories/Movies/Configuration/MovieRepositoryConfiguration.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Configuration/IMovieRepositoryConfiguration.cs",
+            "src/BlackSlope.Api/Repositories/Movies/Extensions/MovieRepositoryServiceCollectionExtensions.cs",
+            "src/BlackSlope.Api/appsettings.json",
+            "src/BlackSlope.Api/Startup.cs"
+          ],
+          "linked_pages": [
+            "/features/repositories.md",
+            "/configuration/application_settings.md",
+            "/database/entity_framework.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Configuration",
+      "name": "configuration",
+      "pages": [
+        {
+          "title": "Application settings",
+          "path": "/configuration/application_settings.md",
+          "summary": "# Application Settings\n\n## Configuration System\n- ASP.NET Core configuration\n- Configuration sources hierarchy\n- Environment-specific configuration\n\n## appsettings.json\n- Base configuration structure\n- Common settings\n- Connection strings\n\n## Environment-Specific Files\n- appsettings.Development.json\n- appsettings.docker.json\n- Environment variable overrides\n\n## Configuration Sections\n- Host configuration\n- Swagger configuration\n- Azure AD configuration\n- Logging configuration",
+          "source_files": [
+            "src/BlackSlope.Api/appsettings.json",
+            "src/BlackSlope.Api/appsettings.Development.json",
+            "src/BlackSlope.Api/appsettings.docker.json",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api.Common/Configuration/HostConfig.cs"
+          ],
+          "linked_pages": [
+            "/configuration/service_configuration.md",
+            "/security/authentication.md",
+            "/deployment/docker.md"
+          ]
+        },
+        {
+          "title": "Service configuration",
+          "path": "/configuration/service_configuration.md",
+          "summary": "# Service Configuration\n\n## Configuration Classes\n- Strongly-typed configuration\n- IOptions pattern\n- Configuration binding\n\n## Configuration Models\n- HostConfig\n- SwaggerConfig\n- AzureAdConfig\n- HealthChecksConfig\n- SerilogConfig\n\n## Loading Configuration\n- GetSection and binding\n- Configuration validation\n- Dependency injection\n\n## Best Practices\n- Type safety\n- Validation at startup\n- Secret management",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Configuration/HostConfig.cs",
+            "src/BlackSlope.Api.Common/Configuration/SwaggerConfig.cs",
+            "src/BlackSlope.Api.Common/Configuration/AzureAdConfig.cs",
+            "src/BlackSlope.Api.Common/Configuration/HealthChecksConfig.cs",
+            "src/BlackSlope.Api.Common/Configuration/SerilogConfig.cs"
+          ],
+          "linked_pages": [
+            "/configuration/application_settings.md",
+            "/architecture/dependency_injection.md",
+            "/security/authentication.md"
+          ]
+        },
+        {
+          "title": "Logging configuration",
+          "path": "/configuration/logging.md",
+          "summary": "# Logging Configuration\n\n## Serilog Integration\n- Serilog setup and configuration\n- Structured logging\n- Log sinks\n\n## Configuration\n- SerilogConfig class\n- UseSerilog extension\n- appsettings logging section\n\n## Log Enrichment\n- Correlation ID enrichment\n- Context enrichment\n- Request logging\n\n## Best Practices\n- Log levels\n- Structured logging patterns\n- Sensitive data handling\n- Performance considerations",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Configuration/SerilogConfig.cs",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeHostBuilderExtensions.cs",
+            "src/BlackSlope.Api/Program.cs",
+            "src/BlackSlope.Api/appsettings.json",
+            "src/BlackSlope.Api/Startup.cs"
+          ],
+          "linked_pages": [
+            "/configuration/application_settings.md",
+            "/features/correlation_id.md",
+            "/deployment/monitoring.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Security",
+      "name": "security",
+      "pages": [
+        {
+          "title": "Authentication with Azure AD",
+          "path": "/security/authentication.md",
+          "summary": "# Authentication with Azure AD\n\n## Azure AD Integration\n- Azure AD configuration\n- Authentication middleware\n- JWT token validation\n\n## Configuration\n- AzureAdConfig setup\n- appsettings configuration\n- Service registration\n\n## Authentication Flow\n- Token acquisition\n- Token validation\n- Claims extraction\n\n## Console App Authentication\n- AuthenticationToken helper\n- Service principal authentication\n- Token management\n\n## Best Practices\n- Secure token storage\n- Token expiration handling\n- Multi-tenant support",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Configuration/AzureAdConfig.cs",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Hosts.Console/AuthenticationToken.cs",
+            "src/BlackSlope.Hosts.Console/Program.cs",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/security/authorization.md",
+            "/configuration/service_configuration.md",
+            "/security/cors.md"
+          ]
+        },
+        {
+          "title": "Authorization",
+          "path": "/security/authorization.md",
+          "summary": "# Authorization\n\n## Authorization Overview\n- Role-based authorization\n- Policy-based authorization\n- Claims-based authorization\n\n## Controller Authorization\n- [Authorize] attribute\n- Role requirements\n- Policy requirements\n\n## Current Implementation\n- TODO: Authentication currently disabled\n- Planned authorization strategy\n- Security considerations\n\n## Best Practices\n- Principle of least privilege\n- Authorization policies\n- Testing authorization",
+          "source_files": [
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api.Common/Controllers/BaseController.cs",
+            "README.md",
+            "src/BlackSlope.Api.Common/Configuration/AzureAdConfig.cs"
+          ],
+          "linked_pages": [
+            "/security/authentication.md",
+            "/features/controllers.md",
+            "/deployment/production_best_practices.md"
+          ]
+        },
+        {
+          "title": "CORS configuration",
+          "path": "/security/cors.md",
+          "summary": "# CORS Configuration\n\n## Cross-Origin Resource Sharing\n- CORS concepts\n- Browser security model\n- Pre-flight requests\n\n## Current Configuration\n- AllowAnyOrigin setup (TODO: restrict)\n- Allowed methods\n- Allowed headers\n\n## Production CORS Setup\n- Specific origin configuration\n- Credentials support\n- Exposed headers\n\n## Best Practices\n- Restricting origins\n- Security implications\n- Testing CORS policies",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/appsettings.json",
+            "README.md",
+            "src/BlackSlope.Api/Program.cs",
+            "src/BlackSlope.Api.Common/Extensions/BlackSlopeBuilderExtensions.cs"
+          ],
+          "linked_pages": [
+            "/security/authentication.md",
+            "/architecture/middleware_pipeline.md",
+            "/deployment/production_best_practices.md"
+          ]
+        },
+        {
+          "title": "Security best practices",
+          "path": "/security/best_practices.md",
+          "summary": "# Security Best Practices\n\n## Configuration Security\n- Secrets management\n- User secrets in development\n- Environment variables in production\n- Key vault integration\n\n## API Security\n- HTTPS enforcement\n- HSTS configuration\n- Input validation\n- SQL injection prevention\n\n## Authentication & Authorization\n- Token security\n- Password policies\n- Session management\n\n## Production Checklist\n- Enable authentication\n- Restrict CORS origins\n- Remove debug endpoints\n- Security headers\n- Rate limiting",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api.Common/Validators/BlackSlopeValidator.cs",
+            "README.md",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/security/authentication.md",
+            "/security/authorization.md",
+            "/security/cors.md",
+            "/deployment/production_best_practices.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Testing",
+      "name": "testing",
+      "pages": [
+        {
+          "title": "Testing overview",
+          "path": "/testing/overview.md",
+          "summary": "# Testing Overview\n\n## Testing Strategy\n- Unit tests\n- Integration tests\n- BDD/SpecFlow tests\n- Test pyramid approach\n\n## Test Projects\n- BlackSlope.Api.Tests (unit tests)\n- BlackSlope.Api.IntegrationTests (integration tests)\n- Test organization and naming\n\n## Running Tests\n- dotnet test command\n- Test execution from IDE\n- CI/CD integration\n\n## Test Configuration\n- appsettings.test.json\n- Test environment setup\n- Test data management",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api.Tests/BlackSlope.Api.Tests.csproj",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/BlackSlope.Api.IntegrationTests.csproj",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/appsettings.test.json",
+            "src/BlackSlope.Api.Tests/ServicesTests/MoviesTests/MovieServiceTestsBase.cs"
+          ],
+          "linked_pages": [
+            "/testing/unit_tests.md",
+            "/testing/integration_tests.md",
+            "/testing/bdd_tests.md"
+          ]
+        },
+        {
+          "title": "Unit testing",
+          "path": "/testing/unit_tests.md",
+          "summary": "# Unit Testing\n\n## Unit Test Structure\n- Test project organization\n- Naming conventions\n- Arrange-Act-Assert pattern\n\n## Testing Services\n- MovieService tests\n- Mocking dependencies\n- Test base classes\n\n## Testing Validators\n- Validator unit tests\n- Testing validation rules\n- FluentValidation test helpers\n\n## Best Practices\n- Test isolation\n- One assertion per test\n- Descriptive test names\n- Test data builders",
+          "source_files": [
+            "src/BlackSlope.Api.Tests/ServicesTests/MoviesTests/MovieServiceTestsBase.cs",
+            "src/BlackSlope.Api.Tests/ServicesTests/MoviesTests/MovieService_CreateMovieShould.cs",
+            "src/BlackSlope.Api.Tests/OperationsTests/MoviesTests/ValidatorsTests/CreateMovieViewModelValidatorShould.cs",
+            "src/BlackSlope.Api.Tests/BlackSlope.Api.Tests.csproj",
+            "README.md"
+          ],
+          "linked_pages": [
+            "/testing/overview.md",
+            "/features/services.md",
+            "/features/validation.md"
+          ]
+        },
+        {
+          "title": "Integration testing",
+          "path": "/testing/integration_tests.md",
+          "summary": "# Integration Testing\n\n## Integration Test Architecture\n- Test project structure\n- Test environment setup\n- API test client\n\n## HTTP Client Approaches\n- Standard HttpClient tests\n- RestSharp tests\n- Client configuration\n\n## Test Helpers\n- Environment setup\n- String helpers\n- Constants management\n\n## Running Integration Tests\n- Starting the API\n- Test execution\n- Cleanup procedures\n\n## Best Practices\n- Test isolation\n- Database state management\n- Test data cleanup",
+          "source_files": [
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/EnvironmentSetup.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Client/Client.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTestsRestSharp/Clients/APIClient.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Helpers/Constants.cs",
+            "README.md"
+          ],
+          "linked_pages": [
+            "/testing/overview.md",
+            "/testing/bdd_tests.md",
+            "/api_reference/movies_api.md"
+          ]
+        },
+        {
+          "title": "BDD with SpecFlow",
+          "path": "/testing/bdd_tests.md",
+          "summary": "# BDD with SpecFlow\n\n## Behavior-Driven Development\n- BDD concepts and Gherkin syntax\n- Feature files\n- Step definitions\n- Scenarios and examples\n\n## SpecFlow Integration\n- SpecFlow setup and configuration\n- IDE plugin support\n- .NET 6 compatibility notes\n\n## Movie Feature Tests\n- Create movie scenarios\n- Update movie scenarios\n- Delete movie scenarios\n- Get movie scenarios\n\n## Step Implementations\n- Given-When-Then patterns\n- Shared step definitions\n- Context management\n\n## Best Practices\n- Writing clear scenarios\n- Reusable step definitions\n- Test data management",
+          "source_files": [
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Features/CreateMovie.feature",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Steps/CreateMovieSteps.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Models/CreateMovieContext.cs",
+            "README.md",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/BlackSlope.Api.IntegrationTests.csproj"
+          ],
+          "linked_pages": [
+            "/testing/overview.md",
+            "/testing/integration_tests.md",
+            "/api_reference/movies_api.md"
+          ]
+        },
+        {
+          "title": "Test utilities",
+          "path": "/testing/test_utilities.md",
+          "summary": "# Test Utilities\n\n## Test Helpers\n- String helpers for test data\n- Environment configuration\n- Constants management\n\n## Test Services\n- Movie test service\n- Test client wrappers\n- Request helpers\n\n## Test Data Management\n- Creating test data\n- Test context objects\n- Data cleanup\n\n## Mock and Stub Utilities\n- Service mocking patterns\n- Repository stubs\n- HTTP client mocking\n\n## Best Practices\n- Reusable test utilities\n- Test data builders\n- Helper method organization",
+          "source_files": [
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Helpers/StringHelper.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTestsRestSharp/Helpers/RequestHelper.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/TestServices/MovieService.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/Models/CreateMovieContext.cs",
+            "src/BlackSlope.Api.Tests/ServicesTests/MoviesTests/MovieServiceTestsBase.cs"
+          ],
+          "linked_pages": [
+            "/testing/unit_tests.md",
+            "/testing/integration_tests.md",
+            "/testing/bdd_tests.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Deployment",
+      "name": "deployment",
+      "pages": [
+        {
+          "title": "Docker deployment",
+          "path": "/deployment/docker.md",
+          "summary": "# Docker Deployment\n\n## Dockerfile Configuration\n- Multi-stage build\n- Base images\n- Build optimization\n\n## Building Docker Images\n- docker-image-build.sh script\n- Image tagging\n- Build context\n\n## Running Containers\n- docker-container-run.sh script\n- Port mapping\n- Environment variables\n- Volume mounting\n\n## Docker Compose\n- Multi-container setup\n- Service definitions\n- Networking\n\n## Best Practices\n- Image optimization\n- Security scanning\n- Layer caching",
+          "source_files": [
+            "src/Dockerfile",
+            "scripts/docker-image-build.sh",
+            "scripts/docker-container-run.sh",
+            "src/docker-compose.yml",
+            "README.md"
+          ],
+          "linked_pages": [
+            "/deployment/kubernetes.md",
+            "/configuration/application_settings.md",
+            "/getting_started/prerequisites.md"
+          ]
+        },
+        {
+          "title": "Kubernetes deployment",
+          "path": "/deployment/kubernetes.md",
+          "summary": "# Kubernetes Deployment\n\n## Kubernetes Overview\n- Container orchestration\n- Pods, services, and deployments\n- Configuration management\n\n## Deployment Configuration\n- Deployment manifests\n- Service definitions\n- ConfigMaps and secrets\n\n## Health Check Integration\n- Liveness probes\n- Readiness probes\n- Startup probes\n\n## Scaling and Updates\n- Horizontal pod autoscaling\n- Rolling updates\n- Resource limits\n\n## Best Practices\n- Resource management\n- Security contexts\n- Monitoring integration",
+          "source_files": [
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/HealthChecks/MoviesHealthCheck.cs",
+            "src/Dockerfile",
+            "README.md",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/deployment/docker.md",
+            "/features/health_checks.md",
+            "/deployment/monitoring.md"
+          ]
+        },
+        {
+          "title": "Monitoring and observability",
+          "path": "/deployment/monitoring.md",
+          "summary": "# Monitoring and Observability\n\n## Application Insights\n- ApplicationInsights configuration\n- Telemetry collection\n- Custom metrics\n\n## Logging\n- Structured logging with Serilog\n- Log aggregation\n- Log analysis\n\n## Distributed Tracing\n- Correlation ID propagation\n- Request tracing\n- Performance monitoring\n\n## Health Monitoring\n- Health check endpoints\n- Uptime monitoring\n- Alerting\n\n## Best Practices\n- Meaningful metrics\n- Alert fatigue prevention\n- Dashboard design",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Configuration/ApplicationInsightsConfig.cs",
+            "src/BlackSlope.Api.Common/Configuration/SerilogConfig.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationIdMiddleware.cs",
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/configuration/logging.md",
+            "/features/correlation_id.md",
+            "/features/health_checks.md",
+            "/deployment/kubernetes.md"
+          ]
+        },
+        {
+          "title": "Versioning strategy",
+          "path": "/deployment/versioning_strategy.md",
+          "summary": "# Versioning Strategy\n\n## Semantic Versioning\n- Major, minor, and patch versions\n- Breaking changes policy\n- API deprecation strategy\n\n## Version Implementation\n- Assembly versioning\n- JSON file versioning\n- API endpoint versioning\n\n## Deployment Versioning\n- Image tagging strategy\n- Release management\n- Rollback procedures\n\n## Client Compatibility\n- Version negotiation\n- Backward compatibility\n- Client upgrade paths\n\n## Best Practices\n- Clear versioning policy\n- Deprecation warnings\n- Version documentation",
+          "source_files": [
+            "src/BlackSlope.Api.Common/Versioning/Version.cs",
+            "src/BlackSlope.Api.Common/Versioning/Services/AssemblyVersionService.cs",
+            "src/BlackSlope.Api.Common/Versioning/version.json",
+            "README.md",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs"
+          ],
+          "linked_pages": [
+            "/features/versioning.md",
+            "/api_reference/version_api.md",
+            "/deployment/production_best_practices.md"
+          ]
+        },
+        {
+          "title": "Production best practices",
+          "path": "/deployment/production_best_practices.md",
+          "summary": "# Production Best Practices\n\n## Pre-Deployment Checklist\n- Enable authentication and authorization\n- Restrict CORS to specific origins\n- Remove debug/test endpoints\n- Configure production logging\n- Set up monitoring and alerts\n\n## Performance Optimization\n- Response caching\n- Database connection pooling\n- HTTP compression\n- CDN for static content\n\n## Security Hardening\n- HTTPS enforcement\n- Security headers\n- Rate limiting\n- Input validation\n- Secret management\n\n## Reliability\n- Health checks\n- Graceful shutdown\n- Retry policies\n- Circuit breakers\n\n## Operational Excellence\n- Automated deployments\n- Blue-green deployments\n- Rollback procedures\n- Incident response\n- Documentation maintenance",
+          "source_files": [
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "README.md",
+            "src/BlackSlope.Api/HealthCheckStartup.cs",
+            "src/BlackSlope.Api/appsettings.json"
+          ],
+          "linked_pages": [
+            "/security/best_practices.md",
+            "/deployment/monitoring.md",
+            "/deployment/kubernetes.md",
+            "/features/resilience.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Development",
+      "name": "development",
+      "pages": [
+        {
+          "title": "Development environment",
+          "path": "/development/environment.md",
+          "summary": "# Development Environment\n\n## IDE Setup\n- Visual Studio configuration\n- VS Code setup\n- Required extensions\n\n## Local Development\n- Running the API locally\n- Local SQL Server setup\n- Using Docker for development\n\n## Developer Tools\n- Swagger UI for testing\n- Postman collections\n- Database management tools\n\n## Debugging\n- Breakpoint debugging\n- Logging configuration\n- Remote debugging\n\n## Tips and Tricks\n- Hot reload\n- Watch mode\n- Quick navigation",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/Properties/launchSettings.json",
+            "src/BlackSlope.Api.Common/Properties/launchSettings.json",
+            "src/BlackSlope.Api/appsettings.Development.json",
+            "run.sh"
+          ],
+          "linked_pages": [
+            "/getting_started/prerequisites.md",
+            "/getting_started/installation.md",
+            "/development/build_scripts.md"
+          ]
+        },
+        {
+          "title": "Build scripts",
+          "path": "/development/build_scripts.md",
+          "summary": "# Build Scripts\n\n## Build Script Overview\n- scripts directory organization\n- Script purposes and usage\n\n## build.sh\n- Building the solution\n- Build options\n- Output directories\n\n## db-update.sh\n- Running database migrations\n- Migration workflow\n\n## publish.sh\n- Publishing for deployment\n- Release builds\n- Output configuration\n\n## Docker Scripts\n- docker-image-build.sh\n- docker-container-run.sh\n\n## Best Practices\n- Script portability\n- Error handling\n- Logging output",
+          "source_files": [
+            "scripts/build.sh",
+            "scripts/db-update.sh",
+            "scripts/publish.sh",
+            "scripts/docker-image-build.sh",
+            "scripts/docker-container-run.sh"
+          ],
+          "linked_pages": [
+            "/development/environment.md",
+            "/deployment/docker.md",
+            "/database/migrations.md"
+          ]
+        },
+        {
+          "title": "Code quality",
+          "path": "/development/code_quality.md",
+          "summary": "# Code Quality\n\n## Code Analyzers\n- StyleCop configuration\n- .NET Analyzers\n- EditorConfig setup\n\n## StyleCop Rules\n- Enabled rules\n- Suppressed rules and rationale\n- Custom rule configuration\n\n## Code Analysis Rules\n- CA rule suppressions\n- Justification documentation\n- Global suppressions\n\n## Best Practices\n- Consistent code style\n- Code review standards\n- Refactoring guidelines\n\n## Tools\n- Running analyzers\n- Fixing violations\n- IDE integration",
+          "source_files": [
+            "src/BlackSlope.Api.Common/stylecop.json",
+            "src/BlackSlope.Api/stylecop.json",
+            ".editorconfig",
+            "src/BlackSlope.Api.Common/GlobalSuppressions.cs",
+            "README.md"
+          ],
+          "linked_pages": [
+            "/development/environment.md",
+            "/development/contributing.md"
+          ]
+        },
+        {
+          "title": "Contributing guidelines",
+          "path": "/development/contributing.md",
+          "summary": "# Contributing Guidelines\n\n## Getting Started\n- Forking the repository\n- Setting up development environment\n- Running tests\n\n## Development Workflow\n- Branch naming conventions\n- Commit message format\n- Pull request process\n\n## Code Standards\n- Following code style\n- Writing tests\n- Documentation requirements\n\n## Review Process\n- Code review checklist\n- Addressing feedback\n- Merge requirements\n\n## Best Practices\n- Small, focused changes\n- Clear communication\n- Testing thoroughly",
+          "source_files": [
+            "README.md",
+            ".editorconfig",
+            "src/BlackSlope.Api.Common/stylecop.json",
+            "src/BlackSlope.Api.Tests/BlackSlope.Api.Tests.csproj",
+            ".gitignore"
+          ],
+          "linked_pages": [
+            "/development/code_quality.md",
+            "/testing/overview.md",
+            "/development/environment.md"
+          ]
+        },
+        {
+          "title": "Utilities",
+          "path": "/development/utilities.md",
+          "summary": "# Development Utilities\n\n## RenameUtility\n- Purpose and usage\n- Bulk renaming operations\n- Configuration\n\n## Console Host\n- BlackSlope.Hosts.Console project\n- Azure AD authentication helper\n- Command-line operations\n\n## Helper Scripts\n- rename.sh usage\n- run.sh convenience script\n\n## Custom Extensions\n- Enumeration extensions\n- Service collection extensions\n- Builder extensions\n\n## Best Practices\n- When to create utilities\n- Reusable component design\n- Documentation",
+          "source_files": [
+            "src/RenameUtility/RenameUtility/Program.cs",
+            "src/BlackSlope.Hosts.Console/Program.cs",
+            "rename.sh",
+            "run.sh",
+            "IgnoreExtensions.RenameUtility"
+          ],
+          "linked_pages": [
+            "/development/environment.md",
+            "/security/authentication.md",
+            "/development/build_scripts.md"
+          ]
+        }
+      ],
+      "sections": []
+    },
+    {
+      "title": "Troubleshooting",
+      "name": "troubleshooting",
+      "pages": [
+        {
+          "title": "Common issues",
+          "path": "/troubleshooting/common_issues.md",
+          "summary": "# Common Issues\n\n## Database Connection Issues\n- Connection string errors\n- SQL Server not running\n- Authentication failures\n- Migration errors\n\n## Build and Compilation Issues\n- Missing dependencies\n- Package restore failures\n- Framework version mismatches\n\n## Runtime Issues\n- Port conflicts\n- Configuration errors\n- Missing appsettings\n- Environment variable issues\n\n## Docker Issues\n- Container startup failures\n- Networking problems\n- Volume mounting issues\n\n## Testing Issues\n- Test execution failures\n- SpecFlow .NET 6 compatibility\n- Integration test setup",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/appsettings.json",
+            "scripts/db-update.sh",
+            "src/Dockerfile",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/EnvironmentSetup.cs"
+          ],
+          "linked_pages": [
+            "/troubleshooting/debugging.md",
+            "/getting_started/installation.md",
+            "/database/migrations.md"
+          ]
+        },
+        {
+          "title": "Debugging guide",
+          "path": "/troubleshooting/debugging.md",
+          "summary": "# Debugging Guide\n\n## Local Debugging\n- Setting breakpoints\n- Step-through debugging\n- Variable inspection\n- Call stack analysis\n\n## Logging for Debugging\n- Enabling debug logs\n- Serilog configuration\n- Reading log output\n- Correlation ID tracing\n\n## API Debugging\n- Using Swagger for testing\n- Postman debugging\n- HTTP request inspection\n- Response analysis\n\n## Database Debugging\n- SQL Server Profiler\n- Query analysis\n- Entity Framework logging\n- Connection debugging\n\n## Remote Debugging\n- Attaching to containers\n- Remote debugging configuration\n- Production debugging considerations",
+          "source_files": [
+            "src/BlackSlope.Api/Properties/launchSettings.json",
+            "src/BlackSlope.Api.Common/Configuration/SerilogConfig.cs",
+            "src/BlackSlope.Api.Common/Middleware/Correlation/CorrelationIdMiddleware.cs",
+            "README.md",
+            "src/BlackSlope.Api/appsettings.Development.json"
+          ],
+          "linked_pages": [
+            "/troubleshooting/common_issues.md",
+            "/configuration/logging.md",
+            "/features/correlation_id.md"
+          ]
+        },
+        {
+          "title": "FAQ",
+          "path": "/troubleshooting/faq.md",
+          "summary": "# Frequently Asked Questions\n\n## General Questions\n- What is BlackSlope.NET?\n- Who should use this reference architecture?\n- What are the system requirements?\n\n## Configuration Questions\n- How do I configure Azure AD?\n- How do I change the database connection?\n- How do I add new configuration settings?\n\n## Development Questions\n- How do I add a new endpoint?\n- How do I create a new repository?\n- How do I add custom middleware?\n- How do I add a new validator?\n\n## Deployment Questions\n- How do I deploy to production?\n- How do I configure Docker?\n- How do I set up Kubernetes?\n\n## Testing Questions\n- How do I run tests?\n- How do I write integration tests?\n- Why are SpecFlow tests not working?",
+          "source_files": [
+            "README.md",
+            "src/BlackSlope.Api/Startup.cs",
+            "src/BlackSlope.Api/Operations/Movies/MoviesController.cs",
+            "src/BlackSlope.Api.IntegrationTests/AcceptanceTests/BlackSlope.Api.IntegrationTests.csproj",
+            "src/Dockerfile"
+          ],
+          "linked_pages": [
+            "/troubleshooting/common_issues.md",
+            "/getting_started/introduction.md",
+            "/development/contributing.md"
+          ]
+        }
+      ],
+      "sections": []
+    }
+  ]
+}
