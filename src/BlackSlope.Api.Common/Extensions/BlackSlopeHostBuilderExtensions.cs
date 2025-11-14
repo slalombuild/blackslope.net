@@ -1,6 +1,5 @@
 ﻿using System;
 using BlackSlope.Api.Common.Configuration;
-using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -30,22 +29,17 @@ namespace BlackSlope.Api.Common.Extensions
         {
             if (serilogConfig.WriteToAppInsights)
             {
-#pragma warning disable CS0618  // Suppress warning since we want to be able to log early error,
-                // remove when the issue (https://github.com/serilog/serilog-sinks-applicationinsights/issues/121) is closed
-
-                // TODO: TelemetryConverter should be configurable (defaulted to Trace)
-                // Note: best practice is to use the existing Telemetry
-                if (string.IsNullOrEmpty(TelemetryConfiguration.Active.InstrumentationKey))
+                // Use the instrumentation key directly - this is the correct approach for the latest versions
+                if (!string.IsNullOrEmpty(appSettings.ApplicationInsights.InstrumentationKey))
                 {
                     config.WriteTo.ApplicationInsights(appSettings.ApplicationInsights.InstrumentationKey, TelemetryConverter.Traces);
                     config.WriteTo.ApplicationInsights(appSettings.ApplicationInsights.InstrumentationKey, TelemetryConverter.Events);
                 }
                 else
                 {
-                    config.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces);
-                    config.WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Events);
+                    // Log a warning that Application Insights configuration is missing
+                    config.WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] Warning: Application Insights InstrumentationKey is not configured. Application Insights logging will be skipped.{NewLine}");
                 }
-#pragma warning restore CS0618 // Type or member is obsolete
             }
         }
 

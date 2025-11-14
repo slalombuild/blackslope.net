@@ -86,3 +86,8 @@ _[Ss]cripts
 
 publish/
 .vscode
+
+# VitePress
+.vitepress/cache/
+.vitepress/dist/
+node_modules/
