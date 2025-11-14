@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       mermaid:
-        specifier: ^11.6.0
+        specifier: ^11.12.1
         version: 11.12.1
       vitepress:
         specifier: ^1.6.3
